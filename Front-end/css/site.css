@@ -6,7 +6,26 @@ body{
     width: 95%;
     height: 100%;
 
-    background-color: beige;
+    /* background-color: beige; */
+}
+
+
+.justificar-eve{
+    display: flex;
+    justify-content: space-evenly;
+}
+.justificar-between{
+    display: flex;
+    justify-content: space-between;
+}
+.justificar-around{
+    display: flex;
+    justify-content: space-around;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
 }
 
 .row{
@@ -20,7 +39,6 @@ body{
     width: 100%;
     height: 10vh;
 
-    background-color: aquamarine;
 }
 
 .boxNavBar{
@@ -31,7 +49,6 @@ body{
     height: 100%;
     width: 100%;
 
-    background-color: black;
 }
 
 .conteudoNavBar{
@@ -40,7 +57,6 @@ body{
     align-items: center;
     height: 100%;
 
-    background-color: white;
 }
 
 .extremo{
@@ -58,7 +74,7 @@ body{
     width: 80%;
     height: 80%;
 
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .boxTextoNavBar{
@@ -67,8 +83,9 @@ body{
     align-items: center;
 
     height: 100%;
-    width: 5vw;
-    background-color: bisque;
+    width: 20vw;
+
+    /* background-color: azure; */
 }
 
 .textoNavBar{
@@ -78,7 +95,23 @@ body{
     width: 80%;
     height: 80%;
 
-    background-color: aqua;
+/* background-color: aqua; */
+}
+
+.textoNavBar span{
+    font-size: 18px;
+    font-weight: bold;
+    color: #900020
+}
+
+.iconNavBar{
+    width: 100%;
+    height: 100%;
+}
+
+.iconNavBar img{
+    width: 42px;
+    height: 42px;
 }
 
 .rodape{
@@ -89,7 +122,7 @@ body{
     height: 80vh;
     width: 100%;
 
-    background-color: blueviolet;
+   
 }
 
 .boxRodape{
@@ -97,15 +130,19 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    height: 90%;
+    height: 80%;
     width: 100%;
+
+    border-radius: 3%;
+    
 }
 
 .conteudoRodape-esquerdo{
+    position: relative;
+
     height: 90%;
     width: 40%;
 
-    background-color: red;
 }
 
 .conteudoRodape-direito{
@@ -113,7 +150,7 @@ body{
     height: 70%;
     width: 40%;
     
-    background-color: rgb(198, 198, 198);
+    /* background-color: rgb(198, 198, 198); */
 }
 
 .boxTituloRp{
@@ -123,7 +160,7 @@ body{
     width: 100%;
     height: 20%;
 
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .tituloRp{
@@ -132,15 +169,15 @@ body{
     width: auto;
     height: 70%;
 
-    background-color: rgb(25, 72, 72);
+    /* background-color: rgb(25, 72, 72); */
 }
 
 .tituloRp span{
-    font-size: x-large;
+    font-size: 32px;
     font-weight: bold;
-
-    color: white;
+    color: #900020;
 }
+
 
 .boxConteudoRp{
     display: flex;
@@ -148,20 +185,20 @@ body{
     width: 100%;
     height: 40%;
 
-    background-color: azure;
+    /* background-color: azure; */
 }
 
 .conteudoRp{
-    height: 100%;
-    width: 50%;
+    height: 90%;
+    width: 100%;
 
-    background-color: rgb(229, 229, 229);
+    /* background-color: rgb(229, 229, 229); */
 }
 
 .boxtituloConteudoRp{
     width: 100%;
     height: 30%;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
 }
 
 .tituloConteudoRp{
@@ -170,44 +207,33 @@ body{
 
     height: 100%;
     width: auto;
-    background-color: brown;
+    /* background-color: brown; */
 }
 
 .tituloConteudoRp span{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     
-    color: black;
+    color: #900020;
 }
 
-.justificar-eve{
-    display: flex;
-    justify-content: space-evenly;
-}
-.justificar-between{
-    display: flex;
-    justify-content: space-between;
-}
-.justificar-around{
-    display: flex;
-    justify-content: space-around;
-}
+
 
 .boxTextoConteudoRp{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 70%;
+    height: 30%;
 
-    background-color: black;
+    /* background-color: rgb(199, 153, 153); */
 }
 
 .textoConteudoRp{
     width: 100%;
-    height: 30%;
+    height: auto;
 
-    background-color: rgb(60, 50, 50);
+    /* background-color: rgb(0, 0, 0); */
 
 }
 
@@ -217,8 +243,13 @@ body{
     justify-content: center;
     font-weight: bold;
     width: 100%;
-    height: 10%;
+    height: 3%;
 
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
+.boxDireitosAutorais span{
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.455);
+}
