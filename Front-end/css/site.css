@@ -9,6 +9,10 @@ body{
     /* background-color: beige; */
 }
 
+.justificar-center{
+    display: flex;
+    justify-content: center;
+}
 
 .justificar-eve{
     display: flex;
