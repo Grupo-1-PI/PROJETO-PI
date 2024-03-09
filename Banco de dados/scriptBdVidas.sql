@@ -35,7 +35,7 @@ create table doador(
             email varchar(45),
             fkEnderecoDoador int, foreign key (fkEnderecoDoador) references enderecoDoador(idEnderecoDoador)
             );
-create table historico(
+create table historicoAgendamento(
 			fkOngH int, foreign key (fkOngH) references ong(idOng),
             fkDoadorH int, foreign key (fkDoadorH) references doador(idDoador),
             dataHorario date
