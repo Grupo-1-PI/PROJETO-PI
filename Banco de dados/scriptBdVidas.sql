@@ -53,9 +53,9 @@ create table nivelAcesso(
             fkPermissoes int, foreign key(fkPermissoes) references permissoes(idPermissoes)
             );
 create table funcionario(
-			idFuncionario int primary key auto_increment,
-            nomeFuncionario varchar(45),
-            emailFuncionario varchar(45),
+			idUsuario int primary key auto_increment,
+            nomeUsuario varchar(45),
+            emailUsuario varchar(45),
             senha varchar(45),
             statusFuncionario tinyint(1),
             fkNivelAcesso int, foreign key (fkNivelAcesso) references nivelAcesso(idNivelAcesso),
