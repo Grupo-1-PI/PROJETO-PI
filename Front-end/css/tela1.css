@@ -252,6 +252,14 @@
     /* background-color: aliceblue; */
 }
 
+.format-center{
+    text-align: center;
+}
+
+.format-textJustify{
+    text-align: justify;
+}
+
 .conteudoValoresGerais{
     display: flex;
     align-items: center;
@@ -263,5 +271,4 @@
 
 .conteudoValoresGerais p{
     font-size: 24px;
-    text-align: justify;
 }
