@@ -284,3 +284,63 @@ body{
 
     background-color: #900020;
 }
+
+#sessao2{
+    margin:0;
+    padding: 0px;
+    text-align: center;
+    transition: 0.5s;
+    background: #ffffff;
+    min-height: 150vh;
+}
+
+.header {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-bottom: solid rgb(0, 0, 0) 3px;
+}
+
+.login_btn{
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.login_btn:hover{
+    background-color: rgb(255, 0, 0);
+    color: black;
+}
+.traco{
+    padding: 10px;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    width: 300px;
+    display: flex;
+    color: #000000;
+    list-style: none;
+    justify-content: space-evenly;
+    font-weight: bold;
+
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#sessao3{
+    margin:0;
+    padding: 0px;
+    text-align: center;
+    transition: 0.5s;
+    background: #ffffff;
+    min-height: 150vh;
+}
