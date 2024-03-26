@@ -1,3 +1,9 @@
+
+*{
+    font-family: 'Times New Roman', Times, serif
+}                                      
+
+
 body{
     margin: 0%;
 }
@@ -160,7 +166,6 @@ background-color: aqua;
 
 .conteudoRodape-esquerdo{
     position: relative;
-
     height: 90%;
     width: 40%;
 
@@ -189,7 +194,7 @@ background-color: aqua;
     display: flex;
     align-items: center;
     width: auto;
-    height: 70%;
+    height: 100%;
 
     /* background-color: rgb(25, 72, 72); */
 }
@@ -211,7 +216,7 @@ background-color: aqua;
 }
 
 .conteudoRp{
-    height: 90%;
+    height: 100%;
     width: 100%;
 
     /* background-color: rgb(229, 229, 229); */
@@ -291,7 +296,6 @@ background-color: aqua;
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 24%;
 
 }
@@ -349,6 +353,7 @@ background-color: aqua;
     text-decoration: none;
     color: #900020;
     position: relative;
+    font-size: 20px;
   }
   
   .menu li a::after {

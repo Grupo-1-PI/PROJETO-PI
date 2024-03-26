@@ -64,7 +64,7 @@
 
 .textoBanner p{
     text-align: justify;
-    font-size: 38px;
+    font-size: 35px;
     color: white;
     /* font-weight: bold; */
 }
@@ -133,7 +133,7 @@
 }
 
 .sbTexto p{
-    font-size: 28px;
+    font-size: 30px;
     text-align: justify;
 }
 
@@ -244,9 +244,9 @@
 }
 
 .boxConteudoValoresGerais{
-    display: flex;
+    display: flex; 
     justify-content: center;
-    height: 80vh;
+    height: 90vh;
     width: 100%;
 
     /* background-color: aliceblue; */
@@ -270,5 +270,5 @@
 }
 
 .conteudoValoresGerais p{
-    font-size: 24px;
+    font-size: 20px;
 }
