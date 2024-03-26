@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../css/site.css">
     <link rel="stylesheet" href="../css/tela1.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -75,14 +76,14 @@
                     <ul class="menu">
                         <div class="box">
 
-                            <li class="login_btn"><a href="#sessao2">Sobre nós</a></li>
+                            <li class="login_btn"><a href="#sessao2" class="smooth-scroll">Sobre nós</a></li>
                         </div>
                         <div class="box">
 
-                            <li class="login_btn "><a href="#sessao3">Valores</a></li>
+                            <li class="login_btn "><a href="#sessao3" class="smooth-scroll">Valores</a></li>
                         </div>
                         <div class="box">
-                            <li class="login_btn "><a href="contato"> Contato</a></li>
+                            <li class="login_btn "><a href="#sessao4" class="smooth-scroll"> Contato</a></li>
 
                         </div>
         
@@ -176,6 +177,7 @@
                 </div>
             </div>
         </div>
+    </section>
         <section id="sessao3">
             <div class="valores">
                 <div class="container">
@@ -252,7 +254,8 @@
                 </div>
             </div>
         </section>
-    </section>
+    
+    <section id="sessao4">
     <div class="rodape">
         <div class="container justificar-around column">
             <div class="boxRodape">
@@ -354,6 +357,24 @@
             </div>
         </div>
     </div>
+</section>
 </body>
 
 </html>
+
+
+<script>
+$(document).ready(function(){
+  $(".smooth-scroll").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+        window.location.hash = hash;
+      });
+    }
+  });
+});
+</script>

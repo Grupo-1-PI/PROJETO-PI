@@ -41,7 +41,7 @@ body{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 10vh;
+    height: 20vh;
 
 }
 
@@ -180,6 +180,7 @@ background-color: aqua;
     align-items: end;
     width: 100%;
     height: 20%;
+    
 
     /* background-color: aqua; */
 }
@@ -265,6 +266,7 @@ background-color: aqua;
     font-weight: bold;
     width: 100%;
     height: 3%;
+    
 
     /* background-color: aquamarine; */
 }
@@ -303,29 +305,39 @@ background-color: aqua;
 }
 
 
+#sessao1{
+    margin:0;
+    padding: 0px;
+    text-align: center;
+    transition: 0.5s;
+    background: #ffffff;
+    min-height: 100vh;
+}
+
 #sessao2{
     margin:0;
     padding: 0px;
     text-align: center;
     transition: 0.5s;
     background: #ffffff;
-    min-height: 150vh;
+    min-height: 120vh;
 }
 
 #sessao3{
     margin:0;
     padding: 0px;
     text-align: center;
-    transition: 0.5s;
+    transition: 0.9s;
     background: #ffffff;
-    min-height: 150vh;
+    min-height: 120vh;
 }
 
 .menu {
 
     display: flex;
-    width: 30%;
+    width: 40%;
     align-items: center;
+    margin-left: 20vh;
   }
   
   .menu li {
@@ -356,3 +368,12 @@ background-color: aqua;
     visibility: visible;
     transform: scaleX(1);
   }
+
+  #sessao4{
+    margin:0;
+    padding: 0px;
+    text-align: center;
+    transition: 0.5s;
+    background: #ffffff;
+    min-height: 80vh;
+}
