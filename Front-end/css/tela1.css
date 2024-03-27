@@ -64,7 +64,7 @@
 
 .textoBanner p{
     text-align: justify;
-    font-size: 35px;
+    font-size: 38px;
     color: white;
     /* font-weight: bold; */
 }
@@ -252,6 +252,10 @@
     /* background-color: aliceblue; */
 }
 
+.conteudoValoresGerais p{
+    font-size: 24px;
+}
+
 .format-center{
     text-align: center;
 }
@@ -269,6 +273,3 @@
     /* background-color: rgb(255, 255, 255); */
 }
 
-.conteudoValoresGerais p{
-    font-size: 20px;
-}
