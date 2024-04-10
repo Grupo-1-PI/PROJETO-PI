@@ -1,0 +1,143 @@
+body {
+    margin: 0%;
+}
+
+.navbar {
+    height: 15vh;
+    width: 100%;
+
+    background-color: black;
+}
+
+.format-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 100%;
+    width: 90%;
+
+    /* background-color: beige; */
+}
+
+.conteudoNavBar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .conteudoExtremo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 15%;
+
+
+        /* background-color: aqua; */
+
+        .iconSite {
+            height: 90%;
+            width: 100%;
+
+
+
+            background-color: rgb(51, 44, 36);
+        }
+
+        .iconUsuario {
+            height: 90%;
+            width: 50%;
+
+            background-color: rebeccapurple;
+        }
+    }
+
+    .conteudoCentral {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90%;
+        width: 55%;
+
+        /* background-color: aqua; */
+
+        .conteudo {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            /* background-color: aquamarine; */
+
+            a {
+
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 24px;
+                color: white;
+            }
+        }
+
+    }
+
+}
+
+.rodaPe {
+    height: 50vh;
+    width: 100%;
+    background-color: black;
+}
+
+.conteudoRodaPe {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    /* background-color: aqua; */
+
+    .boxConteudo {
+        display: flex;
+        flex-direction: column;
+        width: 15%;
+        height: 80%;
+        /* background-color: red; */
+
+        .titulo {
+            height: 7vh;
+
+            /* background-color: bisque; */
+
+            span {
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+            }
+        }
+
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 5vh;
+
+
+            /* background-color: white; */
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+            
+        }
+
+
+
+
+    }
+}
