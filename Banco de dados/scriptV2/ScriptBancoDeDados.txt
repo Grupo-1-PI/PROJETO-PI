@@ -1,201 +1,72 @@
-CREATE SCHEMA IF NOT EXISTS `+vidaz` DEFAULT CHARACTER SET utf8 ;
-USE `+vidaz` ;
+-- Criação do esquema
+CREATE DATABASE IF NOT EXISTS `+vidaz`;
+USE `+vidaz`;
 
--- -----------------------------------------------------
--- Table `mydb`.`Campanha`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Campanha` (
+-- Tabela `Campanha`
+CREATE TABLE IF NOT EXISTS `Campanha` (
   `idEvento` INT NOT NULL,
   `data` DATETIME NULL,
-  PRIMARY KEY (`idEvento`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`idEvento`)
+);
 
-
--- -----------------------------------------------------
--- Table `mydb`.`BancoDeSangue`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`BancoDeSangue` (
-  `idBancoDeSangue` INT GENERATED ALWAYS AS () VIRTUAL,
-  `NomeBancoDeSangue` VARCHAR(45) NULL,
-  `fkEvento` INT GENERATED ALWAYS AS () VIRTUAL,
+-- Tabela `BancoDeSangue`
+CREATE TABLE IF NOT EXISTS `BancoDeSangue` (
+  `idBancoDeSangue` INT AUTO_INCREMENT,
+  `NomeBancoDeSangue` VARCHAR(45),
+  `fkEventoBancoDeSangue` INT,
   PRIMARY KEY (`idBancoDeSangue`),
-  INDEX `fk_BancoDeSangue_Evento1_idx` (`fkEvento` ASC) VISIBLE,
+  INDEX `fk_BancoDeSangue_Evento1_idx` (`fkEventoBancoDeSangue` ASC),
   CONSTRAINT `fk_BancoDeSangue_Evento1`
-    FOREIGN KEY (`fkEvento`)
-    REFERENCES `mydb`.`Campanha` (`idEvento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    FOREIGN KEY (`fkEventoBancoDeSangue`)
+    REFERENCES `Campanha` (`idEvento`)
+);
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Endereco`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Endereco` (
-  `idEnderecoDoador` INT NOT NULL,
-  `cep` CHAR(8) NULL,
-  `RUA` VARCHAR(45) NULL,
-  `NUMERO` CHAR(8) NULL,
-  `BAIRRO` VARCHAR(45) NULL,
+-- Tabela `Endereco`
+CREATE TABLE IF NOT EXISTS `Endereco` (
+  `idEnderecoDoador` INT AUTO_INCREMENT,
+  `cep` CHAR(8),
+  `RUA` VARCHAR(45),
+  `NUMERO` CHAR(8),
+  `BAIRRO` VARCHAR(45),
   `fkBancoDeSangue` INT NOT NULL,
   `fkEvento` INT NOT NULL,
   PRIMARY KEY (`idEnderecoDoador`),
-  INDEX `fk_Endereco_Ong1_idx` (`fkBancoDeSangue` ASC) VISIBLE,
-  INDEX `fk_Endereco_Evento1_idx` (`fkEvento` ASC) VISIBLE,
+  INDEX `fk_Endereco_Ong1_idx` (`fkBancoDeSangue` ASC),
+  INDEX `fk_Endereco_Evento1_idx` (`fkEvento` ASC),
   CONSTRAINT `fk_Endereco_Ong1`
     FOREIGN KEY (`fkBancoDeSangue`)
-    REFERENCES `mydb`.`BancoDeSangue` (`idBancoDeSangue`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `BancoDeSangue` (`idBancoDeSangue`),
   CONSTRAINT `fk_Endereco_Evento1`
     FOREIGN KEY (`fkEvento`)
-    REFERENCES `mydb`.`Campanha` (`idEvento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `Campanha` (`idEvento`)
+);
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Usuario` (
-  `idUsuario` INT NOT NULL,
-  `nomeDoador` VARCHAR(45) NULL,
-  `dataNascimento` DATE NULL,
-  `emailDoador` VARCHAR(45) NULL,
-  `sexo` TINYINT NULL,
-  `senha` VARCHAR(45) NULL,
+-- Tabela `Usuario`
+CREATE TABLE IF NOT EXISTS `Usuario` (
+  `idUsuario` INT AUTO_INCREMENT,
+  `nomeDoador` VARCHAR(45),
+  `dataNascimento` DATE,
+  `emailDoador` VARCHAR(45),
+  `sexo` TINYINT,
+  `senha` VARCHAR(45),
   `fkEvento` INT NOT NULL,
   `fkEndereco` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  INDEX `fk_Usuario_Evento1_idx` (`fkEvento` ASC) VISIBLE,
-  INDEX `fk_Usuario_Endereco1_idx` (`fkEndereco` ASC) VISIBLE,
+  INDEX `fk_Usuario_Evento1_idx` (`fkEvento` ASC),
+  INDEX `fk_Usuario_Endereco1_idx` (`fkEndereco` ASC),
   CONSTRAINT `fk_Usuario_Evento1`
     FOREIGN KEY (`fkEvento`)
-    REFERENCES `mydb`.`Campanha` (`idEvento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `Campanha` (`idEvento`),
   CONSTRAINT `fk_Usuario_Endereco1`
     FOREIGN KEY (`fkEndereco`)
-    REFERENCES `mydb`.`Endereco` (`idEnderecoDoador`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `Endereco` (`idEnderecoDoador`)
+);
 
-
--- -----------------------------------------------------
--- Table `mydb`.`Contato`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Contato` (
-  `idContato` INT NOT NULL,
-  `telefone` INT NULL,
-  `celular` INT NULL,
-  `fkContatoDoador` INT NOT NULL,
-  `fkBancoDeSangue` INT NOT NULL,
-  `fkEvento` INT NOT NULL,
-  PRIMARY KEY (`idContato`),
-  INDEX `fk_Contato_doador1_idx` (`fkContatoDoador` ASC) VISIBLE,
-  INDEX `fk_Contato_Ong1_idx` (`fkBancoDeSangue` ASC) VISIBLE,
-  INDEX `fk_Contato_Evento1_idx` (`fkEvento` ASC) VISIBLE,
-  CONSTRAINT `fk_Contato_doador1`
-    FOREIGN KEY (`fkContatoDoador`)
-    REFERENCES `mydb`.`Usuario` (`idUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Contato_Ong1`
-    FOREIGN KEY (`fkBancoDeSangue`)
-    REFERENCES `mydb`.`BancoDeSangue` (`idBancoDeSangue`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Contato_Evento1`
-    FOREIGN KEY (`fkEvento`)
-    REFERENCES `mydb`.`Campanha` (`idEvento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`numeroTelefone`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`numeroTelefone` (
-  `idnumeroTelefone` INT NOT NULL,
-  `dd` CHAR(2) NULL,
-  `numero` CHAR(9) NULL,
-  `fkContato` INT NOT NULL,
-  PRIMARY KEY (`idnumeroTelefone`),
-  INDEX `fk_numeroTelefone_Contato1_idx` (`fkContato` ASC) VISIBLE,
-  CONSTRAINT `fk_numeroTelefone_Contato1`
-    FOREIGN KEY (`fkContato`)
-    REFERENCES `mydb`.`Contato` (`idContato`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`NivelDeAcesso`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`NivelDeAcesso` (
-  `editar` TINYINT NULL,
-  `deletar` TINYINT NULL,
-  `idNivelDeAcesso` INT NOT NULL,
-  PRIMARY KEY (`idNivelDeAcesso`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`Local`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Local` (
-  `idLocal` INT NOT NULL,
-  `longitude` VARCHAR(45) NULL,
-  `latitude` VARCHAR(45) NULL,
-  PRIMARY KEY (`idLocal`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`Evento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Evento` (
-  `Evento_idEvento` INT NOT NULL,
-  `Local_idLocal` INT NOT NULL,
-  PRIMARY KEY (`Evento_idEvento`, `Local_idLocal`),
-  INDEX `fk_Evento_has_Local_Local1_idx` (`Local_idLocal` ASC) VISIBLE,
-  INDEX `fk_Evento_has_Local_Evento1_idx` (`Evento_idEvento` ASC) VISIBLE,
-  CONSTRAINT `fk_Evento_has_Local_Evento1`
-    FOREIGN KEY (`Evento_idEvento`)
-    REFERENCES `mydb`.`Campanha` (`idEvento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Evento_has_Local_Local1`
-    FOREIGN KEY (`Local_idLocal`)
-    REFERENCES `mydb`.`Local` (`idLocal`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`GrupoNivelAcesso`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`GrupoNivelAcesso` (
-  `Usuario_idUsuario` INT NOT NULL,
-  `NivelDeAcesso_idNivelDeAcesso` INT NOT NULL,
-  `Admin` INT NULL,
-  `Comum` INT NULL,
-  PRIMARY KEY (`Usuario_idUsuario`, `NivelDeAcesso_idNivelDeAcesso`),
-  INDEX `fk_Usuario_has_NivelDeAcesso_NivelDeAcesso1_idx` (`NivelDeAcesso_idNivelDeAcesso` ASC) VISIBLE,
-  INDEX `fk_Usuario_has_NivelDeAcesso_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
-  CONSTRAINT `fk_Usuario_has_NivelDeAcesso_Usuario1`
-    FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `mydb`.`Usuario` (`idUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Usuario_has_NivelDeAcesso_NivelDeAcesso1`
-    FOREIGN KEY (`NivelDeAcesso_idNivelDeAcesso`)
-    REFERENCES `mydb`.`NivelDeAcesso` (`idNivelDeAcesso`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- Tabela `Contato`
+CREATE TABLE IF NOT EXISTS `Contato` (
+  `idContato` INT AUTO_INCREMENT,
+  `telefone` INT,
+  `celular` INT,
+  `fkContatoDoador` INT,
+  PRIMARY KEY (`idContato`)
+);
