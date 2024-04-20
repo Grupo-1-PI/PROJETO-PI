@@ -1,72 +1,119 @@
--- Criação do esquema
-CREATE DATABASE IF NOT EXISTS `+vidaz`;
-USE `+vidaz`;
+create database vidaz;
+use vidaz;
+CREATE TABLE IF NOT EXISTS `Local` (
+  `idLocal` INT NOT NULL,
+  `longitude` VARCHAR(45) NULL,
+  `latitude` VARCHAR(45) NULL,
+  PRIMARY KEY (`idLocal`))
+;
 
--- Tabela `Campanha`
 CREATE TABLE IF NOT EXISTS `Campanha` (
   `idEvento` INT NOT NULL,
   `data` DATETIME NULL,
-  PRIMARY KEY (`idEvento`)
-);
+  `Local_idLocal` INT NOT NULL,
+  PRIMARY KEY (`idEvento`),
+  INDEX `fk_Campanha_Local1_idx` (`Local_idLocal` ASC),
+  CONSTRAINT `fk_Campanha_Local1`
+    FOREIGN KEY (`Local_idLocal`)
+    REFERENCES `Local` (`idLocal`)
+)
+;
 
--- Tabela `BancoDeSangue`
 CREATE TABLE IF NOT EXISTS `BancoDeSangue` (
-  `idBancoDeSangue` INT AUTO_INCREMENT,
-  `NomeBancoDeSangue` VARCHAR(45),
-  `fkEventoBancoDeSangue` INT,
+  `idBancoDeSangue` INT auto_increment,
+  `NomeBancoDeSangue` VARCHAR(45) NULL,
+  `fkEvento` INT,
   PRIMARY KEY (`idBancoDeSangue`),
-  INDEX `fk_BancoDeSangue_Evento1_idx` (`fkEventoBancoDeSangue` ASC),
+  INDEX `fk_BancoDeSangue_Evento1_idx` (`fkEvento` ASC) ,
   CONSTRAINT `fk_BancoDeSangue_Evento1`
-    FOREIGN KEY (`fkEventoBancoDeSangue`)
+    FOREIGN KEY (`fkEvento`)
     REFERENCES `Campanha` (`idEvento`)
-);
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
 
--- Tabela `Endereco`
 CREATE TABLE IF NOT EXISTS `Endereco` (
-  `idEnderecoDoador` INT AUTO_INCREMENT,
-  `cep` CHAR(8),
-  `RUA` VARCHAR(45),
-  `NUMERO` CHAR(8),
-  `BAIRRO` VARCHAR(45),
+  `idEnderecoDoador` INT auto_increment,
+  `cep` CHAR(8) NULL,
+  `RUA` VARCHAR(45) NULL,
+  `NUMERO` CHAR(8) NULL,
+  `BAIRRO` VARCHAR(45) NULL,
   `fkBancoDeSangue` INT NOT NULL,
   `fkEvento` INT NOT NULL,
   PRIMARY KEY (`idEnderecoDoador`),
-  INDEX `fk_Endereco_Ong1_idx` (`fkBancoDeSangue` ASC),
-  INDEX `fk_Endereco_Evento1_idx` (`fkEvento` ASC),
+  INDEX `fk_Endereco_Ong1_idx` (`fkBancoDeSangue` ASC) ,
+  INDEX `fk_Endereco_Evento1_idx` (`fkEvento` ASC) ,
   CONSTRAINT `fk_Endereco_Ong1`
     FOREIGN KEY (`fkBancoDeSangue`)
     REFERENCES `BancoDeSangue` (`idBancoDeSangue`),
   CONSTRAINT `fk_Endereco_Evento1`
     FOREIGN KEY (`fkEvento`)
     REFERENCES `Campanha` (`idEvento`)
-);
+)
+ENGINE = InnoDB;
 
--- Tabela `Usuario`
 CREATE TABLE IF NOT EXISTS `Usuario` (
-  `idUsuario` INT AUTO_INCREMENT,
-  `nomeDoador` VARCHAR(45),
-  `dataNascimento` DATE,
-  `emailDoador` VARCHAR(45),
-  `sexo` TINYINT,
-  `senha` VARCHAR(45),
+  `idUsuario` INT auto_increment,
+  `nomeDoador` VARCHAR(45) NULL,
+  `dataNascimento` DATE NULL,
+  `emailDoador` VARCHAR(45) NULL,
+  `sexo` TINYINT NULL,
+  `senha` VARCHAR(45) NULL,
   `fkEvento` INT NOT NULL,
   `fkEndereco` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  INDEX `fk_Usuario_Evento1_idx` (`fkEvento` ASC),
-  INDEX `fk_Usuario_Endereco1_idx` (`fkEndereco` ASC),
+  INDEX `fk_Usuario_Evento1_idx` (`fkEvento` ASC) ,
+  INDEX `fk_Usuario_Endereco1_idx` (`fkEndereco` ASC) ,
   CONSTRAINT `fk_Usuario_Evento1`
     FOREIGN KEY (`fkEvento`)
     REFERENCES `Campanha` (`idEvento`),
   CONSTRAINT `fk_Usuario_Endereco1`
     FOREIGN KEY (`fkEndereco`)
     REFERENCES `Endereco` (`idEnderecoDoador`)
-);
+)
+;
 
--- Tabela `Contato`
 CREATE TABLE IF NOT EXISTS `Contato` (
-  `idContato` INT AUTO_INCREMENT,
-  `telefone` INT,
-  `celular` INT,
-  `fkContatoDoador` INT,
-  PRIMARY KEY (`idContato`)
-);
+  `idContato` INT auto_increment,
+  `numero` CHAR(11) NULL,
+  `fkContatoDoador` INT NOT NULL,
+  `fkBancoDeSangue` INT NOT NULL,
+  PRIMARY KEY (`idContato`),
+  INDEX `fk_Contato_doador1_idx` (`fkContatoDoador` ASC) ,
+  INDEX `fk_Contato_Ong1_idx` (`fkBancoDeSangue` ASC) ,
+  CONSTRAINT `fk_Contato_doador1`
+    FOREIGN KEY (`fkContatoDoador`)
+    REFERENCES `Usuario` (`idUsuario`)
+ ,
+  CONSTRAINT `fk_Contato_Ong1`
+    FOREIGN KEY (`fkBancoDeSangue`)
+    REFERENCES `BancoDeSangue` (`idBancoDeSangue`)
+ )
+;
+
+CREATE TABLE IF NOT EXISTS `NivelDeAcesso` (
+  `editar` TINYINT NULL,
+  `deletar` TINYINT NULL,
+  `idNivelDeAcesso` INT NOT NULL,
+  PRIMARY KEY (`idNivelDeAcesso`))
+;
+
+
+CREATE TABLE IF NOT EXISTS `GrupoNivelAcesso` (
+  `Usuario_idUsuario` INT auto_increment,
+  `NivelDeAcesso_idNivelDeAcesso` INT NOT NULL,
+  `Admin` INT NULL,
+  `Comum` INT NULL,
+  PRIMARY KEY (`Usuario_idUsuario`, `NivelDeAcesso_idNivelDeAcesso`),
+  INDEX `fk_Usuario_has_NivelDeAcesso_NivelDeAcesso1_idx` (`NivelDeAcesso_idNivelDeAcesso` ASC),
+  INDEX `fk_Usuario_has_NivelDeAcesso_Usuario1_idx` (`Usuario_idUsuario` ASC),
+  CONSTRAINT `fk_Usuario_has_NivelDeAcesso_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `Usuario` (`idUsuario`),
+  CONSTRAINT `fk_Usuario_has_NivelDeAcesso_NivelDeAcesso1`
+    FOREIGN KEY (`NivelDeAcesso_idNivelDeAcesso`)
+    REFERENCES `NivelDeAcesso` (`idNivelDeAcesso`)
+  )
+
+
+
