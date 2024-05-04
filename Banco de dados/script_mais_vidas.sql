@@ -13,8 +13,6 @@ senha VARCHAR(45),
 motivo VARCHAR(45)
 );
 
-
-
 CREATE TABLE IF NOT EXISTS telefone(
 id INT PRIMARY KEY auto_increment,
 ddd CHAR(2),
@@ -60,7 +58,6 @@ constraint fk_instituicao_endereco_instituicao foreign key (instituicao_id) refe
 constraint pk_endereco_instituicao primary key (id, instituicao_id)
 );
 
-
 CREATE TABLE IF NOT EXISTS nivel_acesso(
 id INT PRIMARY KEY auto_increment,
 nome VARCHAR(45),
@@ -85,7 +82,6 @@ estado CHAR(2),
 codigo_unidade INT
 );
 
-
 CREATE TABLE IF NOT EXISTS admin_sangue_corinthiano(
 id INT auto_increment,
 nome VARCHAR(45),
@@ -100,7 +96,6 @@ constraint fk_cargo_admin_sc foreign key (cargo_id) references cargo(id),
 constraint fk_unidade_admin_sc foreign key (unidade_id) references unidade_sangue_corinthiano(id),
 constraint pk_admin_sangue_corinthiano primary key (id, cargo_id, unidade_id)
 );
-
 
 CREATE TABLE IF NOT EXISTS responsavel_campanha(
 id INT auto_increment,
@@ -160,8 +155,16 @@ constraint fk_admin_acesso_admin foreign key (admin_id) references admin_sangue_
 constraint pk_acesso_admin primary key (id, log_admin_id, admin_id)
 );
 
-
 SHOW TABLES;
 
+SELECT * FROM Doador;
+SELECT * FROM admin_sangue_corinthiano;
 
+RENAME TABLE admin_sangue_corinthiano TO administrador;
+SELECT * FROM administrador;
+
+SELECT * FROM Cargo;
+SELECT * FROM Unidade;
+
+SHOW TABLES;
 
