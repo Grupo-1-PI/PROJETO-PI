@@ -23,7 +23,7 @@ data class Doador(
     var dtNasc: LocalDate = LocalDate.now(),
 
     @field:NotNull
-    var sexo: Char = ' ',
+    var sexo: String = " ",
 
     @field:NotNull
     var primeiraDoacao: Boolean = false,
