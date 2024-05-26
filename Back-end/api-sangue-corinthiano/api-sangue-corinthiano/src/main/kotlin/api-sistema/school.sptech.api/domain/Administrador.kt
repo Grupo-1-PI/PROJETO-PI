@@ -35,6 +35,6 @@ data class Administrador(
     var dtNasc: LocalDate = LocalDate.now(),
 
     @field:NotNull
-    var sexo: Char = ' '
+    var sexo: String = ""
 ) {
 }
