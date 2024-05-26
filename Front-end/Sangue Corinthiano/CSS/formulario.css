@@ -17,10 +17,6 @@
     border-bottom-right-radius: 20px;
 }
 
-.sombra{
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
 
 .formulario {
     width: 100%;
@@ -88,7 +84,7 @@
     }
 
     .subTitulo{
-        height: 70px;
+        height: 40px;
 
         /* background-color: aqua; */
 

@@ -12,12 +12,17 @@ body {
 
 .container {
     height: 100%;
-    width: 80%;
+    width: 90%;
 }
 
 .format {
     display: flex;
     align-items: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
 }
 
 .format-Center {
@@ -31,11 +36,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.center {
-    display: flex;
-    justify-content: center;
 }
 
 .space-between {
@@ -53,6 +53,15 @@ body {
     justify-content: space-around;
 }
 
+.padding-radio{
+    padding-top: 9px;
+}
+
+.borda{
+    border: #000000 0.5px solid;
+    border-radius: 12px;
+}
+
 .row{
     display: flex;
     width: auto;
@@ -67,9 +76,17 @@ body {
     flex-direction: column;
 }
 
+.sombra{
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.sombraKPI{
+    box-shadow: rgba(0, 0, 0, 0.337) 0px 22px 70px 4px;
+}
+
 .navbarNaoLogado {
     display: flex;
-    height: 180px;
+    height: 120px;
     width: 100%;
 
     flex-direction: column;
@@ -83,7 +100,7 @@ body {
         width: 180px;
         height: 30px;
 
-        margin-left: 20px;
+        /* margin-left: 20px; */
 
         .icon {
             height: 25px;
@@ -112,8 +129,8 @@ body {
         width: 100%;
 
         .logo {
-            height: 150px;
-            width: 180px;
+            height: 90px;
+            width: 100px;
 
             background-image: url();
             background-repeat: no-repeat;
@@ -124,7 +141,7 @@ body {
 
         a {
             text-decoration: none;
-            font-size: 28px;
+            font-size: 16px;
 
             color: var(--branco);
             font-family: var(--font-defaut);
@@ -138,7 +155,7 @@ body {
 .rodaPe {
     display: flex;
     flex-direction: column;
-    height: 340px;
+    height: 280px;
     width: 100%;
 
 
