@@ -167,7 +167,7 @@
 @media (max-width: 480px) {
     .formulario .login {
         width: 100%;
-        height: auto;
+        height: 50%;
         padding: 10px;
     }
 
@@ -175,6 +175,11 @@
     .formulario .imagem {
         width: 100%;
         height: auto;
+        
+    }
+    .formulario .imagem{
+      width: 0px;
+      height: 0px;
     }
 
     .formulario .titulo span {

@@ -1,3 +1,5 @@
+package ProjetoPI.ProjetoDoadores.service
+
 import ProjetoPI.ProjetoDoadores.controller.AdministradorController
 import ProjetoPI.ProjetoDoadores.domain.Administrador
 import ProjetoPI.ProjetoDoadores.repository.AdministradorRepository
