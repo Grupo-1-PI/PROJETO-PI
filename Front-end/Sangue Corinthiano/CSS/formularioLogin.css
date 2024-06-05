@@ -128,10 +128,11 @@
 
         background-color: rgba(0, 0, 0, 0.516);
 
-        background-image: url();
+        background-image: url(../IMG/imagem\ 2\ 1.jpg);
         background-repeat: no-repeat;
         background-size: cover;
     }
+
 }@media (max-width: 768px) {
     .formulario .login {
         width: 100%;
