@@ -128,69 +128,8 @@
 
         background-color: rgba(0, 0, 0, 0.516);
 
-        background-image: url(../IMG/Imagem\ 1\ 2.jpg);
+        background-image: url();
         background-repeat: no-repeat;
         background-size: cover;
-    }
-}@media (max-width: 768px) {
-    .formulario .login {
-        width: 100%;
-        height: auto;
-    }
-
-    .formulario .formatBox {
-        width: 100%;
-    }
-
-    .formulario .box {
-        width: 90%;
-    }
-
-    .formulario .titulo span {
-        font-size: 24px;
-    }
-
-    .formulario .subTitulo span,
-    .formulario .subTitulo a {
-        font-size: 12px;
-    }
-
-    .formulario .botao {
-        height: 60px;
-    }
-
-    .formulario .botao button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .formulario .login {
-        width: 100%;
-        height: auto;
-        padding: 10px;
-    }
-
-    .formulario .texto,
-    .formulario .imagem {
-        width: 100%;
-        height: auto;
-    }
-
-    .formulario .titulo span {
-        font-size: 20px;
-    }
-
-    .formulario .subTitulo span,
-    .formulario .subTitulo a {
-        font-size: 10px;
-    }
-
-    .formulario .botao {
-        height: 50px;
-    }
-
-    .formulario .botao button {
-        width: 100%;
     }
 }

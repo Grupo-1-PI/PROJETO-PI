@@ -1,0 +1,49 @@
+.boxFortmat{
+    height: 555px;
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+.displayRow{
+    display: flex;
+    flex-direction: row;
+}
+.boxUsuario{
+    width: 100%;
+}
+
+.usuario{
+    height: 250px;
+    width: 280px;
+
+    background-color: white;
+
+
+        .icon {
+            height: 100px;
+            width: 100px;
+
+            background-image: url(../IMG/Usuario\ -\ preto.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+
+        }
+    
+}
+
+.formularioUsuario{
+    height: 420px;
+    width: 760px;
+
+    background-color: white;
+
+    .botoes{
+        display: flex;
+        width: 696px;
+        height: 40px;
+
+    }
+
+}

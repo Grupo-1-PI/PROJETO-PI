@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário</title>
+
+    <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
+    <link rel="stylesheet" href="../CSS/usuario.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="navbarLogado format sombra">
+        <div class="container format-Container">
+            <div class="user format">
+                <div class="icon">
+                </div>
+                <div class="texto ">
+                    <a href="">Bem-vindo ${ususario}</a>
+                </div>
+                <div class="texto ">
+                    <a>|</a>
+                </div>
+                <div class="texto ">
+                    <a href="">Sair</a>
+                </div>
+            </div>
+            <div class="navbarConteudo space-evenly format">
+                <div class="texto">
+                    <a href="">INFORMAÇÕES</a>
+                </div>
+                <div class="logo">
+
+                </div>
+                <div class="texto">
+                    <a href="">DOAR AGORA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="boxFortmat">
+        <div class="container format-Container ">
+            <div class="boxUsuario displayRow space-evenly">
+                <div class="usuario column format-Center space-evenly borda sombra">
+                    <div class="icon">
+
+                    </div>
+
+                    <div class="texto">
+                        <span>
+                            ${Nome}
+                        </span>
+                    </div>
+                </div>
+                <div class="formularioUsuario column format-Center borda sombra">
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Nome:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Vania"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">E-mail:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Vânia.SangueCorinthiano@gmail.com"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Telefone:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="+(55) 11 91234-5678"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Senha:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="**********"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                        </div>
+                    </div>
+
+                    <div class="botoes space-between ">
+                        <button type="button" class="btn btn-outline-success">Salvar</button>
+                        <button type="button" class="btn btn-outline-danger">Deletar Conta</button>
+                    </div>
+
+                </div>
+                <!-- <div class="agendamentosUsuario">
+    
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
