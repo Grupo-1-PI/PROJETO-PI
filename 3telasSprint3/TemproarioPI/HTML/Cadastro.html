@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in - Sangue Corinthiano</title>
+    <title>Cadastro - Sangue Corinthiano</title>
 
     <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
-    <link rel="stylesheet" href="../CSS/formularioLogin.css">
+    <link rel="stylesheet" href="../CSS/formulario.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -43,41 +43,58 @@
         </div>
     </div>
 
-    
     <div class="formulario format-Center">
         <div class="login borda sombra row">
             <div class="texto format-Center column">
                 <div class="box">
                     <div class="titulo">
                         <span>
-                            Entrar
+                            Cadastre-se
                         </span>
                     </div>
                     <div class="subTitulo">
                         <span>
-                            Não tem conta? <a href="">Clique aqui!</a>
+                            Você ja tem conta conosco? </br>
+                            <a href="">Clique aqui para fazer o login!</a>
                         </span>
                     </div>
                 </div>
 
-                <form id="formLogin">
-                <div class="box">
-                    <div class="input-group input-group-sm mb-3">
-                        <input type="text" id="InputEmail" class="form-control" placeholder="exemplo@email.com" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" name="InputEmail">
+                <!-- <div class="boxFormulario">
+                    <div class="boxFormularioRow format">
+                        <input type="text">
                     </div>
-                    <div class="input-group input-group-sm mb-3">
-                        <input type="text" id="InputSenha" class="form-control" placeholder="**********" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm" name="InputSenha">
+
+                    <div class="boxFormularioRowDouble space-between format">
+                       <input type="text">
+                       <input type="text">
                     </div>
-                </div>
+                    <div class="boxFormularioRowDouble space-between format">
+                        <input type="text">
+                        <input type="text">
+                     </div>
+                     <div class="boxFormularioRowDouble space-between format">
+                        <input type="text">
+                        <input type="text">
+                     </div>
+
+                     <div class="boxFormularioRowDouble space-between format">
+                        <input type="text">
+                        <input type="text">
+                     </div>
+
+                     <div class="boxFormularioRow format">
+                        <input type="text">
+                    </div>
+
+                </div> -->
+
                 <div class="box">
                     <div class="botao">
-                        <button type="submit" class="btn btn-outline-dark">Entrar</button>
+                        <button type="button" class="btn btn-outline-dark">Dark</button>
                     </div>
                 </div>
-            </form>
-                
+
             </div>
             <div class="imagem bordaImagem">
             </div>
@@ -85,12 +102,16 @@
         </div>
     </div>
 
-    <!-- <div class="rodaPe format-Center sombra">
+    <div class="rodaPe format-Center sombra">
+
+
         <div class="titulo format-Center">
             <span>
                 Siga as nossas Redes Sociais:
             </span>
         </div>
+
+
         <div class="redeSocial format space-evenly">
             <div class="icon">
                 <img src="../IMG/instagram icon.png" alt="">
@@ -102,16 +123,19 @@
                 <img src="../IMG/youtube icon.png" alt="">
             </div>
         </div>
+
         <div class="logo">
 
         </div>
+
         <div class="texto format-Center">
             <span>
                 SpTech junto ao Sangue Corinthiano </br>
                 Todos os direitos reservados - © 2024 - Proteção de Dados
             </span>
         </div>
-    </div> -->
+
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -120,38 +144,3 @@
 </body>
 
 </html>
-
-<script>
-    const url = 'http://localhost:8080';
-    
-            document.getElementById('formLogin').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                const email = formData.get('InputEmail');
-                const senha = formData.get('InputSenha');
-    
-                fetch(`${url}/doadores/login?email=${email}&senha=${senha}`, { method: 'POST' })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json(); 
-                        } else {
-                            throw new Error('Login inválido');
-                        }
-                    })
-                    .then(data => {
-                        console.log(data);
-                        if (data.message === "Login realizado com sucesso!") {
-                            const userId = data.userId; 
-                            alert("Login realizado com sucesso! ID do usuário: " + userId);
-                            sessionStorage.setItem('userId', userId);
-                            window.location.href = "\Usuario.html";
-                        } else {
-                            alert("Login inválido!");
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro durante a requisição:', error);
-                        alert("Erro durante a requisição: " + error.message);
-                    });
-                });
-    </script>

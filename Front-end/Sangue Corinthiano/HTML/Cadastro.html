@@ -66,11 +66,11 @@
                     <form class="row g-2">
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Nome:</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Insira seu nome">
+                            <input type="email" class="form-control" id="nome" placeholder="Insira seu nome">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Sobrenome:</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Insira seu sobrenome">
+                            <input type="password" class="form-control" id="sobrenome" placeholder="Insira seu sobrenome">
                         </div>
                         <div class="col-12">
                             <label for="inputAddress" class="form-label">E-mail:</label>
@@ -78,15 +78,15 @@
                         </div>
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Telefone:</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="11 91234-5678">
+                            <input type="email" class="form-control" id="telefone" placeholder="11 91234-5678">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="inputPassword4">
+                            <input type="date" class="form-control" id="dtNasc">
                         </div>
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Senha:</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="*******">
+                            <input type="email" class="form-control" id="senha" placeholder="*******">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Confirmar senha:</label>
@@ -134,7 +134,7 @@
 
                 <div class="box">
                     <div class="botao">
-                        <button type="button" class="btn btn-outline-dark">Cadastrar</button>
+                        <button onclick="cadastrar()" type="button" class="btn btn-outline-dark">Cadastrar</button>
                     </div>
                 </div>
 
@@ -187,3 +187,53 @@
 </body>
 
 </html>
+<script>
+    async function cadastrar(){
+    const url = 'http://localhost:8080';
+    const id = sessionStorage.getItem('userId');
+
+    const nomeDigitado = document.getElementById("nome").value;
+    const sobrenomeDigitado = document.getElementById("sobrenome").value;
+    const emailDigitado = document.getElementById("inputAddress").value;
+    const telefoneDigitado = document.getElementById("telefone").value;
+    const dtNascDigitada = document.getElementById("dtNasc").value;
+    const senhaDigitada = document.getElementById("senha").value;
+
+    const selectMotivo = document.getElementById("inputState");
+    const motivoDigitado = selectMotivo.value;
+
+    const SexoOpcoes = document.getElementsByName("gridRadios");
+    let sexoSelecionado;
+    SexoOpcoes.forEach(button => {
+        if (button.checked) {
+            sexoSelecionado = button.value;
+        }
+    });
+
+    const nomeFinal = `${nomeDigitado} ${sobrenomeDigitado}`
+
+    const dadosDoador = {     
+        "dtNasc": dtNascDigitada,
+        "email": emailDigitado,
+        "motivo": motivoDigitado,
+        "nome": nomeFinal, 
+        //"telefone": telefoneDigitado,
+        "primeiraDoacao": true,
+        "senha": senhaDigitada,
+        "sexo": sexoSelecionado
+    }
+
+    const respostaCadastro = await fetch(`${url}/doadores`, {
+        method: "POST",
+        body: JSON.stringify(dadosDoador),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+    });
+
+    if(respostaCadastro.status == 201){
+        alert("Cadastro realizado com sucesso!")
+        window.location.href = "/Usuario.html";
+    }else{
+        alert("Ocorreu um erro ao cadastrar")
+    }
+}
+</script>

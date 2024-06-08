@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div class="boxFortmat">
+    <div id="card_usuario" class="boxFortmat">
         <div class="container format-Container ">
             <div class="boxUsuario displayRow space-evenly">
                 <div class="usuario column format-Center space-evenly borda sombra">
@@ -63,7 +63,7 @@
                     <div class="col-11">
                         <label for="inputEmail4" class="form-label">Nome:</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Vania"
+                            <input type="text" id="nome" class="form-control" placeholder="Vania"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
                         </div>
@@ -71,13 +71,13 @@
                     <div class="col-11">
                         <label for="inputEmail4" class="form-label">E-mail:</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Vânia.SangueCorinthiano@gmail.com"
+                            <input type="text" id="email" class="form-control" placeholder="Vânia.SangueCorinthiano@gmail.com"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
                         </div>
                     </div>
                     <div class="col-11">
-                        <label for="inputEmail4" class="form-label">Telefone:</label>
+                        <label for="inputEmail4" id="telefone" class="form-label">Telefone:</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="+(55) 11 91234-5678"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -93,8 +93,8 @@
                     </div>
 
                     <div class="botoes space-between ">
-                        <button type="button" class="btn btn-outline-success">Salvar</button>
-                        <button type="button" class="btn btn-outline-danger">Deletar Conta</button>
+                        <button id="buttonUpdate" type="button" class="btn btn-outline-success">Salvar</button>
+                        <button id="buttonDelete" type="button" class="btn btn-outline-danger">Deletar Conta</button>
                     </div>
 
                 </div>
@@ -113,3 +113,116 @@
 </body>
 
 </html>
+
+<script>
+    async function buscar(){
+    const url = 'http://localhost:8080';
+    const id = sessionStorage.getItem('userId');
+
+    const resposta = await fetch(`${url}/doadores/${id}`);
+    const respostaDadosDoador = await resposta.json();
+    console.log("Resposta:", respostaDadosDoador);
+
+    const cards = document.getElementById("card_usuario");
+
+    cards.innerHTML = `
+        <div class="container format-Container ">
+            <div class="boxUsuario displayRow space-evenly">
+                <div class="usuario column format-Center space-evenly borda sombra">
+                    <div class="icon">
+
+                    </div>
+
+                    <div class="texto">
+                        <span>
+                            ${respostaDadosDoador.nome}
+                        </span>
+                    </div>
+                </div>
+                <div class="formularioUsuario column format-Center borda sombra">
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Nome:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="nome" class="form-control" placeholder="Vania"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" value="${respostaDadosDoador.nome}">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">E-mail:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="email" class="form-control" placeholder="Vânia.SangueCorinthiano@gmail.com"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" value="${respostaDadosDoador.email}">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Telefone:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="telefone" class="form-control" placeholder="+(55) 11 91234-5678"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" value="${respostaDadosDoador.senha}">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
+                        </div>
+                    </div>
+                    <div class="col-11">
+                        <label for="inputEmail4" class="form-label">Senha:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="**********"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+                        </div>
+                    </div>
+
+                    <div class="botoes space-between ">
+                        <button id="buttonUpdate" type="button" class="btn btn-outline-success">Salvar</button>
+                        <button id="buttonDelete" type="button" class="btn btn-outline-danger">Deletar Conta</button>
+                    </div>
+
+                </div>
+                <!-- <div class="agendamentosUsuario">
+    
+                </div> -->
+            </div>
+        </div>
+        `
+
+    document.getElementById('buttonUpdate').addEventListener('click', function() {
+        const nomeDigitado = document.getElementById("nome")
+    const emailDigitado = document.getElementById("email")
+    const telefoneDigitado = document.getElementById("telefone")
+
+    const nome = nomeDigitado.value
+    const email = emailDigitado.value
+
+    const a = document.getElementById("nome").value;
+
+            fetch(`${url}/doadores/${id}?nome=${a}&email=${email}`, { method: 'PATCH'})
+                .then(response => {  
+                    if (response.ok) {
+                        console.log(a)
+                        console.log(email)
+                        alert('Dados atualizados com sucesso!');
+                    } else {
+                        alert('Erro ao atualizar dados!');
+                        console.error('Falha no logout:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Erro inesperado:', error));
+        });
+
+    
+    document.getElementById('buttonDelete').addEventListener('click', function() {
+            fetch(`${url}/doadores/${id}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Conta deletada com sucesso... Redirecionando');
+                        window.location.href = "\Login.html";
+                    } else {
+                        console.error('Falha no logout:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Erro inesperado:', error));
+        });
+
+        }
+    buscar();
+    </script>

@@ -6,7 +6,9 @@ import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = ["http://127.0.0.1:5500"])
 @RestController
 @RequestMapping("/doadores")
 class DoadorController (var repository: DoadorRepository){
@@ -69,6 +71,20 @@ class DoadorController (var repository: DoadorRepository){
         }
     }
 
+    @PatchMapping("/{id}")
+    fun atualizarNomeEmailDoador(@PathVariable id: Int, @RequestParam nome: String, @RequestParam email: String): ResponseEntity<Doador> {
+
+            val doador = repository.findById(id).get()
+
+            doador.nome = nome
+            doador.email = email
+
+            val doadorAtualizado = repository.save(doador)
+
+            return ResponseEntity.status(200).body(doadorAtualizado)
+    }
+
+
     @DeleteMapping("/{id}")
     fun deletarDoador(@PathVariable id: Int): ResponseEntity<String> {
         return if (repository.existsById(id)) {
@@ -78,16 +94,31 @@ class DoadorController (var repository: DoadorRepository){
             ResponseEntity.status(404).build()
         }
     }
-
     @PostMapping("/login")
-    fun login(@RequestParam email: String, @RequestParam senha: String): ResponseEntity<String> {
+    fun login(@RequestParam email: String, @RequestParam senha: String): ResponseEntity<Map<String, Any>> {
         val doador = repository.findByEmailAndSenha(email, senha)
 
-        if (doador != null) {
-            return ResponseEntity.status(200).body("Login realizado com sucesso!")
+        return if (doador != null) {
+            ResponseEntity.ok().body(mapOf(
+                "message" to "Login realizado com sucesso!",
+                "userId" to doador.id
+            ))
+        } else {
+            ResponseEntity.badRequest().body(mapOf(
+                "message" to "Login inválido!"
+            ))
         }
-        return ResponseEntity.status(400).body("Login inválido!")
     }
+
+//    @PostMapping("/login")
+//    fun login(@RequestParam email: String, @RequestParam senha: String): ResponseEntity<String> {
+//        val doador = repository.findByEmailAndSenha(email, senha)
+//
+//        if (doador != null) {
+//            return ResponseEntity.status(200).body("Login realizado com sucesso!")
+//        }
+//        return ResponseEntity.status(400).body("Login inválido!")
+//    }
 
     @PostMapping("/logout")
     fun logout(): ResponseEntity<String> {
