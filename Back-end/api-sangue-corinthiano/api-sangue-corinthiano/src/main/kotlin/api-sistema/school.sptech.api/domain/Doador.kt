@@ -19,20 +19,22 @@ data class Doador(
     @field:NotBlank
     var email: String = "",
 
-    @field:NotNull
+    //@field:NotNull
     var dtNasc: LocalDate = LocalDate.now(),
 
-    @field:NotNull
+    //@field:NotNull
     var sexo: String = " ",
 
-    @field:NotNull
+    //@field:NotNull
     var primeiraDoacao: Boolean = false,
 
-    @field:NotBlank
+    //@field:NotBlank
     var senha: String = "",
 
-    @field:NotBlank
-    var motivo: String = ""
+    //@field:NotBlank
+    var motivo: String = "",
+
+    var fk_origem_trafego:Int = 1
 ) {
 //    constructor(paramEmail: String, paramSenha: String):this(email = paramEmail, senha = paramSenha)
 }

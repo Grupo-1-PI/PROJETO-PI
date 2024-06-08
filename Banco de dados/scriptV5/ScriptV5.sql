@@ -9,17 +9,19 @@ CREATE TABLE IF NOT EXISTS OrigemTrafego (
 );
 
 CREATE TABLE IF NOT EXISTS Doador (
-  idDoador INT AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   nome VARCHAR(45),
   email VARCHAR(100),
-  dtNasc DATE,
+  dt_nasc DATE,
   sexo CHAR(1),
-  primeiraDoacao CHAR(1),
+  primeira_doacao CHAR(1),
   senha VARCHAR(45),
   fkOrigemTrafego INT,
-  PRIMARY KEY (idDoador),
+  PRIMARY KEY (id),
   CONSTRAINT fk_origem_trafego FOREIGN KEY (fkOrigemTrafego) REFERENCES OrigemTrafego(idOrigemTrafego)
 );
+
+drop table doador;
 
 CREATE TABLE IF NOT EXISTS TelefoneDoador (
   idTelefone INT AUTO_INCREMENT,
@@ -344,4 +346,4 @@ SELECT
 FROM Agendamento
 GROUP BY DiaSemana, HoraDia, fkInstituicao;
 
-
+select * from doador;
