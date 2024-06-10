@@ -137,7 +137,7 @@ class DoadorControllerTest {
 		val doador = Doador(1, "nome", "email@test.com",  LocalDate.of(1990, 1, 1), "M", true, "senha", "motivo")
 		Mockito.`when`(repository.findByEmailAndSenha("email@test.com", "senha")).thenReturn(doador)
 
-		val response = controller.login("email@test.com", "senha")
+		val response = controller.login2("email@test.com", "senha")
 
 		assert(response.statusCode == HttpStatus.OK)
 		assert(response.body == "Login realizado com sucesso!")
@@ -147,7 +147,7 @@ class DoadorControllerTest {
 	fun `test login - invalido`() {
 		Mockito.`when`(repository.findByEmailAndSenha("email@test.com", "senha")).thenReturn(null)
 
-		val response = controller.login("email@test.com", "senha")
+		val response = controller.login2("email@test.com", "senha")
 
 		assert(response.statusCode == HttpStatus.BAD_REQUEST)
 		assert(response.body == "Login inválido!")

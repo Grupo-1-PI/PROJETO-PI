@@ -110,15 +110,15 @@ class DoadorController (var repository: DoadorRepository){
         }
     }
 
-//    @PostMapping("/login")
-//    fun login(@RequestParam email: String, @RequestParam senha: String): ResponseEntity<String> {
-//        val doador = repository.findByEmailAndSenha(email, senha)
-//
-//        if (doador != null) {
-//            return ResponseEntity.status(200).body("Login realizado com sucesso!")
-//        }
-//        return ResponseEntity.status(400).body("Login inválido!")
-//    }
+    @PostMapping("/login2")
+    fun login2(@RequestParam email: String, @RequestParam senha: String): ResponseEntity<String> {
+        val doador = repository.findByEmailAndSenha(email, senha)
+
+        if (doador != null) {
+            return ResponseEntity.status(200).body("Login realizado com sucesso!")
+        }
+        return ResponseEntity.status(400).body("Login inválido!")
+    }
 
     @PostMapping("/logout")
     fun logout(): ResponseEntity<String> {

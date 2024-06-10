@@ -94,4 +94,5 @@ class AdministradorController(val repository: AdministradorRepository) {
     fun logout(): ResponseEntity<String> {
         return ResponseEntity.status(200).body("Logout realizado com sucesso!")
     }
+
 }

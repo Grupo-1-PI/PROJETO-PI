@@ -91,11 +91,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="layout2Graficos row space-between">
                 <div class="graficos borda  column">
                     <div class="titulo format">
                         <span>
-                            Total de Usuarios
+                            Comparação por Ano
                         </span>
                     </div>
                     <div class="estilizacaoGrafico format-Center">
@@ -168,26 +169,26 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('myChart');
+    // const ctx = document.getElementById('myChart');
   
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+    // new Chart(ctx, {
+    //   type: 'bar',
+    //   data: {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [{
+    //       label: '# of Votes',
+    //       data: [12, 19, 3, 5, 2, 3],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
 
     const ctx2 = document.getElementById('myChart2');
   
@@ -231,4 +232,47 @@
     }
   });
 
+  console.log("yas ❤️ tony")
+
+  async function buscar(){
+    const url = 'http://localhost:8080';
+
+    const resposta = await fetch(`${url}/dash`);
+    const dados = await resposta.json();
+    console.log("Resposta:", dados);
+
+    const meses = dados.map(item => item.mes);
+    console.log("Meses:", meses);
+
+    const quantidades = dados.map(item => item.quantidade);
+    console.log("Quantidades:", quantidades);
+
+    const anos = dados.map(item => item.ano);
+    console.log("Anos:", anos);
+
+    const anoMesArray = dados.map(item => `${item.mes}-${item.ano}`);
+    console.log("Ano e Mês:", anoMesArray);
+
+    const ctx = document.getElementById('myChart');
+  
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: anoMesArray,
+      datasets: [{
+        label: '# of Votes',
+        data: quantidades,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+    }
+    buscar();
   </script>
