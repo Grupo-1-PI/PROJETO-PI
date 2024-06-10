@@ -1,0 +1,126 @@
+/* Estilos para o ícone do chatbot */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+.chat-icon:hover {
+    background-color: #ff3333;
+}
+.chat-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Estilos para a janela de chat */
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    max-height: calc(100% - 150px);
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 9998;
+    font-family: Arial, sans-serif;
+}
+
+.chat-body {
+    padding: 10px;
+    padding-right: 20px;
+    padding-top: 40px; /* altura do seu cabeçalho + padding original */
+    margin-top: -30px; /* altura do seu cabeçalho */
+    height: calc(100% - 40px); /* altura do seu cabeçalho */
+}
+.chat-header {
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 0;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 85%;
+    clear: both;
+    overflow: hidden;
+    font-size: 14px;
+}
+.user-message {
+    background-color: #555;
+    color: white;
+    border-top-right-radius: 0;
+    text-align: left;
+    float: right;
+}
+.bot-message {
+    background-color: #f2f2f2;
+    color: black;
+    border-top-left-radius: 0;
+    text-align: left;
+    float: left;
+}
+.chat-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+    font-size: 14px;
+    max-width: 280px;
+}
+.options {
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 14px;
+}
+.chat-container::-webkit-scrollbar {
+    width: 10px;
+}
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.chat-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.title {
+    color: red;
+    font-weight: bold;
+}
+.contact-links a,
+.contact-links a:visited,
+.contact-links a:active {
+    color: #555;
+    font-weight: bold;
+    text-decoration: none;
+}
+.contact-links a:hover {
+    text-decoration: underline;
+}
+.email-link {
+    color: #555;
+    font-weight: bold;
+    
+}
