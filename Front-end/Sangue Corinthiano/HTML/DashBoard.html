@@ -50,7 +50,7 @@
             </div>
 
             <div class="metricasKPI row format space-between">
-                <div class="kpi borda column">
+                <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
                             Total de Usuarios
@@ -60,7 +60,7 @@
                         ${resultado}
                     </div>
                 </div>
-                <div class="kpi borda column">
+                <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
                             Total de Usuarios
@@ -70,7 +70,7 @@
                         ${resultado}
                     </div>
                 </div>
-                <div class="kpi borda column">
+                <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
                             Total de Usuarios
@@ -80,7 +80,7 @@
                         ${resultado}
                     </div>
                 </div>
-                <div class="kpi borda column">
+                <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
                             Total de Usuarios
@@ -91,9 +91,14 @@
                     </div>
                 </div>
             </div>
+            <div class="tituloMetricas format">
+                <span>
+                    Insira o titulo dos dashboards
+                </span>
+            </div>
             <div class="layout2Graficos row space-between">
-                <div class="graficos borda  column">
-                    <div class="titulo format">
+                <div class="graficos bordaKpi  column">
+                    <div class="titulo format-Center">
                         <span>
                             Taxa por ano
                         </span>
@@ -102,8 +107,8 @@
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
-                <div class="graficos borda  column">
-                    <div class="titulo format">
+                <div class="graficos bordaKpi  column">
+                    <div class="titulo format-Center">
                         <span>
                             Total de Usuarios
                         </span>
@@ -114,17 +119,16 @@
                 </div>
             </div>
 
-            <div class="layout1Grafico borda column margintop">
+            <!-- <div class="layout1Grafico bordaKpi column margintop">
                 <div class="titulo format">
                     <span>
                         Total de Usuarios
                     </span>
                 </div>
-                
                 <div class="graficoLinha">
                     <canvas id="myChart3" style="width: 0;"></canvas>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -134,7 +138,7 @@
 
         </div>
     </div>
-    <div class="rodaPe format-Center ">
+    <!-- <div class="rodaPe format-Center ">
         <div class="titulo format-Center">
             <span>
                 Siga as nossas Redes Sociais:
@@ -160,7 +164,7 @@
                 Todos os direitos reservados - © 2024 - Proteção de Dados
             </span>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -194,44 +198,59 @@
   
   new Chart(ctx2, {
     type: 'bar',
-            data: {
-                labels: ['Janeiro', 'Abril', 'Agosto'],
-                datasets: [
-                    {
-                        label: '2023',
-                        data: [50, 75, 90], // Quantidade de pessoas para cada mês em 2023
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '2024',
-                        data: [60, 85, 100], // Quantidade de pessoas para cada mês em 2024
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        borderWidth: 1
-                    }
-                ]
+    data: {
+        labels: ['Janeiro', 'Abril', 'Agosto'],
+        datasets: [
+            {
+                label: '2023',
+                data: [50, 75, 90], // Quantidade de pessoas para cada mês em 2023
+                backgroundColor: 'rgba(0, 0, 0, 1)', // Cor de fundo preta sólida
+                borderColor: 'rgba(0, 0, 0, 1)', // Cor da borda preta
+                borderWidth: 1
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Quantidade de Pessoas'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Meses'
-                        }
+            {
+                label: '2024',
+                data: [60, 85, 100], // Quantidade de pessoas para cada mês em 2024
+                backgroundColor: 'rgba(255, 0, 0, 1)', // Cor de fundo vermelha sólida
+                borderColor: 'rgba(255, 0, 0, 1)', // Cor da borda vermelha
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Quantidade de Pessoas'
+                },
+                grid: {
+                    display: false // Remove a grade de fundo
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Meses'
+                },
+                grid: {
+                    display: false // Remove a grade de fundo
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'rgba(0, 0, 0, 0.7)',
+                    font: {
+                        size: 14
                     }
                 }
             }
-        });
-
+        }
+    }
+});
   const ctx3 = document.getElementById('myChart3');
   
   new Chart(ctx3, {

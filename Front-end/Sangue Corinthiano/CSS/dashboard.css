@@ -1,6 +1,12 @@
 .dasboard{
     height: auto;
     width: 100%;
+
+    background-color: #212732;
+}
+
+.bordaKpi{
+    border-radius: 20px;
 }
 
 .margintop{
@@ -8,12 +14,12 @@
 }
 
 .tituloMetricas{
-    height: auto;
+    height: 50px;
     width: 100%;
 
     span{
         font-size: 28px;
-        color: var(--preto);
+        color: white;
 
         font-weight: bold;
     }
@@ -22,16 +28,22 @@
 .metricasKPI{
     height: 210px;
 
+
     .kpi{
         height: 180px;
         width: 300px;
+        background-color: #4d5970;
+
+        border-radius: 20px;
 
         .titulo{
             height: 20%;
         }
 
         .resultado{
-            height: 80%;
+            height: 70%;
+
+            
         }
     }
 
@@ -41,6 +53,8 @@
 .graficos{
     height: 450px;
     width: 48%;
+
+    background-color: rgb(255, 255, 255);
 
     .titulo{
         height: 10%;
@@ -54,6 +68,8 @@
 
 .layout1Grafico{
     height: 400px;
+
+    background-color: white;
 
     .titulo{
         height: 10%;
