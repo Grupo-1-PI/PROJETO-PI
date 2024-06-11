@@ -346,4 +346,18 @@ SELECT
 FROM Agendamento
 GROUP BY DiaSemana, HoraDia, fkInstituicao;
 
+-- Quantidade de doações por ano 
+CREATE VIEW QuantidadeDoadoresPorAno AS
+SELECT
+    YEAR(data) AS Ano,
+    MONTH(data) AS Mes,
+    COUNT(*) AS Qtd_Doadores
+FROM
+    Agendamento
+GROUP BY
+    YEAR(data), MONTH(data)
+ORDER BY
+    Ano, Mes;
+
+
 select * from doador;
