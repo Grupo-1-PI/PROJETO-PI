@@ -25,7 +25,7 @@
                 <div class="icon">
                 </div>
                 <div class="texto ">
-                    <a href="">Bem-vindo ${ususario}</a>
+                    <a id="nomeUsuario" href="">${ususario}</a>
                 </div>
                 <div class="texto ">
                     <a>|</a>
@@ -36,13 +36,13 @@
             </div>
             <div class="navbarConteudo space-evenly format">
                 <div class="texto">
-                    <a href="">INFORMAÇÕES</a>
+                    <a href=""></a>
                 </div>
                 <div class="logo">
 
                 </div>
                 <div class="texto">
-                    <a href="">DOAR AGORA</a>
+                    <a href=""></a>
                 </div>
             </div>
         </div>
@@ -141,6 +141,9 @@
     const respostaDadosDoador = await resposta.json();
     console.log("Resposta:", respostaDadosDoador);
 
+    const nomeUsuario = await document.getElementById('nomeUsuario')
+    nomeUsuario.innerHTML = await respostaDadosDoador.nome
+
     const cards = document.getElementById("card_usuario");
 
     cards.innerHTML = `
@@ -171,14 +174,6 @@
                         <div class="input-group mb-3">
                             <input type="text" id="email" class="form-control" placeholder="Vânia.SangueCorinthiano@gmail.com"
                             aria-label="Recipient's username" aria-describedby="button-addon2" value="${respostaDadosDoador.email}">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
-                        </div>
-                    </div>
-                    <div class="col-11">
-                        <label for="inputEmail4" class="form-label">Telefone:</label>
-                        <div class="input-group mb-3">
-                            <input type="text" id="telefone" class="form-control" placeholder="+(55) 11 91234-5678"
-                                aria-label="Recipient's username" aria-describedby="button-addon2" value="${respostaDadosDoador.senha}">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Editar</button>
                         </div>
                     </div>

@@ -436,3 +436,190 @@ SELECT * FROM information_schema.triggers WHERE trigger_schema = 'maisVidas';
 SHOW TABLES;
 
 
+<<<<<<< HEAD
+-- Inserindo dados na tabela OrigemTrafego
+INSERT INTO OrigemTrafego (opcao) VALUES 
+('A'), ('B'), ('C'), ('D'), ('E');
+
+-- Inserindo dados na tabela Doador
+INSERT INTO Doador (nome, email, dtNasc, sexo, primeiraDoacao, senha, fkOrigemTrafego) VALUES
+('Maria Silva', 'maria@example.com', '1990-05-15', 'F', 'S', 'senha123', 1),
+('João Santos', 'joao@example.com', '1985-08-20', 'M', 'S', 'senha456', 2),
+('Ana Oliveira', 'ana@example.com', '1998-01-10', 'F', 'N', 'senha789', 3),
+('Pedro Souza', 'pedro@example.com', '1980-11-25', 'M', 'S', 'senhaabc', 1),
+('Carla Lima', 'carla@example.com', '1995-03-30', 'F', 'S', 'senhadef', 2);
+
+-- Inserindo dados na tabela TelefoneDoador
+INSERT INTO TelefoneDoador (ddd, telCel, fkDoador) VALUES
+('11', '987654321', 1),
+('21', '912345678', 2),
+('31', '923456789', 3),
+('41', '934567890', 4),
+('51', '945678901', 5);
+
+-- Inserindo dados na tabela Instituicao
+INSERT INTO Instituicao (nome, cnpj, latitude, longitude) VALUES
+('Hospital ABC', 1234567890, 40.7128, -74.0060),
+('Hospital XYZ', 0987654321, 34.0522, -118.2437);
+
+-- Inserindo dados na tabela UnidadeSangueCorinthiano
+INSERT INTO UnidadeSangueCorinthiano (nome, cnpj, codigoUnidade) VALUES
+('Unidade A', 'ABC123', 101),
+('Unidade B', 'XYZ789', 202);
+
+-- Inserindo dados na tabela Nivel_acesso
+INSERT INTO Nivel_acesso (nome, token) VALUES
+('Nivel 1', 'token123'),
+('Nivel 2', 'token456');
+
+-- Inserindo dados na tabela Cargo
+INSERT INTO Cargo (nome, area, fkNivelAcesso, codigoCargo) VALUES
+('Cargo 1', 'Area 1', 1, 1001),
+('Cargo 2', 'Area 2', 2, 2002);
+
+-- Inserindo dados na tabela AdminSangueCorinthiano
+INSERT INTO AdminSangueCorinthiano (nome, cpf, email, senha, dtNasc, sexo, fkUnidade, fkCargo) VALUES
+('Admin 1', '12345678901', 'admin1@example.com', 'senha123', '1980-06-20', 'M', 1, 1),
+('Admin 2', '98765432109', 'admin2@example.com', 'senha456', '1975-09-15', 'F', 2, 2);
+
+-- Inserindo dados na tabela Campanha
+INSERT INTO Campanha (nome, dtInicio, dtFim, fkInstituicao, fkAdminSangueCorinthiano) VALUES
+('Campanha 1', '2024-06-01', '2024-06-30', 1, 1),
+('Campanha 2', '2024-07-01', '2024-07-31', 2, 2);
+
+-- Inserindo dados na tabela Agendamento
+INSERT INTO Agendamento (data, hora, cpfDoador, fkDoador, fkInstituicao, fkCampanha, status) VALUES
+('2024-06-05', '09:00:00', '12345678901', 1, 1, 1, 0),
+('2024-06-10', '10:30:00', '98765432109', 2, 2, 2, 1),
+('2024-07-15', '14:00:00', '12345678901', 1, 1, 1, 1),
+('2024-07-20', '15:30:00', '98765432109', 2, 2, 2, 1);
+
+-- Inserindo dados na tabela EnderecoInstituicao
+INSERT INTO EnderecoInstituicao (rua, numero, bairro, complemento, cidade, estado, cep, latitude, longitude, fkInstituicao) VALUES
+('Rua A', 123, 'Centro', 'Sala 101', 'São Paulo', 'SP', 12345678, 40.7128, -74.0060, 1),
+('Rua B', 456, 'Centro', 'Sala 202', 'Los Angeles', 'CA', 98765432, 34.0522, -118.2437, 2);
+
+
+-- Quantidade de usuários por sexo feminino ou masculino:
+CREATE VIEW QuantidadeUsuariosPorSexo AS
+SELECT 
+    COUNT(CASE WHEN sexo = 'F' THEN 1 END) AS Qtd_Feminino,
+    COUNT(CASE WHEN sexo = 'M' THEN 1 END) AS Qtd_Masculino
+FROM Doador;
+
+-- Idade dividida pela média de usuários em cada faixa etária
+CREATE VIEW IdadeDivididaPorMedia AS
+SELECT 
+    FLOOR(DATEDIFF(CURRENT_DATE(), dtNasc) / 365.25 / 10) AS FaixaEtaria,
+    COUNT(*) / (SELECT COUNT(*) FROM Doador) AS MediaUsuariosPorFaixaEtaria
+FROM Doador
+GROUP BY FaixaEtaria;
+
+
+-- Média de localização geográfica dos agendamentos
+CREATE VIEW MediaLocalizacaoGeografica AS
+SELECT 
+    fkInstituicao,
+    AVG(latitude) AS MediaLatitude,
+    AVG(longitude) AS MediaLongitude
+FROM Agendamento
+GROUP BY fkInstituicao;
+
+-- Número de doadores que retornam para doar sangue novamente
+CREATE VIEW NumeroDoadoresQueRetornam AS
+SELECT 
+    COUNT(*) AS Qtd_Doadores_Retornam
+FROM (
+    SELECT cpfDoador
+    FROM Agendamento
+    GROUP BY cpfDoador
+    HAVING COUNT(*) > 1
+) AS DoadoresRetornam;
+
+
+-- Fontes de tráfego que direcionam os doadores para o site
+CREATE VIEW FontesTrafegoDoadores AS
+SELECT 
+    opcao,
+    COUNT(*) AS Qtd_Doadores
+FROM OrigemTrafego
+GROUP BY opcao;
+
+-- Número total de agendamentos e doações efetivas realizadas por mês em cada local
+CREATE VIEW AgendamentosDoacoesPorMes AS
+SELECT 
+    MONTH(data) AS Mes,
+    fkInstituicao,
+    COUNT(*) AS Qtd_Agendamentos,
+    SUM(status) AS Qtd_Doacoes_Efetivas
+FROM Agendamento
+GROUP BY Mes, fkInstituicao;
+
+-- Taxa de conversão de agendamentos em doações efetivas
+CREATE VIEW TaxaConversao AS
+SELECT 
+    fkInstituicao,
+    SUM(status) / COUNT(*) AS Taxa_Conversao
+FROM Agendamento
+GROUP BY fkInstituicao;
+
+-- Taxa de cancelamento de agendamentos
+CREATE VIEW TaxaCancelamento AS
+SELECT 
+    fkInstituicao,
+    1 - (SUM(status) / COUNT(*)) AS Taxa_Cancelamento
+FROM Agendamento
+GROUP BY fkInstituicao;
+
+-- Padrões temporais de doação
+CREATE VIEW PadroesTemporaisDoacao AS
+SELECT 
+    DAYOFWEEK(data) AS DiaSemana,
+    HOUR(hora) AS HoraDia,
+    fkInstituicao,
+    COUNT(*) AS Qtd_Doadores
+FROM Agendamento
+GROUP BY DiaSemana, HoraDia, fkInstituicao;
+
+-- Quantidade de doações por ano 
+CREATE VIEW QuantidadeDoadoresPorAno AS
+SELECT
+    YEAR(data) AS Ano,
+    MONTH(data) AS Mes,
+    COUNT(*) AS Qtd_Doadores
+FROM
+    Agendamento
+GROUP BY
+    YEAR(data), MONTH(data)
+ORDER BY
+    Ano, Mes;
+
+
+select * from doador;
+
+CREATE TABLE IF NOT EXISTS taxa_comparacao_doacao (
+    idTaxaComparacao INT AUTO_INCREMENT PRIMARY KEY,
+    ano INT,
+    mes INT,
+    quantidade INT,
+    UNIQUE KEY unique_ano_mes (ano, mes)
+);
+
+
+INSERT INTO taxa_comparacao_doacao (ano, mes, quantidade) VALUES
+(2023, 3, 100),
+(2024, 3, 120),
+
+(2023, 6, 150),
+(2024, 6, 180),
+
+(2023, 8, 200),
+(2024, 8, 220);
+
+
+ALTER TABLE taxa_comparacao_doacao
+CHANGE COLUMN idTaxaComparacao id INT AUTO_INCREMENT;
+
+select * from doador;
+=======
+>>>>>>> 77dacbb061a1ccbf30e630701cfc732fcb87cf1f
