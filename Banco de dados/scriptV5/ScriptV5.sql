@@ -313,22 +313,41 @@ SELECT * FROM QuantidadeUsuariosPorSexo;
 
 
 -- Idade dividida pela média de usuários em cada faixa etária
-CREATE VIEW IdadeDivididaPorMedia AS
-SELECT 
-    FLOOR(DATEDIFF(CURRENT_DATE(), dtNasc) / 365.25 / 10) AS FaixaEtaria,
-    COUNT(*) / (SELECT COUNT(*) FROM Doador) AS MediaUsuariosPorFaixaEtaria
+CREATE OR REPLACE VIEW IdadePorFaixaEtaria AS
+SELECT
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 16 AND 25 THEN '16-25'
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 26 AND 35 THEN '26-35'
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 36 AND 45 THEN '36-45'
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 46 AND 55 THEN '46-55'
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 56 AND 65 THEN '56-65'
+        WHEN TIMESTAMPDIFF(YEAR, dtNasc, CURDATE()) BETWEEN 66 AND 75 THEN '66-75'
+        ELSE 'Mais de 75'
+    END AS FaixaEtaria,
+    COUNT(*) AS QuantidadePessoas
 FROM Doador
-GROUP BY FaixaEtaria;
+GROUP BY FaixaEtaria
+ORDER BY 
+    CASE FaixaEtaria
+        WHEN '16-25' THEN 1
+        WHEN '26-35' THEN 2
+        WHEN '36-45' THEN 3
+        WHEN '46-55' THEN 4
+        WHEN '56-65' THEN 5
+        WHEN '66-75' THEN 6
+        ELSE 7
+    END;
 
-SELECT * FROM IdadeDivididaPorMedia;
+SELECT * FROM IdadePorFaixaEtaria;
 
--- Número de doadores que retornam para doar sangue novamente
-CREATE VIEW NumeroDoadoresQueRetornam AS
+
+CREATE OR REPLACE VIEW NumeroDoadoresQueRetornam AS
 SELECT 
     COUNT(*) AS Qtd_Doadores_Retornam
 FROM (
     SELECT cpfDoador
     FROM Agendamento
+    WHERE status = 1
     GROUP BY cpfDoador
     HAVING COUNT(*) > 1
 ) AS DoadoresRetornam;
@@ -346,14 +365,15 @@ GROUP BY opcao;
 SELECT * FROM FontesTrafegoDoadores;
 
 -- Número total de agendamentos e doações efetivas realizadas por mês em cada local
-CREATE VIEW AgendamentosDoacoesPorMes AS
+CREATE OR REPLACE VIEW AgendamentosDoacoesPorMes AS
 SELECT 
-    MONTH(data) AS Mes,
+    DATE_FORMAT(data, '%Y-%m') AS Mes,
     fkInstituicao,
     COUNT(*) AS Qtd_Agendamentos,
-    SUM(status) AS Qtd_Doacoes_Efetivas
+    SUM(CASE WHEN status = 1 THEN 1 ELSE 0 END) AS Qtd_Doacoes_Efetivas
 FROM Agendamento
-GROUP BY Mes, fkInstituicao;
+GROUP BY Mes, fkInstituicao
+ORDER BY Mes, fkInstituicao;
 
 SELECT * FROM AgendamentosDoacoesPorMes;
 
