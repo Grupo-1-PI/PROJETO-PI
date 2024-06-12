@@ -361,3 +361,28 @@ ORDER BY
 
 
 select * from doador;
+
+CREATE TABLE IF NOT EXISTS taxa_comparacao_doacao (
+    idTaxaComparacao INT AUTO_INCREMENT PRIMARY KEY,
+    ano INT,
+    mes INT,
+    quantidade INT,
+    UNIQUE KEY unique_ano_mes (ano, mes)
+);
+
+
+INSERT INTO taxa_comparacao_doacao (ano, mes, quantidade) VALUES
+(2023, 3, 100),
+(2024, 3, 120),
+
+(2023, 6, 150),
+(2024, 6, 180),
+
+(2023, 8, 200),
+(2024, 8, 220);
+
+
+ALTER TABLE taxa_comparacao_doacao
+CHANGE COLUMN idTaxaComparacao id INT AUTO_INCREMENT;
+
+select * from doador;

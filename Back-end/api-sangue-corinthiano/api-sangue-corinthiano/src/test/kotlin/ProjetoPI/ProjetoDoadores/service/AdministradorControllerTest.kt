@@ -3,11 +3,14 @@ package ProjetoPI.ProjetoDoadores.service
 import ProjetoPI.ProjetoDoadores.controller.AdministradorController
 import ProjetoPI.ProjetoDoadores.domain.Administrador
 import ProjetoPI.ProjetoDoadores.repository.AdministradorRepository
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.mock
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.http.HttpStatus
 import java.time.LocalDate
@@ -36,13 +39,14 @@ class AdministradorControllerTest {
 
     @Test
     fun `test cadastrarAdministrador - email ja cadastrado`() {
-        val novoAdministrador = Administrador(1, "nome", "1487307840", "email@teste.com", "12324asda", 1,1, LocalDate.now())
-        Mockito.`when`(repository.findByEmail("email@teste.com")).thenReturn(null)
+        val emailRepetido = "email@teste.com"
+        val novoAdministrador = Administrador(1, "nome", "1487307840", emailRepetido, "12324asda", 1,1, LocalDate.now())
+        Mockito.`when`(repository.findByEmail(emailRepetido)).thenReturn(mock(Administrador::class.java))
 
         val response = controller.cadastrarAdministrador(novoAdministrador)
 
-        assert(response.statusCode == HttpStatus.BAD_REQUEST)
-        assert(response.body == "Email já cadastrado!")
+        assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
+        assertEquals("Email já cadastrado!", response.body )
     }
 
     @Test
@@ -90,16 +94,17 @@ class AdministradorControllerTest {
     @Test
     fun `test atualizarAdministrador - sucesso`() {
         val administradorAtual = Administrador(1, "nome", "1487307840", "email@teste.com", "12324asda", 1,1, LocalDate.now())
-        val novoAdministrador = Administrador(1, "nome", "1487307840", "email@teste.com", "12324asda", 1,1, LocalDate.now())
+        val novoAdministrador = Administrador(1, "novo nome", "1487307840", "novo_email@teste.com", "12324asda", 1,1, LocalDate.now())
+
         Mockito.`when`(repository.existsById(1)).thenReturn(true)
         Mockito.`when`(repository.findById(1)).thenReturn(Optional.of(administradorAtual))
-        Mockito.`when`(repository.save(administradorAtual)).thenReturn(administradorAtual)
+        Mockito.`when`(repository.save(novoAdministrador)).thenReturn(novoAdministrador)
 
         val response = controller.atualizarAdministrador(1, novoAdministrador)
 
-        assert(response.statusCode == HttpStatus.OK)
-        assert(response.body?.nome == "novo nome")
-        assert(response.body?.email == "novo_email@test.com")
+        assertEquals(HttpStatus.OK, response.statusCode)
+        assertEquals("novo nome", response.body?.nome)
+        assertEquals("novo_email@teste.com", response.body?.email)
     }
 
     @Test

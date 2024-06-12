@@ -19,24 +19,24 @@
                 <div class="icon">
                 </div>
                 <div class="texto ">
-                    <a href="">Login</a>
+                    <a id="nomeUsuario" href="">${usuário}</a>
                 </div>
                 <div class="texto ">
                     <a>|</a>
                 </div>
                 <div class="texto ">
-                    <a href="">Cadastro</a>
+                    <a href="">Sair</a>
                 </div>
             </div>
             <div class="navbarConteudo space-evenly format">
                 <div class="texto">
-                    <a href="">INFORMAÇÕES</a>
+                    <a href=""></a>
                 </div>
                 <div class="logo">
 
                 </div>
                 <div class="texto">
-                    <a href="">DOAR AGORA</a>
+                    <a href=""></a>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="tituloMetricas format">
                 <span>
-                    Insira o titulo dos dashboards
+                    KPEIS
                 </span>
             </div>
 
@@ -53,11 +53,21 @@
                 <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
-                            Total de Usuarios
+                            Total de mulheres
                         </span>
                     </div>
                     <div class="resultado format-Center">
-                        ${resultado}
+                        500
+                    </div>
+                </div>
+                <div class="kpi bordaKpi column">
+                    <div class="titulo format-Center">
+                        <span>
+                            Total de Homens
+                        </span>
+                    </div>
+                    <div class="resultado format-Center">
+                        300
                     </div>
                 </div>
                 <div class="kpi bordaKpi column">
@@ -67,33 +77,23 @@
                         </span>
                     </div>
                     <div class="resultado format-Center">
-                        ${resultado}
+                        800
                     </div>
                 </div>
                 <div class="kpi bordaKpi column">
                     <div class="titulo format-Center">
                         <span>
-                            Total de Usuarios
+                            Total de agendamentos
                         </span>
                     </div>
                     <div class="resultado format-Center">
-                        ${resultado}
-                    </div>
-                </div>
-                <div class="kpi bordaKpi column">
-                    <div class="titulo format-Center">
-                        <span>
-                            Total de Usuarios
-                        </span>
-                    </div>
-                    <div class="resultado format-Center">
-                        ${resultado}
+                        555
                     </div>
                 </div>
             </div>
             <div class="tituloMetricas format">
                 <span>
-                    Insira o titulo dos dashboards
+                    Dashboards
                 </span>
             </div>
             <div class="layout2Graficos row space-between">
@@ -173,86 +173,85 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('myChart');
+    // const ctx = document.getElementById('myChart');
   
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+    // new Chart(ctx, {
+    //   type: 'bar',
+    //   data: {
+    //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //     datasets: [{
+    //       label: '# of Votes',
+    //       data: [12, 19, 3, 5, 2, 3],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true
+    //       }
+    //     }
+    //   }
+    // });
 
-    const ctx2 = document.getElementById('myChart2');
+//     const ctx2 = document.getElementById('myChart2');
   
-  new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: ['Janeiro', 'Abril', 'Agosto'],
-        datasets: [
-            {
-                label: '2023',
-                data: [50, 75, 90], // Quantidade de pessoas para cada mês em 2023
-                backgroundColor: 'rgba(0, 0, 0, 1)', // Cor de fundo preta sólida
-                borderColor: 'rgba(0, 0, 0, 1)', // Cor da borda preta
-                borderWidth: 1
-            },
-            {
-                label: '2024',
-                data: [60, 85, 100], // Quantidade de pessoas para cada mês em 2024
-                backgroundColor: 'rgba(255, 0, 0, 1)', // Cor de fundo vermelha sólida
-                borderColor: 'rgba(255, 0, 0, 1)', // Cor da borda vermelha
-                borderWidth: 1
-            }
-        ]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Quantidade de Pessoas'
-                },
-                grid: {
-                    display: false // Remove a grade de fundo
-                }
-            },
-            x: {
-                title: {
-                    display: true,
-                    text: 'Meses'
-                },
-                grid: {
-                    display: false // Remove a grade de fundo
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'rgba(0, 0, 0, 0.7)',
-                    font: {
-                        size: 14
-                    }
-                }
-            }
-        }
-    }
-});
-  const ctx3 = document.getElementById('myChart3');
-  
+//   new Chart(ctx2, {
+//     type: 'bar',
+//     data: {
+//         labels: ['Janeiro', 'Abril', 'Agosto'],
+//         datasets: [
+//             {
+//                 label: '2023',
+//                 data: [50, 75, 90], // Quantidade de pessoas para cada mês em 2023
+//                 backgroundColor: 'rgba(0, 0, 0, 1)', // Cor de fundo preta sólida
+//                 borderColor: 'rgba(0, 0, 0, 1)', // Cor da borda preta
+//                 borderWidth: 1
+//             },
+//             {
+//                 label: '2024',
+//                 data: [60, 85, 100], // Quantidade de pessoas para cada mês em 2024
+//                 backgroundColor: 'rgba(255, 0, 0, 1)', // Cor de fundo vermelha sólida
+//                 borderColor: 'rgba(255, 0, 0, 1)', // Cor da borda vermelha
+//                 borderWidth: 1
+//             }
+//         ]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true,
+//                 title: {
+//                     display: true,
+//                     text: 'Quantidade de Pessoas'
+//                 },
+//                 grid: {
+//                     display: false // Remove a grade de fundo
+//                 }
+//             },
+//             x: {
+//                 title: {
+//                     display: true,
+//                     text: 'Meses'
+//                 },
+//                 grid: {
+//                     display: false // Remove a grade de fundo
+//                 }
+//             }
+//         },
+//         plugins: {
+//             legend: {
+//                 labels: {
+//                     color: 'rgba(0, 0, 0, 0.7)',
+//                     font: {
+//                         size: 14
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// });
+const ctx3 = document.getElementById('myChart3');
   new Chart(ctx3, {
     type: 'line',
     data: {
@@ -271,5 +270,172 @@
       }
     }
   });
+
+
+//   async function buscar(){
+//     const url = 'http://localhost:8080';
+
+//     const resposta = await fetch(`${url}/dash`);
+//     const dados = await resposta.json();
+//     console.log("Resposta:", dados);
+
+//     const meses = dados.map(item => item.mes);
+//     console.log("Meses:", meses);
+
+//     const quantidades = dados.map(item => item.quantidade);
+//     console.log("Quantidades:", quantidades);
+
+//     const anos = dados.map(item => item.ano);
+//     console.log("Anos:", anos);
+
+//     const anoMesArray = dados.map(item => `${item.mes}-${item.ano}`);
+//     console.log("Ano e Mês:", anoMesArray);
+
+//     const ctx = document.getElementById('myChart');
+  
+//   new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: anoMesArray,
+//       datasets: [{
+//         label: '# of Votes',
+//         data: quantidades,
+//         borderWidth: 1
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
+//     }
+//     buscar();
+
+
+async function buscar() {
+    const url = 'http://localhost:8080';
+    const id = sessionStorage.getItem('userId');
+
+    const usuario = await fetch(`${url}/doadores/${id}`);
+    const respostaDadosDoador = await usuario.json();
+    console.log("Resposta:", respostaDadosDoador);
+
+    const nomeUsuario = await document.getElementById('nomeUsuario')
+    nomeUsuario.innerHTML = await respostaDadosDoador.nome
+
+    const resposta = await fetch(`${url}/dash`);
+    const dados = await resposta.json();
+    console.log("Resposta:", dados);
+
+    const meses = dados.map(item => item.mes);
+    console.log("Meses:", meses);
+
+    const quantidades = dados.map(item => item.quantidade);
+    console.log("Quantidades:", quantidades);
+
+    const anos = dados.map(item => item.ano);
+    console.log("Anos:", anos);
+
+    const anoMesArray = dados.map(item => `${item.mes}-${item.ano}`);
+    console.log("Ano e Mês:", anoMesArray);
+
+    const arrayUnico = meses.filter((item, index) => {
+    return meses.indexOf(item) === index;
+});
+
+console.log(arrayUnico);    
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: anoMesArray,
+            datasets: [{
+                label: '# of Votes',
+                data: quantidades,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Organizar os dados para o segundo gráfico
+    const dadosPorAno = {};
+    dados.forEach(item => {
+        if (!dadosPorAno[item.ano]) {
+            dadosPorAno[item.ano] = {};
+        }
+        dadosPorAno[item.ano][item.mes] = item.quantidade;
+    });
+
+    // const mesesDoAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    const mesesDoAno = [1, 2, 3,4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+    const ctx2 = document.getElementById('myChart2');
+
+    const datasets = Object.entries(dadosPorAno).map(([ano, valores]) => {
+        return {
+            label: ano,
+            data: arrayUnico.map(mes => valores[mes] || 0),
+            backgroundColor: ano === '2023' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 0, 0, 1)',
+            borderColor: ano === '2023' ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 0, 0, 1)',
+            borderWidth: 1
+        };
+    });
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: arrayUnico,
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade de Pessoas'
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Meses'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'rgba(0, 0, 0, 0.7)',
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+buscar();
+
 
   </script>
