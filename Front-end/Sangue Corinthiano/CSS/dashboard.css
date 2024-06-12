@@ -2,7 +2,7 @@
     height: auto;
     width: 100%;
 
-    background-color: #212732;
+    background-color: #1f2021;
 }
 
 .bordaKpi{
@@ -32,7 +32,7 @@
     .kpi{
         height: 180px;
         width: 300px;
-        background-color: #4d5970;
+        background-color: white;
 
         border-radius: 20px;
 
