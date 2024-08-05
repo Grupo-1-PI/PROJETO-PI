@@ -1,0 +1,164 @@
+.banner{
+    height: 550px;
+    background-image: url(../IMG/banner\ home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .texto{
+        height: 100%;
+        width: 500px;
+
+        color: white;
+        font-weight: bolder;
+        font-size: 57px;
+
+        span{
+            text-align: end;
+        }
+    }
+}
+
+.diaDaDoacao{
+    height: 750px;
+
+
+    .formatDiaDaDoacao{
+        width: 100%;
+    }
+    .titulo{
+        height: 100px;
+
+        .span{
+            color: black;
+            font-weight: bolder;
+        }
+    }
+
+    .conteudo{
+        flex-wrap: wrap;
+        width: 100%;
+
+        background-color: aqua;
+    }
+
+    .card{
+        width: 350px;
+        height: 180px;
+
+        background-color: #DA1E25;
+        border-radius: 20px;
+
+        margin-top: 20px;
+    }
+
+    .containerCard{
+        height: auto;
+        width: 90%;
+
+    }
+
+    p{
+        color: white;
+    }
+}
+
+.naoPodeDoar{
+    height: 800px;
+
+    background-image: url(../IMG/Corinthians-feminino-campeao-pela-quinta-vez-Foto-Nayra-Halm-CBF.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .container{
+        height: 650px;
+    }
+
+    .formatNaoPodeDoar{
+        height: 100%;
+    }
+    
+
+    .titulo{
+        color: white;
+        font-size: 32px;
+
+        font-weight: bolder;
+
+    }
+
+    .card{
+        display: flex;
+        height: 550px;
+        width: 550px;
+
+        background-color: #DA1E25;
+        border-radius: 50px;
+
+        .containerCard{
+            height: auto;
+            width: 90%;
+
+        }
+
+        .tituloCard{
+            height: 100px;
+            color: white;
+            font-size: 28px;
+        }
+
+        p{
+            color: white;
+            font-size: 20px;
+        }
+
+    }
+
+    .ouConteudo{
+        color: white;
+        font-size: 32px;
+
+        font-weight: bolder;
+    }
+}
+
+.preRodape{
+    height: 480px;
+
+    background-color: black;
+
+    .conteudo{
+        height: 350px;
+    }
+
+    .titulo{
+        color: white;
+
+        font-size: 32px;
+        font-weight: bold;
+
+    }
+
+    .texto{
+        color: white;
+
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .botao{
+        width: 260px;
+        height: 56px;
+
+        border-radius: 20px;
+        background-color: #DA1E25;
+
+        a{
+            text-decoration: none;
+
+            color: white;
+
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+}
