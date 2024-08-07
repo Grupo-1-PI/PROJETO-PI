@@ -256,7 +256,7 @@
             .titulo {
                 height: 30px;
 
-                background-color: rgba(0, 255, 255, 0.382);
+                /* background-color: rgba(0, 255, 255, 0.382); */
 
                 span{
                     font-size: 18px;
@@ -266,7 +266,7 @@
             }
             .texto{
                 height: 30px;
-                background-color: #ff000856;
+                /* background-color: #ff000856; */
 
                 p{
                   font-size: 14px;  
