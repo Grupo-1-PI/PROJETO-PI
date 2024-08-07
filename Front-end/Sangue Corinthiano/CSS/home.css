@@ -1,10 +1,10 @@
-.banner{
+.banner {
     height: 550px;
     background-image: url(../IMG/banner\ home.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 
-    .texto{
+    .texto {
         height: 100%;
         width: 500px;
 
@@ -12,36 +12,36 @@
         font-weight: bolder;
         font-size: 57px;
 
-        span{
+        span {
             text-align: end;
         }
     }
 }
 
-.diaDaDoacao{
+.diaDaDoacao {
     height: 750px;
 
 
-    .formatDiaDaDoacao{
+    .formatDiaDaDoacao {
         width: 100%;
     }
-    .titulo{
+
+    .titulo {
         height: 100px;
 
-        .span{
+        span {
+            font-size: 32px;
             color: black;
             font-weight: bolder;
         }
     }
 
-    .conteudo{
+    .conteudo {
         flex-wrap: wrap;
         width: 100%;
-
-        background-color: aqua;
     }
 
-    .card{
+    .card {
         width: 350px;
         height: 180px;
 
@@ -51,34 +51,252 @@
         margin-top: 20px;
     }
 
-    .containerCard{
+    .containerCard {
         height: auto;
-        width: 90%;
+        width: 80%;
 
     }
 
-    p{
+    p {
+        font-size: 18px;
         color: white;
     }
 }
 
-.naoPodeDoar{
+.condicaoParaDoacao {
+    height: 350px;
+
+    background-color: black;
+
+    .card {
+        margin-top: 100px;
+        width: 48%;
+
+
+
+        .subTitulo {
+
+            span {
+                font-size: 24px;
+                color: white;
+                font-weight: bolder;
+            }
+
+        }
+
+        .conteudo {
+            height: 235px;
+
+            background: rgb(0, 0, 0);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(56, 56, 56, 1) 100%);
+        }
+
+        .imagem {
+            width: 35%;
+            /* background-color: #da1e245a; */
+
+            img {
+                width: 100%;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .textoConteudo {
+            width: 65%;
+            /* background-color: rgba(0, 255, 255, 0.384); */
+
+            .titulo {
+                height: 50px;
+                /* background-color: rgba(0, 0, 0, 0.122); */
+
+                span {
+                    font-size: 40px;
+                    font-weight: bolder;
+                    color: white;
+                }
+            }
+
+            .subTitulo {
+
+                span {
+                    font-size: 24px;
+
+                    color: rgba(255, 255, 255, 0.299);
+                    /* color: #DA1E25; */
+                }
+
+                #subtitulo2 {
+                    font-size: 16px;
+                    color: white;
+                    /* color: aqua; */
+                }
+            }
+        }
+
+        .formatBotao {
+            height: 50px;
+            width: 100%;
+
+            /* background-color: black; */
+
+            .botao {
+                height: 100%;
+                width: 55%;
+
+                background-color: white;
+
+                .imagem {
+                    height: 100%;
+                    width: 20%;
+
+                    /* background-color: green; */
+
+                    img {
+                        height: 32px;
+                        width: 32px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+
+                .texto {
+                    height: 100%;
+                    width: 75%;
+
+                    /* background-color: blue; */
+
+                    .span {
+                        font-size: 24px;
+                        color: black;
+                    }
+                }
+
+                .imagem2 {
+                    height: 100%;
+                    width: 20%;
+
+                    /* background-color: red; */
+
+                    img {
+                        height: 16px;
+                        width: 16px;
+                    }
+
+                }
+            }
+        }
+
+
+    }
+
+    .titulo {
+        height: 100px;
+
+        /* background-color: rgba(127, 255, 212, 0.13); */
+
+        span {
+            font-size: 40px;
+            color: white;
+            font-weight: bolder;
+        }
+    }
+
+
+}
+
+.deveAguardarParaDoar {
+    height: 1350px;
+
+    .titulo {
+        height: 100px;
+
+        span {
+            font-size: 32px;
+            color: black;
+            font-weight: bolder;
+        }
+    }
+
+    .conteudo {
+        width: 100%;
+        flex-wrap: wrap;
+
+        .centro{
+            display: flex;
+            width: 100%;
+            height: auto;
+            justify-content: center;
+        }
+
+
+        .card {
+            width: 400px;
+            height: 350px;
+
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-top: 50px;
+
+            -webkit-box-shadow: 0px 0px 20px 10px rgba(204, 204, 204, 1);
+            -moz-box-shadow: 0px 0px 20px 10px rgba(204, 204, 204, 1);
+            box-shadow: 0px 0px 20px 10px rgba(204, 204, 204, 1);
+
+            .imagem {
+                height: 80%;
+                width: 100%;
+        
+                background-color: rgba(0, 0, 0, 0.132);
+        
+                img {}
+            }
+
+            
+            .titulo {
+                height: 30px;
+
+                background-color: rgba(0, 255, 255, 0.382);
+
+                span{
+                    font-size: 18px;
+                    color: black;
+                    font-weight: bold;
+                }
+            }
+            .texto{
+                height: 30px;
+                background-color: #ff000856;
+
+                p{
+                  font-size: 14px;  
+                }
+            }
+
+        }
+    }
+
+   
+
+}
+
+.naoPodeDoar {
     height: 800px;
 
     background-image: url(../IMG/Corinthians-feminino-campeao-pela-quinta-vez-Foto-Nayra-Halm-CBF.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 
-    .container{
+    .container {
         height: 650px;
     }
 
-    .formatNaoPodeDoar{
+    .formatNaoPodeDoar {
         height: 100%;
     }
-    
 
-    .titulo{
+
+    .titulo {
         color: white;
         font-size: 32px;
 
@@ -86,7 +304,7 @@
 
     }
 
-    .card{
+    .card {
         display: flex;
         height: 550px;
         width: 550px;
@@ -94,26 +312,26 @@
         background-color: #DA1E25;
         border-radius: 50px;
 
-        .containerCard{
+        .containerCard {
             height: auto;
             width: 90%;
 
         }
 
-        .tituloCard{
+        .tituloCard {
             height: 100px;
             color: white;
             font-size: 28px;
         }
 
-        p{
+        p {
             color: white;
             font-size: 20px;
         }
 
     }
 
-    .ouConteudo{
+    .ouConteudo {
         color: white;
         font-size: 32px;
 
@@ -121,16 +339,16 @@
     }
 }
 
-.preRodape{
+.preRodape {
     height: 480px;
 
     background-color: black;
 
-    .conteudo{
+    .conteudo {
         height: 350px;
     }
 
-    .titulo{
+    .titulo {
         color: white;
 
         font-size: 32px;
@@ -138,21 +356,21 @@
 
     }
 
-    .texto{
+    .texto {
         color: white;
 
         font-size: 24px;
         font-weight: bold;
     }
 
-    .botao{
+    .botao {
         width: 260px;
         height: 56px;
 
         border-radius: 20px;
         background-color: #DA1E25;
 
-        a{
+        a {
             text-decoration: none;
 
             color: white;
