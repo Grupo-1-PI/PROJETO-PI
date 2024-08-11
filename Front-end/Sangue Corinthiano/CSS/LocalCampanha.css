@@ -1,0 +1,100 @@
+
+
+/* estilo para os cars da imagem de arena */
+.cardsArena{
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+flex-wrap: wrap;    
+width: 75%;
+}
+.imgArena{
+    background-color: red;
+    width: 20vw;
+    height: 25vh;
+    margin: 20px 0;
+
+
+}
+.subCardButton{
+    display: flex;
+    justify-self: space-around;
+    flex: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+/* Estilos para a seção de informações (imagens e textos) */
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Adapta melhor a diferentes tamanhos de tela */
+}
+
+.info-item {
+    width: 45%; /* Cada item ocupa 45% da largura */
+    margin-bottom: 20px;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; 
+    object-fit: cover;
+}
+
+.text-wrapper {
+    text-align: left;
+}
+
+.text-wrapper p {
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+.text-wrapper p strong {
+    font-size: 1.1rem;
+    color: #000;
+}
+
+/* Estilo para a seção de botões */
+.button-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.0em; /* Ajuste conforme o tamanho do título do cabeçalho */
+    font-family: 'Arial', sans-serif; /* Ajuste conforme a fonte dos títulos do cabeçalho */
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:first-of-type {
+    color: rgb(255, 0, 0);
+}
+
+.button:last-of-type {
+    color: rgb(0, 0, 0);
+}
+
+/* Efeito de hover */
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
