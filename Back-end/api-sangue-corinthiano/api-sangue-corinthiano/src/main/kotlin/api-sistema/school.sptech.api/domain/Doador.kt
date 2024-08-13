@@ -11,7 +11,7 @@ import java.time.LocalDate
 @Entity
 data class Doador(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val idDoador: Int = 0,
 
     @field:NotBlank
     var nome: String = "",
@@ -23,18 +23,18 @@ data class Doador(
     var dtNasc: LocalDate = LocalDate.now(),
 
     //@field:NotNull
-    var sexo: String = " ",
+    var sexo: Char = 0.toChar(),
 
     //@field:NotNull
-    var primeiraDoacao: Boolean = false,
+    var primeiraDoacao: Char = 0.toChar(),
 
     //@field:NotBlank
     var senha: String = "",
 
     //@field:NotBlank
-    var motivo: String = "",
+    //var motivo: String = "",
 
-    var fk_origem_trafego:Int = 1
+    var id_origem_trafego:Int = 1
 ) {
 //    constructor(paramEmail: String, paramSenha: String):this(email = paramEmail, senha = paramSenha)
 }

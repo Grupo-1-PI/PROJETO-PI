@@ -1,6 +1,6 @@
 package ProjetoPI.ProjetoDoadores.controller
 
-import ProjetoPI.ProjetoDoadores.domain.Administrador
+import ProjetoPI.ProjetoDoadores.domain.AdminSangueCorinthiano
 import ProjetoPI.ProjetoDoadores.domain.Doador
 import ProjetoPI.ProjetoDoadores.repository.AdministradorRepository
 import jakarta.validation.Valid
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 class AdministradorController(val repository: AdministradorRepository) {
 
     @PostMapping
-    fun cadastrarAdministrador(@RequestBody @Valid novoAdministrador: Administrador): ResponseEntity<String> {
+    fun cadastrarAdministrador(@RequestBody @Valid novoAdministrador: AdminSangueCorinthiano): ResponseEntity<String> {
         val existe = repository.findByEmail(novoAdministrador.email)
 
         return if (existe != null) {
@@ -28,7 +28,7 @@ class AdministradorController(val repository: AdministradorRepository) {
     }
 
     @GetMapping
-    fun listarAdministradores(): ResponseEntity<List<Administrador>> {
+    fun listarAdministradores(): ResponseEntity<List<AdminSangueCorinthiano>> {
         val listaAdministradores = repository.findAll()
 
         if(listaAdministradores.isEmpty()) {
@@ -39,7 +39,7 @@ class AdministradorController(val repository: AdministradorRepository) {
 
 
     @GetMapping("/{id}")
-    fun listarAdministradorPorId(@PathVariable id: Int): ResponseEntity<Administrador> {
+    fun listarAdministradorPorId(@PathVariable id: Int): ResponseEntity<AdminSangueCorinthiano> {
         return if (repository.existsById(id)) {
             val administrador = repository.findById(id).get()
             ResponseEntity.status(200).body(administrador)
@@ -50,7 +50,7 @@ class AdministradorController(val repository: AdministradorRepository) {
 
 
     @PutMapping("/{id}")
-    fun atualizarAdministrador(@PathVariable id: Int, @RequestBody novoAdministrador: Administrador): ResponseEntity<Administrador> {
+    fun atualizarAdministrador(@PathVariable id: Int, @RequestBody novoAdministrador: AdminSangueCorinthiano): ResponseEntity<AdminSangueCorinthiano> {
         return if (repository.existsById(id)) {
             val administrador = repository.findById(id).get()
 
@@ -58,8 +58,8 @@ class AdministradorController(val repository: AdministradorRepository) {
             administrador.cpf = novoAdministrador.cpf
             administrador.email = novoAdministrador.email
             administrador.senha = novoAdministrador.senha
-            administrador.cargoId = novoAdministrador.cargoId
-            administrador.unidadeId = novoAdministrador.unidadeId
+            administrador.idCargo = novoAdministrador.idCargo
+            administrador.idUnidade = novoAdministrador.idUnidade
             administrador.dtNasc = novoAdministrador.dtNasc
             administrador.sexo = novoAdministrador.sexo
 
