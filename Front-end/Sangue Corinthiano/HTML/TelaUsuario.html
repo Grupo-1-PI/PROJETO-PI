@@ -126,8 +126,7 @@
                         aria-describedby="button-addon2">
                     <button class="button" type="button" id="button-addon2"><span class="material-symbols-outlined">
                             edit
-                        </span></button id="myButton">
-                        <button id="myButton">Clique aqui</button>
+                        </span></button>
                 </div>
             </div>
 
@@ -136,10 +135,9 @@
                 <div class="input-group mb-3">
                     <input type="text" id="input-email" class="input-dados-usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    <button class="button" type="button" id="button-addon2"><span class="material-symbols-outlined">
+                    <button class="button" type="button" id="button-addon3"><span class="material-symbols-outlined">
                             edit
-                        </span></button id="sweet_alert">
-                        <button id="myButton">Clique aqui</button>
+                        </span></button>
                 </div>
             </div>
 
@@ -148,7 +146,7 @@
                 <div class="input-group mb-3">
                     <input type="text" id="input-telefone" class="input-dados-usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    <button class="button" type="button" id="button-addon2"><span class="material-symbols-outlined">
+                    <button class="button" type="button" id="button-addon4"><span class="material-symbols-outlined">
                             edit
                         </span></button id="sweet_alert">
                 </div>
@@ -159,7 +157,7 @@
                 <div class="input-group mb-3">
                     <input type="text" id="input-senha" class="input-dados-usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    <button class="button" type="button" id="button-addon2"><span class="material-symbols-outlined">
+                    <button class="button" type="button" id="button-addon5"><span class="material-symbols-outlined">
                             edit
                         </span></button id="sweet_alert">
                 </div>
@@ -184,24 +182,75 @@
             </div>
         </div>
     </div>
-    <button onclick="teste()">
-        bora testar
-    </button>
 </body>
 
 </html>
 <script>
 
-document.getElementById('myButton').addEventListener('click', function () {
+document.getElementById('button-addon2').addEventListener('click', function () {
            Swal.fire({
-               title: "Do you want to save the changes?",
+               title: "Você quer salvar as alterações?",
                showDenyButton: true,
                showCancelButton: true,
                confirmButtonText: "Sim",
                denyButtonText: `Não`
            }).then((result) => {
                if (result.isConfirmed) {
-                   Swal.fire("Salvado!", "", "Sucesso");
+                   Swal.fire("Salvo!", "", "success");
+                   console.log("caiu aqui dentro")
+               } else if (result.isDenied) {
+                   console.log("caiu dentro do else if")
+                   Swal.fire("Não Alterado", "", "info");
+               }
+           });
+       });
+
+       document.getElementById('button-addon3').addEventListener('click', function () {
+           Swal.fire({
+               title: "Você quer salvar as alterações?",
+               showDenyButton: true,
+               showCancelButton: true,
+               confirmButtonText: "Sim",
+               denyButtonText: `Não`
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   Swal.fire("Salvo!", "", "success");
+                   console.log("caiu aqui dentro")
+               } else if (result.isDenied) {
+                   console.log("caiu dentro do else if")
+                   Swal.fire("Não Alterado", "", "info");
+               }
+           });
+       });
+
+       document.getElementById('button-addon4').addEventListener('click', function () {
+           Swal.fire({
+               title: "Você quer salvar as alterações?",
+               showDenyButton: true,
+               showCancelButton: true,
+               confirmButtonText: "Sim",
+               denyButtonText: `Não`
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   Swal.fire("Salvo!", "", "success");
+                   console.log("caiu aqui dentro")
+               } else if (result.isDenied) {
+                   console.log("caiu dentro do else if")
+                   Swal.fire("Não Alterado", "", "info");
+               }
+           });
+       });
+
+       document.getElementById('button-addon5').addEventListener('click', function () {
+           Swal.fire({
+               title: "Você quer salvar as alterações?",
+               showDenyButton: true,
+               showCancelButton: true,
+               confirmButtonText: "Sim",
+               denyButtonText: `Não`
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   Swal.fire("Salvo!", "", "success");
                    console.log("caiu aqui dentro")
                } else if (result.isDenied) {
                    console.log("caiu dentro do else if")
