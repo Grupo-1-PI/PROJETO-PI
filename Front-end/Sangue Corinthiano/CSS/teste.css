@@ -24,121 +24,6 @@
     align-items: center;
 }
 
-
-
-.navbarSemLogin {
-    height: 130px;
-    width: 100%;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(56, 56, 56, 1) 100%);
-
-    -webkit-box-shadow: 0px 0px 120px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
-
-    .usuario {
-        height: auto;
-        width: 100%;
-
-        .formata {
-            width: 11%;
-            height: 100%;
-        }
-
-        .imagem {
-            height: 30px;
-            width: 30px;
-
-            img {
-                width: 80%;
-                height: 80%;
-            }
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-        }
-
-        span {
-            color: white;
-        }
-    }
-
-    .formata {
-        height: 100px;
-        width: 100%;
-        /* background-color: rgba(255, 255, 255, 0.277); */
-
-        .conteudo {
-            height: 30px;
-            width: 100px;
-
-            /* background-color: rgba(255, 0, 0, 0.341); */
-
-            .textoConteudo {
-
-                a {
-                    color: white;
-                    text-decoration: none;
-                    font-weight: bold;
-                    font-size: 24px;
-                }
-            }
-
-            img {
-                height: auto;
-                width: auto;
-            }
-        }
-
-        .conteudo1 {
-            height: auto;
-            width: 250px;
-
-            /* background-color: rgba(0, 0, 255, 0.2); */
-
-            a {
-                color: white;
-                font-size: 32px;
-                font-weight: bold;
-                text-decoration: none;
-            }
-        }
-
-        .logo {
-            height: 130px;
-            width: 130px;
-
-            margin-top: 100px;
-
-            /* background-color: gray; */
-
-            img {
-                height: 100%;
-                width: 100%;
-
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-        }
-    }
-
-}
-
-.subNavBar {
-    height: 155px;
-    width: 100%;
-
-    a {
-        text-decoration: none;
-        color: black;
-        font-size: 24px;
-        font-weight: bold
-    }
-}
-
-
 .navbar{
     height: 130px;
     width: 100%;
@@ -225,4 +110,16 @@
     }
 
 
+}
+
+.subNavBar {
+    height: 155px;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 24px;
+        font-weight: bold
+    }
 }
