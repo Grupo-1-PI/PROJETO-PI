@@ -113,6 +113,31 @@ body {
     box-shadow: rgba(0, 0, 0, 0.337) 0px 22px 70px 4px;
 }
 
+.justificarAlinhar-meio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.justificar-meio{
+    display: flex;
+    justify-content: center;
+}
+
+.direcao-linha{
+    display: flex;
+    flex-direction: row;
+}
+
+.esquerda-start {
+    display: flex;
+
+}
+
+.alinhar-meio {
+    display: flex;
+    align-items: center;
+}
 
 .navbar{
     height: 130px;
@@ -201,6 +226,21 @@ body {
 
 
 }
+
+.subNavBar {
+    height: 155px;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 24px;
+        font-weight: bold
+    }
+}
+
+
+
 
 .navbarSemLogin {
     height: 130px;
@@ -448,6 +488,8 @@ body {
         font-weight: bold
     }
 }
+
+
 
 .rodaPe {
     display: flex;
