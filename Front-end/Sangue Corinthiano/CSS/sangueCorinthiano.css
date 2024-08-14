@@ -1,4 +1,4 @@
-*{
+* {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -37,7 +37,7 @@ body {
     align-items: center;
 }
 
-.meio-direita{
+.meio-direita {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -53,7 +53,7 @@ body {
     align-items: center;
 }
 
-.alin-end{
+.alin-end {
     display: flex;
     align-items: end;
 }
@@ -82,49 +82,49 @@ body {
 
 
 
-.padding-radio{
+.padding-radio {
     padding-top: 9px;
 }
 
-.borda{
+.borda {
     border: #000000 0.5px solid;
     border-radius: 12px;
 }
 
-.row{
+.row {
     display: flex;
     width: auto;
     height: auto;
     flex-direction: row;
 }
 
-.column{
+.column {
     display: flex;
     height: auto;
     width: auto;
     flex-direction: column;
 }
 
-.sombra{
+.sombra {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
-.sombraKPI{
+.sombraKPI {
     box-shadow: rgba(0, 0, 0, 0.337) 0px 22px 70px 4px;
 }
 
-.justificarAlinhar-meio{
+.justificarAlinhar-meio {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.justificar-meio{
+.justificar-meio {
     display: flex;
     justify-content: center;
 }
 
-.direcao-linha{
+.direcao-linha {
     display: flex;
     flex-direction: row;
 }
@@ -139,7 +139,47 @@ body {
     align-items: center;
 }
 
-.navbar{
+.formatTitulo {
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.tituloPreto{
+    font: 24px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.textoPreto{
+    font: 8px;
+    color: #000000;
+    font-weight: 200; 
+    
+    /* background-color: aqua; */
+}
+
+.formatTituloBranco {
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+}
+
+.tituloBranco {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.formatTextoBranco {
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+}
+
+
+
+.navbar {
     height: 130px;
     width: 100%;
     background: rgb(0, 0, 0);
@@ -149,76 +189,83 @@ body {
     -moz-box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
 
-    .margintop{
+    .margintop {
         margin-top: 100px;
     }
 
-    a{
-        color: white;
+    .texto1 {
         text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
 
-        
+        color: white;
     }
 
-    .icon{
+    .texto2 {
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+
+        color: white;
+    }
+
+    .texto3 {
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+
+        color: white;
+    }
+
+    .icon {
         height: 30px;
         width: 30px;
-        
 
-        img{
+
+        img {
             height: 80%;
             width: 80%;
         }
     }
 
-    .usuario{
+    .usuario {
         width: 100%;
         height: auto;
     }
 
-    .formatacao1{
+    .formatacao1 {
         height: auto;
-         width: 140px;
-        
-        
-        span{
-            color: var(--branco);
-            font-weight: bold;
-        }
-        a{
-            text-decoration: none;
-            font-size: 14px;
-            color: var(--branco);
-        }
+        width: 140px;
+
     }
 
-    .alturadiv{
+    .alturadiv {
         height: 100px;
     }
 
-    .formatacao2{
+    .formatacao2 {
         height: auto;
         width: 80px;
- 
+
     }
 
-    .logo{
+    .logo {
         height: 100px;
         width: 100px;
 
-       
 
-        img{
+
+        img {
             width: 100%;
             height: 100%;
         }
     }
 
-    .imagem{
+    .imagem {
         width: 100%;
         height: 30px;
 
-        img{
+        img {
             height: 100%;
             width: auto;
         }
@@ -499,16 +546,8 @@ body {
 
 
     .titulo {
-        width: 300px;
-        height: 25px;
-
-        span {
-            font-size: 16px;
-
-            color: var(--preto);
-            font-family: var(--font-defaut);
-            font-weight: bold;
-        }
+        width: auto;
+        height: 50px;
     }
 
     .redeSocial {
@@ -522,17 +561,13 @@ body {
         height: 20px;
         width: 20px;
 
-        background-image: url();
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        img{
+        img {
             height: 100%;
             width: 100%;
         }
     }
 
-    .divLogoRodaPe{
+    .divLogoRodaPe {
         width: 250px;
     }
 
@@ -540,20 +575,25 @@ body {
         width: 100px;
         height: 120px;
 
-        background-image: url(../IMG/SangueCorinthiano-Logo.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        /* background-color: #4f242673; */
+        img {
+            height: 90%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
 
     .logo2 {
         width: 100px;
         height: 120px;
 
-        background-image: url(../IMG/Logo\ Sptech.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
+
+        img {
+            height: 90%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
         /* background-color: #4f242673; */
     }
@@ -561,13 +601,26 @@ body {
     .texto {
         width: auto;
         height: 50px;
-
-        span {
-            text-align: center;
-
-            color: var(--preto-transparente);
-            font-family: var(--font-defaut);
-
-        }
     }
+
+    .rodapeTexto {
+        text-align: center;
+        font-size: 16px;
+        color: var(--preto-transparente);
+
+    }
+
+    .rodapeTextoBranco {
+        color: rgba(255, 255, 255, 0.5);
+        font: 16px;
+        text-align: center;
+    }
+
+    .rodaPeTitulo{
+        
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--preto);
+    }
+
 }
