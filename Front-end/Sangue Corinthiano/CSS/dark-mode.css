@@ -1,0 +1,62 @@
+/* Estilo para o Modo Escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Navbar no Modo Escuro */
+body.dark-mode .navbarSemLogin {
+    background-color: #222;
+    color: white;
+}
+
+body.dark-mode .navbarSemLogin .usuario a,
+body.dark-mode .navbarSemLogin .formata a {
+    color: white;
+}
+
+/* Sub Navbar no Modo Escuro */
+body.dark-mode .subNavBar {
+    background-color: #333;
+}
+
+body.dark-mode .subNavBar a {
+    color: white;
+}
+
+/* Estilo para a Logo */
+.navbarSemLogin .logo img {
+    max-height: 100%;
+    width: auto;
+    position: relative;
+    z-index: 10; /* Garante que a logo esteja no topo */
+}
+
+/* Modo Escuro para os cards de locais */
+body.dark-mode .location-card {
+    background-color: #333;
+    border-color: #555;
+    color: white; /* Garante que todo o texto seja branco */
+}
+
+body.dark-mode .location-card h2,
+body.dark-mode .location-card p,
+body.dark-mode .view-button {
+    color: white;
+}
+
+/* Rodapé no Modo Escuro */
+body.dark-mode .rodaPe {
+    background-color: #111;
+}
+
+body.dark-mode .rodaPe .texto,
+body.dark-mode .rodaPe .titulo span,
+body.dark-mode .rodaPe .texto span {
+    color: white; /* Garante que o texto do rodapé esteja branco no modo escuro */
+}
+
+/* Inverter as cores dos ícones no rodapé para o modo escuro */
+body.dark-mode .rodaPe .redeSocial img {
+    filter: invert(1);
+}
