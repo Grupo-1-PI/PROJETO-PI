@@ -9,15 +9,15 @@ import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
 
 @Entity
-data class Administrador(
+data class AdminSangueCorinthiano(
     @field:Id @field:GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0,
+    val idAdmin: Int = 0,
 
     @field:NotBlank
     var nome: String = "",
 
     @field:NotBlank
-    var cpf: String = "",
+    var cpf: Char = 0.toChar(),
 
     @field:NotBlank
     var email: String = "",
@@ -26,15 +26,15 @@ data class Administrador(
     var senha: String = "",
 
     @field:NotNull
-    var cargoId: Int = 0,
-
-    @field:NotNull
-    var unidadeId: Int = 0,
-
-    @field:NotNull
     var dtNasc: LocalDate = LocalDate.now(),
 
     @field:NotNull
-    var sexo: String = ""
+    var sexo: Char = 0.toChar(),
+
+    @field:NotNull
+    var idUnidade: Int = 0,
+
+    @field:NotNull
+    var idCargo: Int = 0
 ) {
 }

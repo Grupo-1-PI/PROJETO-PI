@@ -1,10 +1,10 @@
 package ProjetoPI.ProjetoDoadores.repository
 
-import ProjetoPI.ProjetoDoadores.domain.Administrador
+import ProjetoPI.ProjetoDoadores.domain.AdminSangueCorinthiano
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface AdministradorRepository: JpaRepository<Administrador, Int> {
-    fun findByEmailAndSenha(email: String, senha: String): Administrador?
+interface AdministradorRepository: JpaRepository<AdminSangueCorinthiano, Int> {
+    fun findByEmailAndSenha(email: String, senha: String): AdminSangueCorinthiano?
 
-    fun findByEmail(email: String): Administrador?
+    fun findByEmail(email: String): AdminSangueCorinthiano?
 }

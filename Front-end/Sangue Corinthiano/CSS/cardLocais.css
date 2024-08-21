@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.location-card {
+    display: flex;
+    align-items: flex-start; /* Garante que a imagem e o texto fiquem alinhados ao topo do card */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    min-height: 200px;
+    padding: 10px; /* Adiciona um pouco de padding interno para o card */
+}
+
+.location-image {
+    display: flex;
+    align-items: center; /* Alinha a imagem verticalmente no centro do container */
+    margin-right: 20px;
+}
+
+.location-image img {
+    height: 160px;
+    width: auto;
+    margin-top: 20px; /* Ajusta a margem superior da imagem */
+}
+
+.location-details {
+    padding: 16px;
+    flex-grow: 1;
+}
+
+.location-details h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.location-details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.view-button {
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.view-button:hover {
+    background-color: #444;
+}

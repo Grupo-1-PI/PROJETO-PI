@@ -62,7 +62,7 @@ class DoadorController (var repository: DoadorRepository){
             doador.sexo = novoDoador.sexo
             doador.primeiraDoacao = novoDoador.primeiraDoacao
             doador.senha = novoDoador.senha
-            doador.motivo = novoDoador.motivo
+//            doador.motivo = novoDoador.motivo
 
             val doadorAtualizado = repository.save(doador)
             ResponseEntity.status(200).body(doadorAtualizado)
@@ -101,7 +101,7 @@ class DoadorController (var repository: DoadorRepository){
         return if (doador != null) {
             ResponseEntity.ok().body(mapOf(
                 "message" to "Login realizado com sucesso!",
-                "userId" to doador.id
+                "userId" to doador.idDoador
             ))
         } else {
             ResponseEntity.badRequest().body(mapOf(

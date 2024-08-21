@@ -1,3 +1,10 @@
+* {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
 body {
     margin: auto;
 }
@@ -11,7 +18,6 @@ body {
 }
 
 .container {
-    height: 100%;
     width: 90%;
 }
 
@@ -29,6 +35,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.meio-direita {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.esquerda-start {
+    display: flex;
+
+}
+
+.alinhar-meio {
+    display: flex;
+    align-items: center;
+}
+
+.alin-end {
+    display: flex;
+    align-items: end;
 }
 
 .format-Container {
@@ -53,35 +80,316 @@ body {
     justify-content: space-around;
 }
 
-.padding-radio{
+
+
+.padding-radio {
     padding-top: 9px;
 }
 
-.borda{
+.borda {
     border: #000000 0.5px solid;
     border-radius: 12px;
 }
 
-.row{
+.row {
     display: flex;
     width: auto;
     height: auto;
     flex-direction: row;
 }
 
-.column{
+.column {
     display: flex;
     height: auto;
     width: auto;
     flex-direction: column;
 }
 
-.sombra{
+.sombra {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
-.sombraKPI{
+.sombraKPI {
     box-shadow: rgba(0, 0, 0, 0.337) 0px 22px 70px 4px;
+}
+
+.justificarAlinhar-meio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.justificar-meio {
+    display: flex;
+    justify-content: center;
+}
+
+.direcao-linha {
+    display: flex;
+    flex-direction: row;
+}
+
+.esquerda-start {
+    display: flex;
+
+}
+
+.alinhar-meio {
+    display: flex;
+    align-items: center;
+}
+
+.formatTitulo {
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.tituloPreto{
+    font: 24px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.textoPreto{
+    font: 8px;
+    color: #000000;
+    font-weight: 200; 
+    
+    /* background-color: aqua; */
+}
+
+.formatTituloBranco {
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+}
+
+.tituloBranco {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.formatTextoBranco {
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+}
+
+
+
+.navbar {
+    height: 130px;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(56, 56, 56, 1) 100%);
+
+    -webkit-box-shadow: 0px 0px 120px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
+
+    .margintop {
+        margin-top: 150px;
+    }
+
+    .texto1 {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+
+        color: white;
+    }
+
+    .texto2 {
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+
+        color: white;
+    }
+
+    .texto3 {
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+
+        color: white;
+    }
+
+    .icon {
+        height: 30px;
+        width: 30px;
+
+
+        img {
+            height: 80%;
+            width: 80%;
+        }
+    }
+
+    .usuario {
+        width: 100%;
+        height: auto;
+    }
+
+    .formatacao1 {
+        height: auto;
+        width: 140px;
+
+    }
+
+    .alturadiv {
+        height: 100px;
+    }
+
+    .formatacao2 {
+        height: auto;
+        width: 80px;
+
+    }
+
+    .logo {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        z-index: 2;
+        
+
+
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    .imagem {
+        width: 100%;
+        height: 30px;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+
+}
+
+.subNavBar {
+    height: 155px;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 24px;
+        font-weight: bold
+    }
+}
+
+
+
+
+.navbarSemLogin {
+    height: 130px;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(56, 56, 56, 1) 100%);
+
+    -webkit-box-shadow: 0px 0px 120px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.75);
+
+    .usuario {
+        height: auto;
+        width: 100%;
+
+        .formata {
+            width: 11%;
+            height: 100%;
+        }
+
+        .imagem {
+            height: 30px;
+            width: 30px;
+
+            img {
+                width: 80%;
+                height: 80%;
+            }
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    .formata {
+        height: 100px;
+        width: 100%;
+        /* background-color: rgba(255, 255, 255, 0.277); */
+
+        .conteudo {
+            height: 30px;
+            width: 100px;
+
+            /* background-color: rgba(255, 0, 0, 0.341); */
+
+            .textoConteudo {
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 24px;
+                }
+            }
+
+            img {
+                height: auto;
+                width: auto;
+            }
+        }
+
+        .conteudo1 {
+            height: auto;
+            width: 250px;
+
+            /* background-color: rgba(0, 0, 255, 0.2); */
+
+            a {
+                color: white;
+                font-size: 32px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        }
+
+        .logo {
+            height: 130px;
+            width: 130px;
+
+            margin-top: 100px;
+
+            /* background-color: gray; */
+
+            img {
+                height: 100%;
+                width: 100%;
+
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+    }
+
 }
 
 .navbarNaoLogado {
@@ -219,6 +527,20 @@ body {
 
 }
 
+.subNavBar {
+    height: 155px;
+    width: 100%;
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 24px;
+        font-weight: bold
+    }
+}
+
+
+
 .rodaPe {
     display: flex;
     flex-direction: column;
@@ -227,16 +549,8 @@ body {
 
 
     .titulo {
-        width: 300px;
-        height: 25px;
-
-        span {
-            font-size: 16px;
-
-            color: var(--preto);
-            font-family: var(--font-defaut);
-            font-weight: bold;
-        }
+        width: auto;
+        height: 50px;
     }
 
     .redeSocial {
@@ -250,37 +564,66 @@ body {
         height: 20px;
         width: 20px;
 
-        background-image: url();
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        img{
+        img {
             height: 100%;
             width: 100%;
         }
     }
 
-    .logo {
+    .divLogoRodaPe {
+        width: 250px;
+    }
+
+    .logo1 {
         width: 100px;
         height: 120px;
 
-        background-image: url();
-        background-repeat: no-repeat;
-        background-size: cover;
+        img {
+            height: 90%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
 
-        background-color: #4f242673;
+    .logo2 {
+        width: 100px;
+        height: 120px;
+
+
+        img {
+            height: 90%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* background-color: #4f242673; */
     }
 
     .texto {
         width: auto;
         height: 50px;
-
-        span {
-            text-align: center;
-
-            color: var(--preto-transparente);
-            font-family: var(--font-defaut);
-
-        }
     }
+
+    .rodapeTexto {
+        text-align: center;
+        font-size: 16px;
+        color: var(--preto-transparente);
+
+    }
+
+    .rodapeTextoBranco {
+        color: rgba(255, 255, 255, 0.5);
+        font: 16px;
+        text-align: center;
+    }
+
+    .rodaPeTitulo{
+        
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--preto);
+    }
+
 }
