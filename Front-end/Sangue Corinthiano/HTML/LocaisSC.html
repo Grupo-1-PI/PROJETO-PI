@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locais Sangue Corinthiano</title>
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="../CSS/LocaisParceiros.css">
+    <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
+    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/cardLocais.css"> 
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
+    
+    <!-- Biblioteca Leaflet para o Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar justificar-meio">
+        <div class="container">
+            <div class="usuario justificar-meio">
+                <div class="formatacao1 direcao-linha alinhar-meio space-between">
+                    <div class="icon justificarAlinhar-meio">
+                        <img src="../IMG/User Branco.png" alt="">
+                    </div>
+                    <a class="texto3" href="">
+                        Cadastrar
+                    </a>
+                    <span class="texto3">
+                        |
+                    </span>
+                    <a class="texto3" href="">
+                        Login
+                    </a>
+                </div>
+            </div>
+            <div class="direcao-linha space-between">
+                <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                    <div class="textoConteudo">
+                        <a class="texto2" href="">
+                            A+
+                        </a>
+                    </div>
+                    <div class="textoConteudo">
+                        <a class="texto2" href="">
+                            A-
+                        </a>
+                    </div>
+                </div>
+
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="">
+                        INFORMAÇÕES
+                    </a>
+                </div>
+
+                <div class="logo justificarAlinhar-meio">
+                    <img src="../IMG/logo.png" alt="" class="margintop">
+                </div>
+
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="">
+                        DOAR AGORA
+                    </a>
+                </div>
+
+                <div class="formatacao2 alinhar-meio">
+                    <div class="conteudo formata">
+                        <img id="darkModeToggle" src="../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+                    
+    <div class="subNavBar format-Center space-evenly">
+        <a href="">
+            Sangue Corinthiano
+        </a>
+
+        <a href="">
+            Instituições parceiras
+        </a>
+    </div>
+
+    <!-- Seção do Mapa -->
+    <div id="map"></div>
+
+    <!-- Local Pro Sangue -->
+    <div class="location-card">
+        <div class="location-image">
+            <img src="../IMG/arena2.jpeg" alt="neo quimica São Paulo">
+        </div>
+        <div class="location-details">
+            <h2>Neo Química Arena - São Paulo</h2>
+            <p class="hours">Horário de funcionamento: 9:00 às 15:00</p>
+            <p class="address">Av. Miguel Ignácio Curi, 111 - Vila Carmosina, São Paulo - SP, 08295-005</p>
+            <button class="view-button">Ver</button>
+        </div>
+    </div>
+
+
+    <!-- Footer Reutilizado da Home -->
+    <div class="rodaPe format-Center sombra">
+        <div class="titulo format-Center ">
+            <span class="rodaPeTitulo">
+                SIGA AS NOSSAS REDES SOCIAIS:
+            </span>
+        </div>
+        <div class="redeSocial format space-evenly">
+            <div class="icon">
+                <img src="../IMG/instagram icon.png" alt="">
+            </div>
+            <div class="icon">
+                <img src="../IMG/Facebook icon.png" alt="">
+            </div>
+            <div class="icon">
+                <img src="../IMG/youtube icon.png" alt="">
+            </div>
+        </div>
+        <div class="divLogoRodaPe row space-between">
+            <div class="logo1">
+                <img src="../IMG/SangueCorinthiano-Logo.png" alt="">
+            </div>
+            <div class="logo2">
+                <img src="../IMG/sptech.png" alt="">
+            </div>
+        </div>
+        <div class="texto format-Center">
+            <span class="rodapeTexto">
+                SPTECH JUNTO AO SANGUE CORINTHIANO </br>
+                TODOS OS DIREITOS RESERVADOS - © 2024 - PROTEÇÃO DE DADOS
+            </span>
+        </div>
+    </div>
+
+    <!-- Script do Leaflet para o Mapa -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../JS/LocaisSC.js"></script>
+
+    <!-- Script Para alterar o modo escuro  -->
+    <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+            
+            if(body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
