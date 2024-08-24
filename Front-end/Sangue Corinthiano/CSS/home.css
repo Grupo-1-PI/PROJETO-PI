@@ -358,3 +358,58 @@
         }
     }
 }
+
+
+.diaDaDoacao {
+    background: linear-gradient(135deg, #f0f0f0 0%, #d4d4d4 100%);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.diaDaDoacao .titulo h2 {
+    font-size: 36px;
+    color: #DA1E25;
+    margin-bottom: 30px;
+}
+
+.diaDaDoacao .conteudo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.diaDaDoacao .card {
+    width: 300px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.diaDaDoacao .card:hover {
+    transform: translateY(-10px);
+}
+
+.diaDaDoacao .card .texto h3 {
+    font-size: 24px;
+    color: #DA1E25;
+    margin-bottom: 15px;
+}
+
+.diaDaDoacao .card .texto p {
+    font-size: 16px;
+    color: #333;
+}
+
+.diaDaDoacao .containerCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+

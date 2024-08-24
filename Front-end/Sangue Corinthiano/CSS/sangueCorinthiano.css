@@ -159,10 +159,16 @@ body {
     /* background-color: aqua; */
 }
 
+.formatTituloCinza {
+    font-size: 40px;
+    font-weight: 600;
+    color: rgb(84, 83, 83);
+}
+
 .formatTituloBranco {
     font-size: 40px;
     font-weight: 600;
-    color: white;
+    color: rgb(246, 244, 244);
 }
 
 .tituloBranco {
