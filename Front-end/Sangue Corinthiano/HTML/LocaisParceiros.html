@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../CSS/home.css">
     <link rel="stylesheet" href="../CSS/cardLocais.css"> 
     <link rel="stylesheet" href="../CSS/dark-mode.css">
+    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
+    
     
     <!-- Biblioteca Leaflet para o Mapa -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -40,14 +42,11 @@
             <div class="direcao-linha space-between">
                 <div class="formatacao2 direcao-linha alinhar-meio space-between">
                     <div class="textoConteudo">
-                        <a class="texto2" href="">
-                            A+
-                        </a>
+                        <!-- Botões de Acessibilidade -->
+                        <button id="increase-font">A+</button>
                     </div>
                     <div class="textoConteudo">
-                        <a class="texto2" href="">
-                            A-
-                        </a>
+                        <button id="decrease-font">A-</button>
                     </div>
                 </div>
 
@@ -170,6 +169,49 @@
             }
         }
     </script>
+<!-- Script Para aumentar e diminuir fonte  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let fontSizeChange = 0;
+        const maxFontSizeChange = 3;
+        const minFontSizeChange = -3;
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+
+        document.getElementById('increase-font').addEventListener('click', function() {
+            if (fontSizeChange < maxFontSizeChange) {
+                fontSizeChange++;
+                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+            }
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function() {
+            if (fontSizeChange > minFontSizeChange) {
+                fontSizeChange--;
+                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+            }
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    });
+</script>
+
+<!-- Script Para uso da API VLIBRAS  -->
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
     
 </body>
 
