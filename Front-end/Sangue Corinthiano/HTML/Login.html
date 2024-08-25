@@ -8,7 +8,10 @@
 
     <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../CSS/formularioLogin.css">
-    <link rel="stylesheet" href="../CSS/bot.css">
+    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
+    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
+
     <!-- <script src="../JS/back.js"></script> -->
    
 
@@ -17,34 +20,61 @@
 </head>
 
 <body>
-    <div class="navbarNaoLogado format sombra">
-        <div class="container format-Container">
-            <div class="user format">
-                <div class="icon">
+ 
+ <!-- Navbar -->
+ <div class="navbar justificar-meio">
+    <div class="container">
+        <div class="usuario justificar-meio">
+            <div class="formatacao1 direcao-linha alinhar-meio space-between">
+                <div class="icon justificarAlinhar-meio">
+                    <img src="../IMG/User Branco.png" alt="">
                 </div>
-                <div class="texto ">
-                    <a href="">Login</a>
-                </div>
-                <div class="texto ">
-                    <a>|</a>
-                </div>
-                <div class="texto ">
-                    <a href="">Cadastro</a>
-                </div>
-            </div>
-            <div class="navbarConteudo space-evenly format">
-                <div class="texto">
-                    <a href="">INFORMAÇÕES</a>
-                </div>
-                <div class="logo">
-
-                </div>
-                <div class="texto">
-                    <a href="">DOAR AGORA</a>
-                </div>
+                <a class="texto3" href="">
+                    Cadastrar
+                </a>
+                <span class="texto3">
+                    |
+                </span>
+                <a class="texto3" href="">
+                    Login
+                </a>
             </div>
         </div>
+        <div class="direcao-linha space-between">
+            <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                <div class="textoConteudo">
+                    <button id="increase-font">A+</button>
+                </div>
+                <div class="textoConteudo">
+                    <button id="decrease-font">A-</button> 
+                </div>
+            </div>
+
+            <div class="conteudo alinhar-meio">
+                <a class="texto2" href="">
+                    INFORMAÇÕES
+                </a>
+            </div>
+
+            <div class="logo justificarAlinhar-meio">
+                <img src="../IMG/logo.png" alt="" class="margintop">
+            </div>
+
+            <div class="conteudo alinhar-meio">
+                <a class="texto2" href="">
+                    DOAR AGORA
+                </a>
+            </div>
+
+            <div class="formatacao2 alinhar-meio">
+                <div class="conteudo formata">
+                    <img id="darkModeToggle" src="../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                </div>
+            </div>
+
+        </div>
     </div>
+</div>
 
     
     <div class="formulario format-Center">
@@ -88,10 +118,11 @@
         </div>
     </div>
 
-    <!-- <div class="rodaPe format-Center sombra">
-        <div class="titulo format-Center">
-            <span>
-                Siga as nossas Redes Sociais:
+    <!-- Footer Reutilizado da Home -->
+    <div class="rodaPe format-Center sombra">
+        <div class="titulo format-Center ">
+            <span class="rodaPeTitulo">
+                SIGA AS NOSSAS REDES SOCIAIS:
             </span>
         </div>
         <div class="redeSocial format space-evenly">
@@ -105,36 +136,89 @@
                 <img src="../IMG/youtube icon.png" alt="">
             </div>
         </div>
-        <div class="logo">
-
+        <div class="divLogoRodaPe row space-between">
+            <div class="logo1">
+                <img src="../IMG/SangueCorinthiano-Logo.png" alt="">
+            </div>
+            <div class="logo2">
+                <img src="../IMG/sptech.png" alt="">
+            </div>
         </div>
         <div class="texto format-Center">
-            <span>
-                SpTech junto ao Sangue Corinthiano </br>
-                Todos os direitos reservados - © 2024 - Proteção de Dados
+            <span class="rodapeTexto">
+                SPTECH JUNTO AO SANGUE CORINTHIANO </br>
+                TODOS OS DIREITOS RESERVADOS - © 2024 - PROTEÇÃO DE DADOS
             </span>
         </div>
-    </div> -->
+    </div>
 
-    <!-- Ícone do chatbot -->
-        <div class="chat-icon" id="chat-icon" title="Olá, eu sou a Vânia">
-            <img src="../IMG/bot.png" alt="Logo do Vânia">
-        </div>
-
-    <!-- Janela de chat -->
-        <div class="chat-container" id="chat-container">
-            <div class="chat-header">Vânia</div>
-                <div class="chat-body" id="chat-body"></div>
-                    <input type="text" class="chat-input" id="user-input" placeholder="Digite sua mensagem...">
-        </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-        
-    <script src="../JS/bot.js"></script>
+    
+
+     <!-- Script Para alterar o modo escuro  -->
+     <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+            
+            if(body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+            }
+        }
+    </script>
+
+    
+<!-- Script Para aumentar e diminuir fonte  -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let fontSizeChange = 0;
+    const maxFontSizeChange = 3;
+    const minFontSizeChange = -3;
+    const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+
+    document.getElementById('increase-font').addEventListener('click', function() {
+        if (fontSizeChange < maxFontSizeChange) {
+            fontSizeChange++;
+            changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+        }
+    });
+
+    document.getElementById('decrease-font').addEventListener('click', function() {
+        if (fontSizeChange > minFontSizeChange) {
+            fontSizeChange--;
+            changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+        }
+    });
+
+    function changeFontSize(factor) {
+        contentElements.forEach(element => {
+            const currentSize = parseFloat(getComputedStyle(element).fontSize);
+            element.style.fontSize = (currentSize * factor) + 'px';
+        });
+    }
+});
+</script>
+
+<!-- Script Para uso da API VLIBRAS  -->
+
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+  <div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
 </body>
 
 </html>
