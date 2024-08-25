@@ -227,7 +227,7 @@
 }
 
 .deveAguardarParaDoar {
-    height: 1350px;
+    height: auto;
 
     .titulo {
         height: 100px;
@@ -253,7 +253,7 @@
         
 
         .card {
-            width: 400px;
+            width: 380px;
             height: 350px;
 
             border-bottom-left-radius: 20px;
@@ -318,12 +318,13 @@
     }
 
     .card {
-        display: flex;
-        height: 550px;
-        width: 550px;
-
-        background-color: #DA1E25;
-        border-radius: 20px;
+      
+            display: flex;
+            height: 450px;
+            width: 550px;
+            background-color: #1a0b0c9c;
+            border-radius: 20px;
+        
 
         .containerCard {
             height: auto;
