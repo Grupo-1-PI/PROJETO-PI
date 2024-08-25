@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../CSS/bot.css">
     <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
@@ -38,12 +40,12 @@
             <div class="direcao-linha space-between">
                 <div class="formatacao2 direcao-linha alinhar-meio space-between">
                     <div class="textoConteudo">
-                        <a class="texto2" href="">
+                        <a id="increase-font" class="texto2" href="#">
                             A+
                         </a>
                     </div>
                     <div class="textoConteudo">
-                        <a class="texto2" href="">
+                        <a id="decrease-font" class="texto2" href="#">
                             A-
                         </a>
                     </div>
@@ -67,7 +69,7 @@
 
                 <div class="formatacao2 alinhar-meio">
                     <div class="imagem justificarAlinhar-meio">
-                        <img src="../IMG/alternancia branco.png" alt="">
+                        <img id="darkModeToggle" src="../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
                     </div>
                 </div>
 
@@ -522,6 +524,52 @@
             <input type="text" class="chat-input" id="user-input" placeholder="Digite sua mensagem...">
         </div>
     </div>
-</body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let fontSizeChange = 0;
+            const maxFontSizeChange = 3;
+            const minFontSizeChange = -3;
+            const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+    
+            document.getElementById('increase-font').addEventListener('click', function() {
+                if (fontSizeChange < maxFontSizeChange) {
+                    fontSizeChange++;
+                    changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+                }
+            });
+    
+            document.getElementById('decrease-font').addEventListener('click', function() {
+                if (fontSizeChange > minFontSizeChange) {
+                    fontSizeChange--;
+                    changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+                }
+            });
+    
+            function changeFontSize(factor) {
+                contentElements.forEach(element => {
+                    const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                    element.style.fontSize = (currentSize * factor) + 'px';
+                });
+            }
+        });
+        
+    </script>
+        <!-- Script Para alterar o modo escuro  -->
+        <script>
+            function toggleDarkMode() {
+                var body = document.body;
+                body.classList.toggle("dark-mode");
+                var toggleIcon = document.getElementById("darkModeToggle");
+                
+                if(body.classList.contains("dark-mode")) {
+                    toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+                } else {
+                    toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+                }
+            }
+        </script>
+    
+
+</body>
 </html>
