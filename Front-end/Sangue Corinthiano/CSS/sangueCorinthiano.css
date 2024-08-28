@@ -291,8 +291,10 @@ body {
 }
 
 .subNavBar {
-    height: 155px;
+    height: 100px;
     width: 100%;
+
+    /* background-color: aqua; */
 
     a {
         text-decoration: none;
@@ -541,8 +543,10 @@ body {
 }
 
 .subNavBar {
-    height: 155px;
+    height: 120px;
     width: 100%;
+
+    /* background-color: #DA1E25; */
 
     a {
         text-decoration: none;

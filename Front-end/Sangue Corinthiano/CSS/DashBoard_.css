@@ -1,0 +1,101 @@
+.marginTop1{
+    margin-top: 30px;
+}
+
+.marginTop3{
+    margin-top: 10px;
+}
+
+.full{
+    width: 100%;
+}
+
+.titulo{
+
+    background-color: rebeccapurple;
+
+    span{
+        font-size: 40px;
+        font-weight: 600;
+    }
+}
+
+.dashBoardDoador{
+
+    background-color: yellow;
+
+    .dashboard{
+        height: 450px;
+        width: 90%;
+
+        background-color: red;
+    }
+
+    .dash{
+        width: 48%;
+        height: 100%;
+
+        background-color: blue;
+    }
+
+    .kpi{
+        width: 170px;
+        height: 180px;
+
+        background-color: white;
+    }
+
+    .formatar{
+        height: 100%;
+        width: 85%;
+        background-color: white;
+    }
+
+    .formatar1{
+        width: 15%;
+        height: 100%;
+
+        background-color: brown;
+    }
+}
+
+.dashBoardCampanha{
+    height: 640px;
+    
+    background-color: red;
+
+    .dashboard{
+        width: 90%;
+        height: 100%;
+
+        background-color: blue;
+    }
+
+    .dash{
+        width: 100%;
+        height: 49%;
+
+        background-color: green;
+    }
+
+    .kpi{
+        width: 170px;
+        height: 150px;
+
+        background-color: rgb(156, 116, 116);
+    }
+
+    .formatar{
+        width: 85%;
+        height: 100%;
+
+        background-color: yellow;
+    }
+
+    .formatar1{
+        width: 15%;
+        height: 100%;
+
+        background-color: rgb(255, 255, 255);
+    }
+}
