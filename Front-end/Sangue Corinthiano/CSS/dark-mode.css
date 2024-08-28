@@ -1,3 +1,16 @@
+body.dark-mode .text-body-secondary{
+    color: white !important;
+}
+
+body.dark-mode .div-usuario, body.dark-mode .div-lista-doacoes{
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, 
+            rgba(255, 255, 255, 0.12) 0px -12px 30px, 
+            rgba(255, 255, 255, 0.12) 0px 4px 6px, 
+            rgba(255, 255, 255, 0.17) 0px 12px 13px, 
+            rgba(255, 255, 255, 0.09) 0px -3px 5px;
+
+}
+
 /* Estilo para o Modo Escuro */
 body.dark-mode {
     background-color: #121212;

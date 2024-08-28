@@ -9,6 +9,10 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
+    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
     </head>
 
 <body>
@@ -21,9 +25,10 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
             width: 90%;
             margin: auto;
-            height: 100%;
+            height: 30rem;
         }
 
         .div-usuario {
@@ -44,10 +49,11 @@
         img {
             height: 100px;
             width: 100px;
+            padding: 0px 5px 0px 0px;
         }
 
         .img-campanha {
-            height: 150px;
+            height: 160px;
             width: 150px;
         }
 
@@ -63,10 +69,16 @@
         .div-campanha {
             display: flex;
             flex-direction: row;
+            margin-bottom: 15px;
+            padding: 0px 5px 0px 0px;
         }
 
         .div-lista-doacoes {
-            width: 30%;
+            padding: 5px;
+            overflow-x: hidden;
+            overflow-y: scroll; 
+            height: 90%;
+            width: 32%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -108,10 +120,77 @@
             background-color: white;
             box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
         }
+
+        .text-body-secondary{
+            font-size: 12px;
+        }
+
+        h5{
+
+            font-weight: 600;
+        }
+
+        h2{
+            margin: 15px;
+            font-weight: 600;
+        }
     </style>
+        <div class="navbar justificar-meio">
+            <div class="container">
+                <div class="usuario justificar-meio">
+                    <div class="formatacao1 direcao-linha alinhar-meio space-between">
+                        <div class="icon justificarAlinhar-meio">
+                            <img src="../IMG/User Branco.png" alt="">
+                        </div>
+                        <a class="texto3" href="">
+                            Cadastrar
+                        </a>
+                        <span class="texto3">
+                            |
+                        </span>
+                        <a class="texto3" href="">
+                            Login
+                        </a>
+                    </div>
+                </div>
+                <div class="direcao-linha space-between" style="width: 100%;">
+                    <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                        <div class="textoConteudo">
+                            <button id="increase-font">A+</button>
+                        </div>
+                        <div class="textoConteudo">
+                            <button id="decrease-font">A-</button>
+                        </div>
+                    </div>
+    
+                    <div class="conteudo alinhar-meio">
+                        <a class="texto2" href="">
+                            INFORMAÇÕES
+                        </a>
+                    </div>
+    
+                    <div class="logo justificarAlinhar-meio" style=" height: 85px;">
+                        <img src="../IMG/logo.png" alt="" class="margintop">
+                    </div>
+    
+                    <div class="conteudo alinhar-meio">
+                        <a class="texto2" href="">
+                            DOAR AGORA
+                        </a>
+                    </div>
+    
+                    <div class="formatacao2 alinhar-meio">
+                        <div class="imagem justificarAlinhar-meio">
+                            <img src="../IMG/alternancia branco.png" aalt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
     <div class="div-painel">
         <div class="div-usuario">
-            <img src="https://cdn-icons-png.flaticon.com/512/17/17004.png" alt="">
+            <img id="img-usuario" src="../IMG/imagem-do-usuario-com-fundo-preto.png" alt="">
             <span class="titulo">$Nome do usuario</span>
             <span class="titulo">Você já doou $3 X</span>
             <span class="titulo">Você é um doador serie $D</span>
@@ -170,17 +249,63 @@
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxM_f2WHVF5jOQCP2n1BEs2RTHE2uXHis4Xw&s"
                     alt="">
                 <div class="div-informacoes-campanha">
-                    <h3>Campanha de $Julho</h4>
+                    <h5>Campanha de $Julho</h5>
                         <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
                         <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
                             César, São Paulo - SP, 05403-000</span>
                         <div class="div-info">
-                            <h4>Doação $Status</h4>
+                            <h5>Doação $Status</h5>
+                        </div>
+                </div>
+            </div>
+                        <div class="div-campanha">
+                <img class="img-campanha"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxM_f2WHVF5jOQCP2n1BEs2RTHE2uXHis4Xw&s"
+                    alt="">
+                <div class="div-informacoes-campanha">
+                    <h5>Campanha de $Julho</h5>
+                        <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
+                        <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
+                            César, São Paulo - SP, 05403-000</span>
+                        <div class="div-info">
+                            <h5>Doação $Status</h5>
                         </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="rodaPe format-Center sombra marginTop">
+        <div class="titulo format-Center ">
+            <span class="rodaPeTitulo">
+                SIGA AS NOSSAS REDES SOCIAIS:
+            </span>
+        </div>
+        <div class="redeSocial format space-evenly">
+            <div class="icon">
+                <img src="../IMG/instagram icon.png" alt="">
+            </div>
+            <div class="icon">
+                <img src="../IMG/Facebook icon.png" alt="">
+            </div>
+            <div class="icon">
+                <img src="../IMG/youtube icon.png" alt="">
+            </div>
+        </div>
+        <div class="divLogoRodaPe row space-between">
+            <div class="logo1">
+                <img src="../IMG/SangueCorinthiano-Logo.png" alt="" style="height: 90%; width: auto;">
+            </div>
+            <div class="logo2">
+                <img src="../IMG/sptech.png" alt="" style="height: 90%; width: auto;">
+            </div>
+        </div>
+        <div class="texto format-Center">
+            <span class="rodapeTexto">
+                SPTECH JUNTO AO SANGUE CORINTHIANO </br>
+                TODOS OS DIREITOS RESERVADOS - © 2024 - PROTEÇÃO DE DADOS
+            </span>
+        </div>
 </body>
 
 </html>
@@ -258,4 +383,49 @@ document.getElementById('button-addon2').addEventListener('click', function () {
            });
        });
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let fontSizeChange = 0;
+        const maxFontSizeChange = 3;
+        const minFontSizeChange = -3;
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, span, label'); // Adicione outros seletores conforme necessário
+
+        document.getElementById('increase-font').addEventListener('click', function() {
+            if (fontSizeChange < maxFontSizeChange) {
+                fontSizeChange++;
+                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+            }
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function() {
+            if (fontSizeChange > minFontSizeChange) {
+                fontSizeChange--;
+                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+            }
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    });
+</script>
+
+<script>
+function toggleDarkMode() {
+    var body = document.body;
+    body.classList.toggle("dark-mode");
+    var toggleIcon = document.getElementById("img-usuario");
+    
+    if(body.classList.contains("dark-mode")) {
+        toggleIcon.src = "../IMG/imagem-do-usuario-com-fundo-preto (1).png"; // Trocar para o ícone do modo escuro
+    } else {
+        toggleIcon.src = "../IMG/imagem-do-usuario-com-fundo-preto.png"; // Trocar para o ícone do modo claro
+    }
+
+
+}
 </script>
