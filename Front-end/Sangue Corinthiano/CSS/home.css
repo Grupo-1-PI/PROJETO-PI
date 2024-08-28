@@ -46,14 +46,14 @@
 
  }
  .banner .texto  span {
-            text-align: end;
-            font-weight: 600;
-        }
+        text-align: end;
+        font-weight: 600;
+    }
     
 
 
 .diaDaDoacao {
-    height: 750px;
+    height: auto;
 
 
     .formatDiaDaDoacao {
@@ -61,7 +61,7 @@
     }
 
     .titulo {
-        height: 100px;
+        height: auto;
 
     }
 
@@ -83,7 +83,6 @@
     .containerCard {
         height: auto;
         width: 80%;
-
     }
 
 }
@@ -234,6 +233,7 @@
     }
 
     .conteudo {
+        height: auto;
         width: 100%;
         flex-wrap: wrap;
 
@@ -253,7 +253,7 @@
         
 
         .card {
-            width: 380px;
+            width: 400px;
             height: 350px;
 
             border-bottom-left-radius: 20px;
@@ -303,7 +303,7 @@
 }
 
 .naoPodeDoar {
-    height: 800px;
+    height: 700px;
 
     background-image: url(../IMG/Corinthians-feminino-campeao-pela-quinta-vez-Foto-Nayra-Halm-CBF.jpg);
     background-repeat: no-repeat;
@@ -349,7 +349,7 @@
 }
 
 .preRodape {
-    height: 480px;
+    height: 430px;
 
     background-color: black;
 

@@ -1,5 +1,5 @@
 .marginTop1{
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .marginTop3{
@@ -10,9 +10,19 @@
     width: 100%;
 }
 
-.titulo{
+.bordaKpi{
+    border-radius: 20px;
+}
 
-    background-color: rebeccapurple;
+/* .sombraKPI{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+} */
+
+.sombraKPI{
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 2px 15px 0px;
+}
+
+.titulo{
 
     span{
         font-size: 40px;
@@ -22,27 +32,50 @@
 
 .dashBoardDoador{
 
-    background-color: yellow;
-
     .dashboard{
         height: 450px;
         width: 90%;
 
-        background-color: red;
     }
 
     .dash{
         width: 48%;
         height: 100%;
 
-        background-color: blue;
     }
 
     .kpi{
         width: 170px;
-        height: 180px;
+        height: 150px;
 
         background-color: white;
+
+        .containerKPI{
+            height: 90%;
+            width: 90%;
+
+        }
+
+        .titulo{
+            height: auto;
+            width: 100%;
+            
+            span{
+                text-align: center;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        .valor{
+            height: 120px;
+            width: 100%;
+
+            span{
+                font-size: 24px;
+                font-weight: 800;
+            }
+        }
     }
 
     .formatar{
@@ -55,41 +88,61 @@
         width: 15%;
         height: 100%;
 
-        background-color: brown;
     }
 }
 
 .dashBoardCampanha{
     height: 640px;
-    
-    background-color: red;
 
     .dashboard{
         width: 90%;
         height: 100%;
-
-        background-color: blue;
     }
 
     .dash{
         width: 100%;
         height: 49%;
 
-        background-color: green;
     }
 
     .kpi{
         width: 170px;
         height: 150px;
 
-        background-color: rgb(156, 116, 116);
+        background-color: white;
+
+        .containerKPI{
+            height: 90%;
+            width: 90%;
+
+        }
+
+        .titulo{
+            height: auto;
+            width: 100%;
+            
+            span{
+                text-align: center;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        .valor{
+            height: 120px;
+            width: 100%;
+
+            span{
+                font-size: 24px;
+                font-weight: 800;
+            }
+        }
     }
 
     .formatar{
         width: 85%;
         height: 100%;
 
-        background-color: yellow;
     }
 
     .formatar1{

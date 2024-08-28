@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../../CSS/DashBoard_.css">
+    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
+
 
 </head>
 
@@ -84,19 +87,43 @@
         <div class="container center full ">
             <div class="dashboard row">
                 <div class="formatar space-between">
-                    <div class="dash">
-
+                    <div class="dash format-Center bordaKpi sombraKPI">
+                        <canvas id="doadoresOpcao" style="height: 100%; width: 95%;"></canvas>
                     </div>
-                    <div class="dash">
-
+                    <div class="dash format-Center bordaKpi sombraKPI">
+                        <canvas id="sexoIdade" style="height: 100%; width: 95%;"></canvas>
                     </div>
                 </div>
-                <div class="formatar1 format column space-between">
-                    <div class="kpi">
-
+                <div class="formatar1 format column space-evenly">
+                    <div class="kpi format-Center column bordaKpi sombraKPI">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Quantidade <br>
+                                    Doadores
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="kpi">
-
+                    <div class="kpi format-Center column bordaKpi sombraKPI">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Quantidade <br>
+                                    Doadores
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,25 +141,74 @@
         <div class="container center full">
             <div class="dashboard row">
                 <div class="formatar1 column format space-between">
-                    <div class="kpi">
-
+                    <div class="kpi format-Center column sombraKPI bordaKpi">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Total <br>
+                                    Cadastro
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="kpi">
-
+                    <div class="kpi format-Center column sombraKPI bordaKpi">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Quantidade <br>
+                                    Doadores
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="kpi">
-
+                    <div class="kpi format-Center column sombraKPI bordaKpi">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Taxa <br>
+                                    Retenção
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="kpi">
-
+                    <div class="kpi format-Center column sombraKPI bordaKpi">
+                        <div class="containerKPI column space-evenly">
+                            <div class="titulo center">
+                                <span>
+                                    Taxa <br>
+                                    cancelamento
+                                </span>
+                            </div>
+                            <div class="valor format-Center">
+                                <span>
+                                    ${}
+                                </span>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="formatar column space-between">
-                    <div class="dash">
-                        
+                    <div class="dash format-Center bordaKpi sombraKPI">
+                        <canvas id="doadoresCampanha" style="height: 90%; width: 85%;"></canvas>
                     </div>
-                    <div class="dash">
-                        
+                    <div class="dash format-Center bordaKpi sombraKPI">
+                        <canvas id="agendamentoDoacao" style="height: 90%; width: 85%;"></canvas>
                     </div>
 
                 </div>
@@ -140,6 +216,265 @@
         </div>
     </div>
 
+    <div style="background-color: white; height: 20px;"></div>
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const ctx1 = document.getElementById('doadoresOpcao').getContext('2d');
+    const doadoresOpcao = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'Sales 2023',
+                    data: [10, 25, 30, 40, 15, 50],
+                    backgroundColor: '#3498db',  // Azul sólido
+                    borderColor: '#2980b9',
+                    hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
+                    hoverBorderColor: '#1f618d'
+                }
+
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Monthly Sales Comparison',
+                    color: '#34495e',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        display: false  // Remover a grade do eixo x
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#ecf0f1'  // Cor da grade do eixo y
+                    }
+                }
+
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('sexoIdade').getContext('2d');
+    const sexoIdade = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'Sales 2023',
+                    data: [15, 25, 30, 40, 15, 50],
+                    backgroundColor: '#3498db',  // Azul sólido
+                    borderColor: '#2980b9',
+                },
+                {
+                    label: 'Sales 2024',
+                    data: [20, 30, 35, 45, 10, 55],
+                    backgroundColor: '#e74c3c',  // Vermelho sólido
+                    borderColor: '#c0392b',
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Monthly Sales Comparison',
+                    color: '#34495e',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        display: false  // Remover a grade do eixo x
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#ecf0f1'  // Cor da grade do eixo y
+                    }
+                }
+
+            }
+        }
+    });
+
+    const ctx3 = document.getElementById('doadoresCampanha').getContext('2d');
+    const doadoresCampanha = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'Sales 2023',
+                    data: [15, 25, 30, 40, 15, 50],
+                    backgroundColor: '#3498db',  // Azul sólido
+                    borderColor: '#2980b9',
+                },
+                {
+                    label: 'Sales 2024',
+                    data: [20, 30, 35, 45, 10, 55],
+                    backgroundColor: '#e74c3c',  // Vermelho sólido
+                    borderColor: '#c0392b',
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Monthly Sales Comparison',
+                    color: '#34495e',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        display: false  // Remover a grade do eixo x
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#ecf0f1'  // Cor da grade do eixo y
+                    }
+                }
+
+            }
+        }
+    });
+
+    const ctx4 = document.getElementById('agendamentoDoacao').getContext('2d');
+    const agendamentoDoacao = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [
+                {
+                    label: 'Sales 2023',
+                    data: [15, 25, 30, 40, 15, 50],
+                    backgroundColor: '#3498db',  // Azul sólido
+                    borderColor: '#2980b9',
+                    hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
+                    hoverBorderColor: '#1f618d'
+                },
+                {
+                    label: 'Sales 2024',
+                    data: [20, 30, 35, 45, 10, 55],
+                    backgroundColor: '#e74c3c',  // Vermelho sólido
+                    borderColor: '#c0392b',
+                    hoverBackgroundColor: '#c0392b',
+                    hoverBorderColor: '#922b21'
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Monthly Sales Comparison',
+                    color: '#34495e',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        display: false  // Remover a grade do eixo x
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#2c3e50',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#ecf0f1'  // Cor da grade do eixo y
+                    }
+                }
+
+            }
+        }
+    });
+
+</script>
