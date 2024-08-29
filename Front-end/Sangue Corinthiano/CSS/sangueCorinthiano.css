@@ -1,4 +1,7 @@
-* {
+
+
+
+*{
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -59,10 +62,10 @@ body {
 
 }
 
-.alinhar-meio {
+/* .alinhar-meio {
     display: flex;
     align-items: center;
-}
+} */
 
 .alin-end {
     display: flex;
@@ -653,4 +656,134 @@ body {
         color: var(--preto);
     }
 
+}
+@media only screen and (max-width: 768px) {
+    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .tituloBranco, .formatTextoBranco {
+        font-size: 24px;
+    }
+
+    .textPreto {
+        font-size: 10px;
+    }
+
+    .tituloPreto {
+        font-size: 20px;
+    }
+
+    .navbar, .navbarSemLogin, .navbarLogado {
+        height: auto;
+        padding: 5px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .user .icon {
+        height: 18px;
+        width: 18px;
+    }
+
+    .formata, .logo {
+        height: auto;
+        width: 100%;
+    }
+
+    .subNavBar {
+        height: auto;
+        padding: 5px;
+    }
+
+    .rodaPe {
+        height: auto;
+        padding: 10px;
+    }
+
+    .redeSocial {
+        width: auto;
+        flex-direction: column;
+    }
+
+    .icon {
+        height: 14px;
+        width: 14px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .tituloBranco, .formatTextoBranco {
+        font-size: 18px;
+    }
+
+    .textPreto {
+        font-size: 8px;
+    }
+
+    .tituloPreto {
+        font-size: 16px;
+    }
+
+    .navbar, .navbarSemLogin, .navbarLogado {
+        height: auto;
+        padding: 0;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .user .icon {
+        height: 15px;
+        width: 15px;
+    }
+
+    .formata, .logo {
+        height: auto;
+        width: 100%;
+    }
+
+    .subNavBar {
+        height: auto;
+        padding: 0;
+    }
+
+    .rodaPe {
+        height: auto;
+        padding: 5px;
+    }
+
+    .redeSocial {
+        width: auto;
+        flex-direction: column;
+    }
+
+    .icon {
+        height: 12px;
+        width: 12px;
+    }
+    .navbar
+.texto2 {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}   
+.navbar 
+.alinhar-meio {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
 }
