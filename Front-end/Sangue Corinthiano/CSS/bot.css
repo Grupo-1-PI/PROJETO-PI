@@ -62,7 +62,7 @@
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 8px;
-    max-width: 85%;
+    max-width: 75%;
     clear: both;
     overflow: hidden;
     font-size: 14px;
@@ -122,5 +122,4 @@
 .email-link {
     color: #555;
     font-weight: bold;
-    
 }
