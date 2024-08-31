@@ -66,3 +66,46 @@ body {
 .view-button:hover {
     background-color: #444;
 }
+@media (max-width: 480px) {
+    .button {
+        font-size: 0.8em; /* Reduz ainda mais o tamanho da fonte */
+        padding: 6px 12px; /* Ajusta o padding */
+    }
+
+    .banner {
+        height: 300px; /* Ajusta ainda mais a altura da banner */
+    }
+
+    .banner .texto {
+        font-size: 30px; /* Reduz o tamanho da fonte */
+    }
+
+    .diaDaDoacao .card {
+        width: 100%; /* Garante que o cartão ocupe toda a largura disponível */
+        padding: 15px; /* Ajusta o padding */
+    }
+
+    .condicaoParaDoacao .card {
+        width: 50%; /* Ajusta a largura dos cartões */
+        margin-top: 10px; /* Reduz a margem superior */
+    }
+
+    .preRodape, .preRodape2 {
+        padding: 10px; /* Ajusta o padding para telas menores */
+    }
+
+    .preRodape .botao, .preRodape2 .botao {
+        width: 100%; /* Garante que o botão ocupe toda a largura disponível */
+    }
+    .location-details h2 {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+        color: #333;
+    }
+    .location-details p {
+        margin: 8px 0;
+        font-size: 11px;
+        color: #666;
+    }
+}

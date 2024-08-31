@@ -13,147 +13,33 @@
         <link rel="stylesheet" href="../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../CSS/dark-mode.css">
     <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
+    <link rel="stylesheet" href="../CSS/telaUsuario.css">
+    
     </head>
 
 <body>
-    <style>
-        body {
-            margin: 0;
-        }
 
-        .div-painel {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            margin: auto;
-            height: 30rem;
-        }
-
-        .div-usuario {
-            height: 15rem;
-            width: 20%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 15px;
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        }
-
-        .div-dados-usuario {
-            width: 40%;
-        }
-
-        img {
-            height: 100px;
-            width: 100px;
-            padding: 0px 5px 0px 0px;
-        }
-
-        .img-campanha {
-            height: 160px;
-            width: 150px;
-        }
-
-        .titulo {
-            font-size: large;
-            font-weight: 600;
-        }
-
-        .subtitulo {
-            font-size: smaller;
-        }
-
-        .div-campanha {
-            display: flex;
-            flex-direction: row;
-            margin-bottom: 15px;
-            padding: 0px 5px 0px 0px;
-        }
-
-        .div-lista-doacoes {
-            padding: 5px;
-            overflow-x: hidden;
-            overflow-y: scroll; 
-            height: 90%;
-            width: 32%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 15px;
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        }
-
-        .div-campanha {
-            box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
-            border-radius: 0px 20px 20px 0px;
-            width: 90%;
-        }
-
-        .input-dados-usuario {
-            border-radius: 10px;
-            border: none;
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-        }
-
-        .mb-3 {
-            width: 100%;
-        }
-
-        .input-group {
-            width: 100%;
-            height: 100%;
-        }
-
-        input {
-            width: 90%;
-            height: 2rem;
-        }
-
-        .button {
-            width: 10%;
-            height: 2rem;
-            border-radius: 10px;
-            border: none;
-            background-color: white;
-            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-        }
-
-        .text-body-secondary{
-            font-size: 12px;
-        }
-
-        h5{
-
-            font-weight: 600;
-        }
-
-        h2{
-            margin: 15px;
-            font-weight: 600;
-        }
-    </style>
         <div class="navbar justificar-meio">
             <div class="container">
                 <div class="usuario justificar-meio">
                     <div class="formatacao1 direcao-linha alinhar-meio space-between">
                         <a href="TelaUsuario.html">
-                            <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
-                        </a>
-                        <a class="texto3" href="Cadastro.html">
-                            Cadastrar
-                        </a>
-                        <span class="texto3">
-                            |
-                        </span>
-                        <a class="texto3" href="Login.html">
-                            Login
-                        </a>
+                                <!-- <div class="icon justificarAlinhar-meio"> -->
+                                <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
+                            </a>
+                            <a class="texto3" href="Cadastro.html">
+                                Cadastrar
+                            </a>
+                            <span class="texto3">
+                                |
+                            </span>
+                            <a class="texto3" href="Login.html">
+                                Login
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="direcao-linha space-between" style="width: 100%;">
+                <div class="direcao-linha space-between">
                     <div class="formatacao2 direcao-linha alinhar-meio space-between">
                         <div class="textoConteudo">
                             <button id="increase-font">A+</button>
@@ -169,7 +55,7 @@
                         </a>
                     </div>
     
-                    <div class="logo justificarAlinhar-meio" style=" height: 85px;">
+                    <div class="logo justificarAlinhar-meio">
                         <img src="../IMG/logo.png" alt="" class="margintop">
                     </div>
     
@@ -181,7 +67,7 @@
     
                     <div class="formatacao2 alinhar-meio">
                         <div class="imagem justificarAlinhar-meio">
-                            <img src="../IMG/alternancia branco.png" aalt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                            <img src="../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
                         </div>
                     </div>
     

@@ -657,64 +657,6 @@ body {
     }
 
 }
-@media only screen and (max-width: 768px) {
-    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .tituloBranco, .formatTextoBranco {
-        font-size: 24px;
-    }
-
-    .textPreto {
-        font-size: 10px;
-    }
-
-    .tituloPreto {
-        font-size: 20px;
-    }
-
-    .navbar, .navbarSemLogin, .navbarLogado {
-        height: auto;
-        padding: 5px;
-    }
-
-    .logo {
-        width: 60px;
-        height: 60px;
-    }
-
-    .user {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .user .icon {
-        height: 18px;
-        width: 18px;
-    }
-
-    .formata, .logo {
-        height: auto;
-        width: 100%;
-    }
-
-    .subNavBar {
-        height: auto;
-        padding: 5px;
-    }
-
-    .rodaPe {
-        height: auto;
-        padding: 10px;
-    }
-
-    .redeSocial {
-        width: auto;
-        flex-direction: column;
-    }
-
-    .icon {
-        height: 14px;
-        width: 14px;
-    }
-}
 
 @media only screen and (max-width: 480px) {
     .formatTitulo, .formatTituloCinza, .formatTituloBranco, .formatTextoBranco {
@@ -776,7 +718,7 @@ body {
     .navbar
 .texto2 {
     text-decoration: none;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
     color: rgb(255, 255, 255);
 }   
@@ -785,5 +727,30 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+}
+.subNavBar {
+    a {
+      padding: 15%;
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.rodaPe {
+    .rodaPeTitulo {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--preto);
+    }
+}
+.div-painel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+    margin: auto;
+    height: 38rem;
 }
 }
