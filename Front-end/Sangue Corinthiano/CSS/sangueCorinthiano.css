@@ -717,7 +717,7 @@ body {
 }
 
 @media only screen and (max-width: 480px) {
-    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .tituloBranco, .formatTextoBranco {
+    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .formatTextoBranco {
         font-size: 18px;
     }
 
