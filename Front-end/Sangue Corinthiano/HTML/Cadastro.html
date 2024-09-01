@@ -99,31 +99,31 @@
                     <form class="row g-2">
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Nome:</label>
-                            <input type="email" class="form-control" id="nome" placeholder="Insira seu nome">
+                            <input type="email" class="form-control" id="nome" placeholder="Insira seu nome" value="Yasmin">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Sobrenome:</label>
-                            <input type="text" class="form-control" id="sobrenome" placeholder="Insira seu sobrenome">
+                            <input type="text" class="form-control" id="sobrenome" placeholder="Insira seu sobrenome" value="Da ZO">
                         </div>
                         <div class="col-12">
                             <label for="inputAddress" class="form-label">E-mail:</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="exemplo@email.com">
+                            <input type="text" class="form-control" id="inputAddress" placeholder="exemplo@email.com" value="exemplo@email">
                         </div>
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Telefone:</label>
-                            <input type="email" class="form-control" id="telefone" placeholder="11 91234-5678">
+                            <input type="email" class="form-control" id="telefone" placeholder="11 91234-5678" value="11982689775">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-                            <input type="date" class="form-control" id="dtNasc">
+                            <input type="date" class="form-control" id="dtNasc" value="2000-02-02">
                         </div>
                         <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Senha:</label>
-                            <input type="password" class="form-control" id="senha" placeholder="*******">
+                            <input type="password" class="form-control" id="senha" placeholder="*******" value="senha">
                         </div>
                         <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Confirmar senha:</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="*******">
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="*******" value="senha">
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">Veio através...</label>
@@ -288,8 +288,26 @@
             const dtNascDigitada = document.getElementById("dtNasc").value;
             const senhaDigitada = document.getElementById("senha").value;
 
-            //const selectMotivo = document.getElementById("inputState");
-            //const motivoDigitado = selectMotivo.value;
+            const selectMotivo = document.getElementById("inputState");
+            const motivoDigitado = selectMotivo.value;
+            console.log(motivoDigitado)
+
+            var origemTrafego
+            if (motivoDigitado == "Instagram"){
+                origemTrafego = 1
+            } else if (motivoDigitado == "Facebook"){
+                origemTrafego = 2
+            } else if (motivoDigitado == "Corinthians"){
+                origemTrafego = 3
+            } else if (motivoDigitado == "Indicação"){
+                origemTrafego = 4
+            } else if (motivoDigitado == "Outros"){
+                origemTrafego = 5
+            }
+            console.log(origemTrafego)
+
+            const ddd = telefoneDigitado.substring(0, 2)
+            const telefone = telefoneDigitado.substring(2)
 
             const SexoOpcoes = document.getElementsByName("gridRadios");
             let sexoSelecionado;
@@ -302,8 +320,8 @@
             console.log("Nome:" + nomeDigitado + "\nSobrenome" + sobrenomeDigitado + "\nemail" + emailDigitado + "\ntelefone" + telefoneDigitado + "\ndt nasc" + dtNascDigitada + "\nsenha" + senhaDigitada + "\nsexo" + sexoSelecionado)
             console.log(nomeDigitado)
 
-            console.log(SexoOpcoes)
-            console.log(sexoSelecionado)
+            // console.log(SexoOpcoes)
+            // console.log(sexoSelecionado)
 
             const nomeFinal = `${nomeDigitado} ${sobrenomeDigitado}`
 
@@ -314,9 +332,15 @@
                 "sexo": sexoSelecionado,
                 "primeiraDoacao": "S",
                 "senha": senhaDigitada,
-                //"motivo": motivoDigitado,
-                //"telefone": telefoneDigitado,
+                "idOrigemTrafego": origemTrafego,
+                "telefones": [
+                    {
+                        "ddd": ddd,
+                        "telCel": telefone
+                    }
+                ]
             }
+            console.log(dadosDoador);
 
             const respostaCadastro = await fetch(`${url}/doadores`, {
                 method: "POST",

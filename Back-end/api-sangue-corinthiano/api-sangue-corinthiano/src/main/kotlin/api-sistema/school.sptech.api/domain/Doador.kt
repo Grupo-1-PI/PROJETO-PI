@@ -1,9 +1,6 @@
 package ProjetoPI.ProjetoDoadores.domain
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
@@ -34,7 +31,11 @@ data class Doador(
     //@field:NotBlank
     //var motivo: String = "",
 
-    var id_origem_trafego:Int = 1
+//    var id_origem_trafego:Int = 0,
+    var idOrigemTrafego:Int = 0,
+
+    @OneToMany(mappedBy = "doador", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val telefones: MutableList<TelefoneDoador> = mutableListOf()
 ) {
 //    constructor(paramEmail: String, paramSenha: String):this(email = paramEmail, senha = paramSenha)
 }

@@ -82,7 +82,7 @@
             <span class="titulo">Você é um doador serie $D</span>
             <span class="text-body-secondary">Doe mais vezes para subir de divisão</span>
         </div>
-        <div class="div-dados-usuario">
+        <div class="div-dados-usuario" id="div-dados-usuario">
             <div class="mb-3">
                 <label for="input-nome" class="form-label">Nome</label>
                 <div class="input-group mb-3">
@@ -215,8 +215,88 @@
 
 </html>
 <script>
+        async function buscar(){
+    const url = 'http://localhost:8080';
+    const id = sessionStorage.getItem('userId');
 
-document.getElementById('button-addon2').addEventListener('click', function () {
+    const resposta = await fetch(`${url}/doadores/${id}`);
+    const respostaDadosDoador = await resposta.json();
+    console.log("Resposta:", respostaDadosDoador);
+
+    // const nomeUsuario = await document.getElementById('nomeUsuario')
+    // nomeUsuario.innerHTML = await respostaDadosDoador.nome
+
+    let telefoneFinal
+    respostaDadosDoador.telefones.forEach(telefone => {
+        telefoneFinal = `${telefone.ddd}${telefone.telCel}`
+    });
+
+    const cards = document.getElementById("div-dados-usuario");
+
+    cards.innerHTML = `
+            <div class="mb-3">
+                <label for="input-nome" class="form-label">Nome</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="input-nome" class="input-dados-usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2" value="${respostaDadosDoador.nome}">
+                    <button class="button" type="button" id="button-addon2"><span class="material-symbols-outlined">
+                            edit
+                        </span></button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="input-email" class="form-label">Email</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="input-email" class="input-dados-usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2" value="${respostaDadosDoador.email}">
+                    <button class="button" type="button" id="button-addon3"><span class="material-symbols-outlined">
+                            edit
+                        </span></button>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="input-telefone" class="form-label">Telefone</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="input-telefone" class="input-dados-usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2" value="${telefoneFinal}">
+                    <button class="button" type="button" id="button-addon4"><span class="material-symbols-outlined">
+                            edit
+                        </span></button id="sweet_alert">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="input-senha" class="form-label">Senha</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="input-senha" class="input-dados-usuario" aria-label="Recipient's username"
+                        aria-describedby="button-addon2" value="${respostaDadosDoador.senha}">
+                    <button class="button" type="button" id="button-addon5"><span class="material-symbols-outlined">
+                            edit
+                        </span></button id="sweet_alert">
+                </div>
+            </div>
+        `
+    
+    // document.getElementById('button-addon2').addEventListener('click', function() {
+
+    //     });
+
+    
+    // document.getElementById('buttonDelete').addEventListener('click', function() {
+    //         fetch(`${url}/doadores/${id}`, { method: 'DELETE' })
+    //             .then(response => {
+    //                 if (response.ok) {
+    //                     alert('Conta deletada com sucesso... Redirecionando');
+    //                     window.location.href = "\Login.html";
+    //                 } else {
+    //                     console.error('Falha no logout:', response.statusText);
+    //                 }
+    //             })
+    //             .catch(error => console.error('Erro inesperado:', error));
+    //     });
+    document.getElementById('button-addon2').addEventListener('click', function () {
            Swal.fire({
                title: "Você quer salvar as alterações?",
                showDenyButton: true,
@@ -225,6 +305,31 @@ document.getElementById('button-addon2').addEventListener('click', function () {
                denyButtonText: `Não`
            }).then((result) => {
                if (result.isConfirmed) {
+    const nomeDigitado = document.getElementById("input-nome")
+    const emailDigitado = document.getElementById("input-email")
+    const telefoneDigitado = document.getElementById("input-telefone")
+    const senhaDigitado = document.getElementById("input-senha")
+
+    const nome = nomeDigitado.value
+    const email = emailDigitado.value
+    const telefone = telefoneDigitado.value
+    const senha = senhaDigitado.value
+
+     const a = document.getElementById("input-nome").value;
+
+            fetch(`${url}/doadores/${id}?nome=${a}&email=${email}&telefone=${telefone}&senha=${senha}`, { method: 'PATCH'})
+                .then(response => {  
+                    if (response.ok) {
+                        console.log(a)
+                        console.log(email)
+                        console.log(telefone)
+                        console.log(senha)
+                    } else {
+                        alert('Erro ao atualizar dados!');
+                        console.error('Falha no logout:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Erro inesperado:', error));
                    Swal.fire("Salvo!", "", "success");
                    console.log("caiu aqui dentro")
                } else if (result.isDenied) {
@@ -233,6 +338,13 @@ document.getElementById('button-addon2').addEventListener('click', function () {
                }
            });
        });
+        }
+
+
+
+    buscar();
+
+
 
        document.getElementById('button-addon3').addEventListener('click', function () {
            Swal.fire({
