@@ -195,3 +195,162 @@
         }
     }
 }
+@media only screen and (max-width: 480px) {
+    .formatTitulo, .formatTituloCinza, .formatTituloBranco, .formatTextoBranco {
+        font-size: 18px;
+    }
+
+    .textPreto {
+        font-size: 8px;
+    }
+
+    .tituloPreto {
+        font-size: 16px;
+    }
+
+    .navbar, .navbarSemLogin, .navbarLogado {
+        height: auto;
+        padding: 0;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .user .icon {
+        height: 15px;
+        width: 15px;
+    }
+
+    .formata, .logo {
+        height: auto;
+        width: 100%;
+    }
+
+    .subNavBar {
+        height: auto;
+        padding: 0;
+    }
+
+    .rodaPe {
+        height: auto;
+        padding: 5px;
+    }
+
+    .redeSocial {
+        width: auto;
+        flex-direction: column;
+    }
+
+    .icon {
+        height: 12px;
+        width: 12px;
+    }
+    .navbar
+.texto2 {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}   
+.navbar 
+.alinhar-meio {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.subNavBar {
+    a {
+      padding: 15%;
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.rodaPe {
+    .rodaPeTitulo {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--preto);
+    }
+}
+.banner {
+    & .titulo {
+        span {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+    & .subTitulo {
+        span {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+    & .texto {
+        span {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+}
+.diasDisponiveis {
+    & .titulo {
+        span {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+    }
+}
+.horasDisponiveis {
+    & .titulo {
+        span {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+    }
+}
+.horasDisponiveis {
+    & .boxHorarios {
+        .horas {
+            height: 48px;
+            width: 159px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 20px;
+        }
+    }
+}
+.confirmacaoDeDados {
+    & .titulo {
+        span {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+    }
+}
+.confirmarAgendamento {
+    & .botao {
+        button {
+            width: 358px;
+            height: 60px;
+            background-color: black;
+            border-radius: 20px;
+            border: none;
+        }
+    }
+}
+}

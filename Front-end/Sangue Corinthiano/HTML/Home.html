@@ -23,23 +23,25 @@
     <div class="navbar justificar-meio">
         <div class="container">
             <div class="usuario justificar-meio">
-                <div class="formatacao1 direcao-linha alinhar-meio space-between">
-                    <div class="icon justificarAlinhar-meio">
-                        <img src="../IMG/User Branco.png" alt="">
+                <div class="formatacao1 direcao-linha alinhar-meio  space-between">
+                    <div class="icon justificar Alinhar-meio">
+                        <a href="TelaUsuario.html">
+                            <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
+                        </a>
                     </div>
-                    <a class="texto3" href="">
+                    <a  class="texto3" href="Cadastro.html">
                         Cadastrar
                     </a>
                     <span class="texto3">
                         |
                     </span>
-                    <a class="texto3" href="">
+                    <a class="texto3" href="Login.html">
                         Login
                     </a>
                 </div>
             </div>
             <div class="direcao-linha space-between">
-                <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                <div class="formatacao2 direcao-linha    alinhar-meio space-between">
                     <div class="textoConteudo">
                         <a id="increase-font" class="texto2" href="#">
                             A+
@@ -53,7 +55,7 @@
                 </div>
 
                 <div class="conteudo alinhar-meio">
-                    <a class="texto2" href="">
+                    <a class="texto2" href="#condicoes-basicas">
                         INFORMAÇÕES
                     </a>
                 </div>
@@ -63,7 +65,7 @@
                 </div>
 
                 <div class="conteudo alinhar-meio">
-                    <a class="texto2" href="">
+                    <a class="texto2" href="LocaisSC.html">
                         DOAR AGORA
                     </a>
                 </div>
@@ -151,7 +153,7 @@
         </div>
 
     </section>
-    <div class="condicaoParaDoacao center">
+    <div class="condicaoParaDoacao center" id="condicoes-basicas">
         <div class="container">
             <div class="titulo" style=" display: flex; align-items: end; justify-content: center;">
                 <span class="formatTituloBranco">
@@ -202,7 +204,7 @@
                                                 <img src="../IMG/camiseta.png" alt="">
                                             </div>
                                             <div class="texto row">
-                                                <p>
+                                                <p href="LocaisSC.html">
                                                     DOAR AGORA
                                                 </p>
                                                 <div class="imagem2 format-Center">
@@ -259,7 +261,7 @@
                                                 <img src="../IMG/camiseta.png" alt="">
                                             </div>
                                             <div class="texto row">
-                                                <p>
+                                                <p href="LocaisSC.html">
                                                     DOAR AGORA
                                                 </p>
                                                 <div class="imagem2 format-Center">
@@ -489,7 +491,7 @@
             </div>
             <div class="center">
                 <button class="botao ">
-                    <a href=""> DOAR AGORA</a>
+                    <a href="LocaisSC.html"> DOAR AGORA</a>
                 </button>
             </div>
 
@@ -524,15 +526,22 @@
         </div>
         <div class="redeSocial format space-evenly">
             <div class="icon">
-                <img src="../IMG/instagram icon.png" alt="">
+                <a href="https://www.instagram.com/sanguecorinthiano/" target="_blank">
+                    <img src="../IMG/instagram icon.png" alt="Instagram">
+                </a>
             </div>
             <div class="icon">
-                <img src="../IMG/Facebook icon.png" alt="">
+                <a href="https://www.facebook.com/sangueCorinthiano/?_rdr" target="_blank">
+                    <img src="../IMG/Facebook icon.png" alt="Facebook">
+                </a>
             </div>
             <div class="icon">
-                <img src="../IMG/youtube icon.png" alt="">
+                <a href="https://www.youtube.com/user/SangueCorintiano?app=desktop" target="_blank">
+                    <img src="../IMG/youtube icon.png" alt="YouTube">
+                </a>
             </div>
         </div>
+        
         <div class="divLogoRodaPe row space-between">
             <div class="logo1">
                 <img src="../IMG/SangueCorinthiano-Logo.png" alt="">
@@ -557,9 +566,8 @@
     <!-- Janela de chat -->
     <div class="chat-container" id="chat-container">
         <div class="chat-header">Vânia</div>
-        <div class="chat-body" id="chat-body">
-            <input type="text" class="chat-input" id="user-input" placeholder="Digite sua mensagem...">
-        </div>
+        <div class="chat-body" id="chat-body"></div>
+        <input type="text" class="chat-input" id="user-input" placeholder="Digite sua mensagem...">
     </div>
 
     <script>
@@ -607,6 +615,117 @@
             }
         </script>
     
+    <script>
+        const chatIcon = document.getElementById('chat-icon');
+        const chatContainer = document.getElementById('chat-container');
+        const chatBody = document.getElementById('chat-body');
+        const userInput = document.getElementById('user-input');
+
+        // Função para alternar a visibilidade da janela de chat
+        function toggleChat() {
+            if (chatContainer.style.display === 'block') {
+                chatContainer.style.display = 'none';
+            } else {
+                chatContainer.style.display = 'block';
+                addMessage('Querido doador, estou aqui para te ajudar!', 'bot');
+                addMessage('Escolha uma opção:<br><br>1- Obter informações sobre a Doação.<br><br>2- Criar uma conta.<br><br>3- Finalizar Chat.', 'bot');
+            }
+        }
+
+        // Função para adicionar mensagens ao chat
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = text; // Usamos innerHTML para interpretar as tags HTML
+            messageElement.classList.add('message', sender + '-message');
+
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Função para processar a entrada do usuário
+        function processUserInput() {
+            const userInputText = userInput.value.trim().toLowerCase();
+            userInput.value = '';
+
+            switch(userInputText) {
+                case '1':
+                    addMessage('Opção 1 selecionada:<br>Obter informações sobre a Doação.', 'user');
+                    addMessage(`
+                        <div class="title">Quem pode doar sangue?</div>
+                        <ul>
+                            <li>Qualquer pessoa saudável.</li>
+                            <li>Idade entre 16 e 69 anos.</li>
+                            <li>Peso igual ou superior a 50kg.</li>
+                            <li>Boas condições de saúde.</li>
+                        </ul>
+                        <div class="title">Requisitos adicionais:</div>
+                        <ul>
+                            <li>Não estar em jejum.</li>
+                            <li>Ter dormido bem na noite anterior.</li>
+                            <li>Evitar bebidas alcoólicas nas últimas 12 horas.</li>
+                            <li>Apresentar documento oficial com foto no momento da doação.</li>
+                        </ul>
+                        <div class="title">Restrições temporárias ou permanentes:</div>
+                        <ul>
+                            <li>Gestantes.</li>
+                            <li>Pessoas com doenças infecciosas.</li>
+                            <li>Condições médicas específicas.</li>
+                            <li>Cirurgias recentes.</li>
+                        </ul>
+                        <div class="title">Para mais informações:</div>
+                        <p>Entre em contato conosco para esclarecer dúvidas específicas sobre quem pode ou não doar sangue.<br>
+                        Email: <a href="mailto:sanguecorinthianosp@outlook.com" class="email-link">sanguecorinthianosp@outlook.com</a></p>
+                        <div class="contact-links">
+                            - <a href="https://api.whatsapp.com/send?phone=5511992739503&text=Ol%C3%A1%2C+estava+visitando+seu+site+e+me+interessei+pelo+seu+trabalho." target="_blank">WhatsApp</a><br>
+                            - <a href="https://www.instagram.com/sanguecorinthiano/" target="_blank">Instagram</a><br>
+                            - <a href="https://www.facebook.com/sangueCorinthiano/" target="_blank">Facebook</a><br>
+                            - <a href="https://x.com/i/flow/login?redirect_after_login=%2Fsgcorinthiano" target="_blank">Twitter</a>
+                        </div>
+                    `, 'bot');
+
+                    addMessage('Posso te ajudar com outra coisa?<br><br>2- Criar uma conta.<br><br>3- Finalizar Chat.', 'bot');
+
+                    break;
+
+
+                case '2':
+                addMessage('Opção 2 selecionada:<br>Ótimo, vamos criar uma conta!', 'user');
+                 break;
+
+                case '3':
+                    addMessage('Opção 3 selecionada:<br>Finalizar Chat.', 'user');
+                    setTimeout(function() {
+                        chatContainer.style.display = 'none';
+                    }, 2000);
+                    break;
+                default:
+                    addMessage('Desculpe, não entendi. Por favor, selecione uma opção válida.', 'bot');
+            }
+        }
+
+        // Evento para processar a entrada do usuário ao pressionar Enter
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processUserInput();
+            }
+        });
+
+        // Adiciona evento de clique ao ícone do chatbot
+        chatIcon.addEventListener('click', toggleChat);
+    </script>
+
+    <!-- Script Para uso da API VLIBRAS  -->
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 
 </body>
 </html>

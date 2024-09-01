@@ -68,6 +68,7 @@
     }
 
     .formularioUsuario .botoes {
+        height: 77px;
         flex-direction: column; 
         width: 100%; 
         align-items: stretch;
