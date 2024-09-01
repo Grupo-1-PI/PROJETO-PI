@@ -104,7 +104,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span id="qtdDoadores">
                                     ${}
                                 </span>
                             </div>
@@ -119,7 +119,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span id="qtdDoadores2">
                                     ${}
                                 </span>
                             </div>
@@ -150,7 +150,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span id="qtdCampanhas">
                                     ${}
                                 </span>
                             </div>
@@ -165,7 +165,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span id="qtdAgendamentos">
                                     ${}
                                 </span>
                             </div>
@@ -180,7 +180,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span  id="taxaRetencao">
                                     ${}
                                 </span>
                             </div>
@@ -195,7 +195,7 @@
                                 </span>
                             </div>
                             <div class="valor format-Center">
-                                <span>
+                                <span id="taxaCancelamento">
                                     ${}
                                 </span>
                             </div>
@@ -224,15 +224,111 @@
 
 <script>
 
+async function buscar(){
+    const url = 'http://localhost:8080';
+    //const id = sessionStorage.getItem('userId');
+
+    const usuario = await fetch(`${url}/doadores`);
+    const respostaDadosDoador = await usuario.json();
+    console.log("Resposta:", respostaDadosDoador);
+
+    const qtdDoadores = respostaDadosDoador.length
+    const spanQtdDoadores = document.getElementById("qtdDoadores")
+    spanQtdDoadores.innerHTML = qtdDoadores
+
+    const spanQtdDoadores2 = document.getElementById("qtdDoadores2")
+    spanQtdDoadores2.innerHTML = qtdDoadores
+
+    //
+    const campanha = await fetch(`${url}/campanhas`)
+    const respostaDadosCampanha = await campanha.json()
+    console.log("Campanhas", respostaDadosCampanha)
+
+    const campanhas2023 = new Array(12).fill(0);
+    const campanhas2024 = new Array(12).fill(0);
+
+    respostaDadosCampanha.forEach(item => {
+    const data = new Date(item.data);
+    const ano = data.getFullYear();
+    const mes = data.getMonth(); 
+
+    if (ano === 2023) {
+        campanhas2023[mes]++;
+    } else if (ano === 2024) {
+        campanhas2024[mes]++;
+    }
+});
+
+console.log("Campanhas em 2023:", campanhas2023);
+console.log("Campanhas em 2024:", campanhas2024);
+
+    const spanTotalCampanhas = document.getElementById("qtdCampanhas")
+    const qtdCampanhas = respostaDadosCampanha.length
+    spanTotalCampanhas.innerHTML = qtdCampanhas
+
+    const agendamento = await fetch(`${url}/agendamentos`)
+    const respostaDadosAgendamentos = await agendamento.json()
+    console.log("Agendamentos", respostaDadosAgendamentos)
+
+    const spanTotalAgendamentos = document.getElementById("qtdAgendamentos")
+    const qtdAgendamentos = respostaDadosAgendamentos.length
+    spanTotalAgendamentos.innerHTML = qtdAgendamentos
+
+    const taxaRetencao = await fetch(`${url}/taxa-retencao`)
+    const respostaTaxaRetencao = await taxaRetencao.json()
+    console.log("Taxa Retencao", respostaTaxaRetencao)
+
+    const spanTaxaRetencao = document.getElementById("taxaRetencao")
+    spanTaxaRetencao.innerHTML = respostaTaxaRetencao
+
+    const taxaCancelamento = await fetch(`${url}/taxa-cancelamento`)
+    const respostaTaxaCancelamento = await taxaCancelamento.json()
+    console.log("Taxa Cancelamento", respostaTaxaCancelamento)
+
+    const spanTaxaCancelamento = document.getElementById("taxaCancelamento")
+    spanTaxaCancelamento.innerHTML = respostaTaxaCancelamento
+
+    //const nomeUsuario = await document.getElementById('nomeUsuario')
+    //nomeUsuario.innerHTML = await respostaDadosDoador.nome
+
+    const resposta = await fetch(`${url}/agendamentos`);
+    const dados = await resposta.json();
+    console.log("Resposta:", dados);
+
+    const agendamentos2023 = new Array(12).fill(0);
+    const agendamentos2024 = new Array(12).fill(0);
+
+    dados.forEach(item => {
+    const data = new Date(item.data);
+    const ano = data.getFullYear();
+    const mes = data.getMonth(); 
+
+    if (ano === 2023) {
+        agendamentos2023[mes]++;
+    } else if (ano === 2024) {
+        agendamentos2024[mes]++;
+    }
+});
+
+console.log("Agendamentos em 2023:", agendamentos2023);
+console.log("Agendamentos em 2024:", agendamentos2024);
+
+
+const meses = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+];
+
+
     const ctx1 = document.getElementById('doadoresOpcao').getContext('2d');
     const doadoresOpcao = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: meses,
             datasets: [
                 {
                     label: 'Sales 2023',
-                    data: [10, 25, 30, 40, 15, 50],
+                    data: agendamentos2023,
                     backgroundColor: '#3498db',  // Azul sólido
                     borderColor: '#2980b9',
                     hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
@@ -288,17 +384,17 @@
     const sexoIdade = new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: meses,
             datasets: [
                 {
                     label: 'Sales 2023',
-                    data: [15, 25, 30, 40, 15, 50],
+                    data: agendamentos2023,
                     backgroundColor: '#3498db',  // Azul sólido
                     borderColor: '#2980b9',
                 },
                 {
                     label: 'Sales 2024',
-                    data: [20, 30, 35, 45, 10, 55],
+                    data: agendamentos2024,
                     backgroundColor: '#e74c3c',  // Vermelho sólido
                     borderColor: '#c0392b',
                 }
@@ -351,17 +447,17 @@
     const doadoresCampanha = new Chart(ctx3, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: meses,
             datasets: [
                 {
                     label: 'Sales 2023',
-                    data: [15, 25, 30, 40, 15, 50],
+                    data: campanhas2023,
                     backgroundColor: '#3498db',  // Azul sólido
                     borderColor: '#2980b9',
                 },
                 {
                     label: 'Sales 2024',
-                    data: [20, 30, 35, 45, 10, 55],
+                    data: campanhas2024,
                     backgroundColor: '#e74c3c',  // Vermelho sólido
                     borderColor: '#c0392b',
                 }
@@ -414,11 +510,11 @@
     const agendamentoDoacao = new Chart(ctx4, {
         type: 'bar',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: meses,
             datasets: [
                 {
                     label: 'Sales 2023',
-                    data: [15, 25, 30, 40, 15, 50],
+                    data: campanhas2023,
                     backgroundColor: '#3498db',  // Azul sólido
                     borderColor: '#2980b9',
                     hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
@@ -426,7 +522,7 @@
                 },
                 {
                     label: 'Sales 2024',
-                    data: [20, 30, 35, 45, 10, 55],
+                    data: campanhas2024,
                     backgroundColor: '#e74c3c',  // Vermelho sólido
                     borderColor: '#c0392b',
                     hoverBackgroundColor: '#c0392b',
@@ -476,5 +572,8 @@
             }
         }
     });
+
+}
+buscar()
 
 </script>
