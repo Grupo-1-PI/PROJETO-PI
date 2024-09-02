@@ -115,6 +115,26 @@ h2{
     margin: 15px;
     font-weight: 600;
 }
+
+.botao_delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.botao_delete button {
+    height: 5vh;
+    width:  30vh;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.336);
+    border: none;
+    font-weight: bold;
+}
+
+
 @media only screen and (max-width: 480px) {
 .div-painel {
     display: flex;
