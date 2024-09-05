@@ -1,0 +1,103 @@
+.marginTopADM {
+    margin-top: 30px;
+}
+
+.marginTopRodaADM {
+    margin-top: 50px;
+}
+
+.box {
+    height: 600px;
+    width: 100%;
+
+    .formatar {
+        height: 100%;
+        width: 100%;
+
+        .conteudo {
+            height: 100%;
+            width: 50%;
+
+            img {
+                width: 50%;
+                height: 50%;
+                background-color: white;
+            }
+        }
+    }
+}
+
+.boxDoisBotoes {
+
+    button {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        transition: background-color 0.6s ease, color 0.3s ease;
+
+        
+            
+    }
+
+    .bordaBtnEsquerdo{
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-right: none;
+    }
+
+    .bordaBtnDireito{
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-left: none;    
+    }
+
+    .primeiroBotao{
+        height: 60px;
+        width: 20%;
+    }
+    .segundoBotao{
+        height: 60px;
+        width: 20%;
+
+        button{
+
+            background-color: black;
+            color: white;
+        }
+        
+    }
+
+    button:hover {
+        background-color: white;
+        color: black;
+    }
+
+}
+
+
+.boxBotao {
+    height: 80px;
+    width: 85%;
+
+    .botao {
+        height: 40px;
+        width: 80%;
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 20px;
+        text-align: center;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        span {
+            font-weight: bold;
+            color: black;
+        }
+
+        &:hover {
+            background-color: black;
+            span {
+                color: white;
+            }
+        }
+    }
+}
