@@ -2,6 +2,29 @@ body.dark-mode .text-body-secondary{
     color: white !important;
 }
 
+body.dark-mode .textoPreto{
+    color: white !important;   
+}
+
+body.dark-mode .tituloPreto {
+    color: white !important;
+}
+
+body.dark-mode .texto.row p {
+    color: rgb(7, 7, 7) !important;
+}
+
+body.dark-mode .formatTituloCinza {
+    color: white !important;
+}
+
+body.dark-mode section.diaDaDoacao {
+    background: linear-gradient(135deg, #333 0%, #000 100%) !important; 
+}
+
+
+
+
 body.dark-mode .div-usuario, body.dark-mode .div-lista-doacoes{
     box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, 
             rgba(255, 255, 255, 0.12) 0px -12px 30px, 
