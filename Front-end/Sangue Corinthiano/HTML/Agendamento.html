@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="../CSS/agendamento.css">
     <link rel="stylesheet" href="../CSS/dark-mode.css">
     <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
-    
 
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -219,7 +220,7 @@
             </div>
         </div>
     </div>
-    <div class="confirmacaoDeDados center marginTop">
+    <!-- <div class="confirmacaoDeDados center marginTop">
         <div class="container">
             <div class="titulo center">
                 <span>
@@ -263,11 +264,11 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="confirmarAgendamento center marginTop">
         <div class="container center">
             <div class="botao">
-                <button onclick="">
+                <button id="buttonConfirmarAgendamento">
                     <span>
                         CLIQUE AQUI CONFIRMAÇÃO DO AGENDAMENTO
                     </span>
@@ -313,32 +314,53 @@
             </span>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('buttonConfirmarAgendamento').addEventListener('click', function () {
+            Swal.fire({
+                title: "Gostaria de Confirmar seu Agendamento?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Confirmar Agendamento"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Agendamendo Confirmado!", "", "success");
+                    console.log("caiu aqui dentro")
+                } else if (result.isDenied) {
+                    Swal.fire("Erro no Agendamento!", "", "info");
+                    console.log("caiu dentro do else if")
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
             let fontSizeChange = 0;
             const maxFontSizeChange = 3;
             const minFontSizeChange = -3;
             const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
-    
-            document.getElementById('increase-font').addEventListener('click', function() {
+
+            document.getElementById('increase-font').addEventListener('click', function () {
                 if (fontSizeChange < maxFontSizeChange) {
                     fontSizeChange++;
                     changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
                 }
             });
-    
-            document.getElementById('decrease-font').addEventListener('click', function() {
+
+            document.getElementById('decrease-font').addEventListener('click', function () {
                 if (fontSizeChange > minFontSizeChange) {
                     fontSizeChange--;
                     changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
                 }
             });
-    
+
             function changeFontSize(factor) {
                 contentElements.forEach(element => {
                     const currentSize = parseFloat(getComputedStyle(element).fontSize);
@@ -346,35 +368,33 @@
                 });
             }
         });
+
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+
+            if (body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+            }
+        }
     </script>
 
-<script>
-    function toggleDarkMode() {
-        var body = document.body;
-        body.classList.toggle("dark-mode");
-        var toggleIcon = document.getElementById("darkModeToggle");
-        
-        if(body.classList.contains("dark-mode")) {
-            toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-        } else {
-            toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
-        }
-    }
-</script>
+    <!-- Script Para uso da API VLIBRAS  -->
 
-<!-- Script Para uso da API VLIBRAS  -->
-
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-  
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </body>
 
 </html>
