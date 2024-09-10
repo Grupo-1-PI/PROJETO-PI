@@ -29,8 +29,8 @@
                             <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
                         </a>
                     </div>
-                    <a class="texto3" href="Cadastro.html">
-                        Cadastrar
+                    <a class="texto3" id="nomeUsuario" href="Cadastro.html">
+                        ${ususario}
                     </a>
                     <span class="texto3">
                         |
@@ -79,9 +79,9 @@
     <div class="div-painel">
         <div class="div-usuario">
             <img id="img-usuario" src="../IMG/imagem-do-usuario-com-fundo-preto.png" alt="">
-            <span class="titulo">$Nome do usuario</span>
-            <span class="titulo">Você já doou $3 X</span>
-            <span class="titulo">Você é um doador serie $D</span>
+            <span class="titulo" id="CardNomeUsuario">$Nome do usuario</span>
+            <span class="titulo">Você já doou 3X</span>
+            <span class="titulo">Você é um doador serie D</span>
             <span class="text-body-secondary">Doe mais vezes para subir de divisão</span>
         </div>
         <div class="div-dados-usuario" id="div-dados-usuario">
@@ -144,29 +144,28 @@
             <h2>Minhas Doações</h2>
             <div class="div-campanha">
                 <img class="img-campanha"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxM_f2WHVF5jOQCP2n1BEs2RTHE2uXHis4Xw&s"
-                    alt="">
+                    src="../IMG/ProSangue.png"                   alt="">
                 <div class="div-informacoes-campanha">
-                    <h5>Campanha de $Julho</h5>
+                    <h5>Campanha de Julho</h5>
                         <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
                         <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
                             César, São Paulo - SP, 05403-000</span>
                         <div class="div-info">
-                            <h5>Doação $Status</h5>
+                            <h5>Doação Concluida</h5>
                         </div>
                 </div>
             </div>
                         <div class="div-campanha">
                 <img class="img-campanha"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxM_f2WHVF5jOQCP2n1BEs2RTHE2uXHis4Xw&s"
+                    src="../IMG/MaisSangue.png"
                     alt="">
                 <div class="div-informacoes-campanha">
-                    <h5>Campanha de $Julho</h5>
+                    <h5>Campanha de Julho</h5>
                         <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
                         <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
                             César, São Paulo - SP, 05403-000</span>
                         <div class="div-info">
-                            <h5>Doação $Status</h5>
+                            <h5>Doação Concluida</h5>
                         </div>
                 </div>
             </div>
@@ -235,6 +234,12 @@
     const respostaDadosDoador = await resposta.json();
     console.log("Resposta:", respostaDadosDoador);
 
+    const nomeUsuario = await document.getElementById('nomeUsuario')
+    nomeUsuario.innerHTML = await respostaDadosDoador.nome
+
+    const nomeUsuarioCard = await document.getElementById('CardNomeUsuario')
+    nomeUsuarioCard.innerHTML = await respostaDadosDoador.nome
+
     // const nomeUsuario = await document.getElementById('nomeUsuario')
     // nomeUsuario.innerHTML = await respostaDadosDoador.nome
 
@@ -282,12 +287,16 @@
             <div class="mb-3">
                 <label for="input-senha" class="form-label">Senha</label>
                 <div class="input-group mb-3">
-                    <input type="text" id="input-senha" class="input-dados-usuario" aria-label="Recipient's username"
+                    <input type="password" id="input-senha" class="input-dados-usuario" aria-label="Recipient's username"
                         aria-describedby="button-addon2" value="${respostaDadosDoador.senha}">
                     <button class="button" type="button" id="button-addon5"><span class="material-symbols-outlined">
                             edit
                         </span></button id="sweet_alert">
                 </div>
+            </div>
+
+                        <div class="botao_delete">
+                <button id="buttonDelete">Deletar Conta</button> 
             </div>
         `
     
@@ -350,6 +359,19 @@
                }
            });
        });
+
+       document.getElementById('buttonDelete').addEventListener('click', function() {
+            fetch(`${url}/doadores/${id}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Conta deletada com sucesso... Redirecionando');
+                        window.location.href = "\Login.html";
+                    } else {
+                        console.error('Falha no logout:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Erro inesperado:', error));
+        });
         }
 
 

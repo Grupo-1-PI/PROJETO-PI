@@ -99,7 +99,7 @@
                         aria-describedby="inputGroup-sizing-sm" name="InputEmail">
                     </div>
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" id="InputSenha" class="form-control" style="font-family: Raleway, sans-serif; font-weight: 300; font-style: normal; font-optical-sizing: auto;" placeholder="**********" aria-label="Sizing example input"
+                        <input type="password" id="InputSenha" class="form-control" style="font-family: Raleway, sans-serif; font-weight: 300; font-style: normal; font-optical-sizing: auto;" placeholder="**********" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-sm" name="InputSenha">
                     </div>
                 </div>
@@ -247,7 +247,7 @@
                             const userId = data.userId; 
                             alert("Login realizado com sucesso! ID do usuário: " + userId);
                             sessionStorage.setItem('userId', userId);
-                            window.location.href = "\TelaUsuario.html";
+                            window.location.href = "\LocaisSC.html";
                         } else {
                             alert("Login inválido!");
                         }

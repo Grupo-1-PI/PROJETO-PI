@@ -28,14 +28,14 @@
                     <a href="TelaUsuario.html">
                         <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
                     </a>
-                    <a class="texto3" href="Cadastro.html">
-                        Cadastrar
+                    <a class="texto3" id="nomeUsuario" href="Cadastro.html">
+                        ${ususario}
                     </a>
                     <span class="texto3">
                         |
                     </span>
                     <a class="texto3" href="Login.html">
-                        Login
+                        Sair
                     </a>
                 </div>
             </div>
@@ -175,6 +175,20 @@
     </script>
 <!-- Script Para aumentar e diminuir fonte  -->
 <script>
+        async function buscar(){
+        const url = 'http://localhost:8080';
+        const id = sessionStorage.getItem('userId');
+
+        const resposta = await fetch(`${url}/doadores/${id}`);
+        const respostaDadosDoador = await resposta.json();
+        console.log("Resposta:", respostaDadosDoador);
+
+        const nomeUsuario = await document.getElementById('nomeUsuario')
+        nomeUsuario.innerHTML = await respostaDadosDoador.nome
+        var usuario = await respostaDadosDoador.nome
+        }
+        buscar()
+
     document.addEventListener('DOMContentLoaded', function() {
         let fontSizeChange = 0;
         const maxFontSizeChange = 3;
