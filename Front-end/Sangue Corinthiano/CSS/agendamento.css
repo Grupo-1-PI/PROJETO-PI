@@ -95,7 +95,6 @@
             height: 50px;
             width: 50px;
             border-radius: 100%;
-            background-color: white;
 
             border: 2px solid black;
         }
@@ -195,6 +194,25 @@
         }
     }
 }
+
+.card, .horas {
+    cursor: pointer;
+    user-select: none;
+}
+
+.selecionado {
+    background-color: #ff0000; /* Cor de fundo para destacar o selecionado */
+    color: #fff; /* Cor do texto */
+    border: 2px solid #ff0000; /* Realce na borda */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card.selecionado {
+    background-color: red; /* Altere a cor do fundo do dia selecionado */
+    color: white; /* Altere a cor do texto */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 @media only screen and (max-width: 480px) {
     .formatTitulo, .formatTituloCinza, .formatTituloBranco, .formatTextoBranco {
         font-size: 18px;
@@ -354,3 +372,4 @@
     }
 }
 }
+

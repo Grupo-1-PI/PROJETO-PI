@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
 
     <link rel="stylesheet" href="sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -101,26 +98,41 @@
             </div>
         </div>
     </div>
+    <!-- <div class="formulario marginTop">
+        <div class="container">
+            <div class="titulo center">
+                <span>Preencha essa pré-Triagem</span>
+            </div>
+            <form>
+                <p>Você é menor de idade?</p>
+                
+                <label>
+                  <input type="radio" name="menorIdade" value="sim">
+                  Sim
+                </label>
+                
+                <label>
+                  <input type="radio" name="menorIdade" value="nao">
+                  Não
+                </label>
+              </form>
+        </div>
+    </div> -->
     <div class="diasDisponiveis center marginTop">
         <div class="container">
             <div class="titulo center">
-                <span>
-                    DIAS DISPONÍVEIS
-                </span>
+                <span>DIAS DISPONÍVEIS</span>
             </div>
-
             <div class="cardDiasDisponiveis center">
                 <div class="format space-between">
-                    <div class="card format-Center">
-                        <span>
-                            24
-                        </span>
+                    <!-- Cada dia com um data-dia único -->
+                    <div class="card format-Center" data-dia="24">
+                        <span>24</span>
                     </div>
-                    <div class="card format-Center">
-                        <span>
-                            24
-                        </span>
+                    <div class="card format-Center" data-dia="25">
+                        <span>25</span>
                     </div>
+                    <!-- Adicione mais dias conforme necessário -->
                 </div>
             </div>
         </div>
@@ -135,136 +147,63 @@
             <div class="format meio-baixo">
                 <div class="boxHorarios format-Center">
                     <div class="horarios space-evenly">
-                        <div class="horas format-Center">
-                            <span>
-                                09:00
-                            </span>
+                        <div class="horas format-Center" data-horario="09:00">
+                            <span>09:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                09:30
-                            </span>
+                        <div class="horas format-Center" data-horario="09:30">
+                            <span>09:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                10:00
-                            </span>
+                        <div class="horas format-Center" data-horario="10:00">
+                            <span>10:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                10:30
-                            </span>
+                        <div class="horas format-Center" data-horario="10:30">
+                            <span>10:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                11:00
-                            </span>
+                        <div class="horas format-Center" data-horario="11:00">
+                            <span>11:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                11:30
-                            </span>
+                        <div class="horas format-Center" data-horario="11:30">
+                            <span>11:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                12:00
-                            </span>
+                        <div class="horas format-Center" data-horario="12:00">
+                            <span>12:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                12:30
-                            </span>
+                        <div class="horas format-Center" data-horario="12:30">
+                            <span>12:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                13:00
-                            </span>
+                        <div class="horas format-Center" data-horario="13:00">
+                            <span>13:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                13:30
-                            </span>
+                        <div class="horas format-Center" data-horario="13:30">
+                            <span>13:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                14:00
-                            </span>
+                        <div class="horas format-Center" data-horario="14:00">
+                            <span>14:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                14:30
-                            </span>
+                        <div class="horas format-Center" data-horario="14:30">
+                            <span>14:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                15:00
-                            </span>
+                        <div class="horas format-Center" data-horario="15:00">
+                            <span>15:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                15:30
-                            </span>
+                        <div class="horas format-Center" data-horario="15:30">
+                            <span>15:30</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                16:00
-                            </span>
+                        <div class="horas format-Center" data-horario="16:00">
+                            <span>16:00</span>
                         </div>
-                        <div class="horas format-Center">
-                            <span>
-                                16:30
-                            </span>
+                        <div class="horas format-Center" data-horario="16:30">
+                            <span>16:30</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="confirmacaoDeDados center marginTop">
-        <div class="container">
-            <div class="titulo center">
-                <span>
-                    CONFIRMAÇÃO DE DADOS
-                </span>
-            </div>
-            <div class="boxFormulario" style="margin-top: 20px;">
-                <form class="row g-3 space-between">
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Nome</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Email</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Telefone</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">CPF</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Data de Agendamento</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Horario de Agendamento</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Campanha</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Local</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
+
+    <input type="hidden" id="diaSelecionado" name="diaSelecionado">
+    <input type="hidden" id="horaSelecionada" name="horaSelecionada">
+
     <div class="confirmarAgendamento center marginTop">
         <div class="container center">
             <div class="botao">
@@ -276,6 +215,7 @@
             </div>
         </div>
     </div>
+
     <div class="rodaPe format-Center sombra marginTop">
         <div class="titulo format-Center ">
             <span class="rodaPeTitulo">
@@ -299,12 +239,13 @@
                 </a>
             </div>
         </div>
+
         <div class="divLogoRodaPe row space-between">
             <div class="logo1">
-                <img src="../IMG/SangueCorinthiano-Logo.png" alt="" style="height: 90%; width: auto;">
+                <img src="../IMG/SangueCorinthiano-Logo.png" alt="">
             </div>
             <div class="logo2">
-                <img src="../IMG/sptech.png" alt="" style="height: 90%; width: auto;">
+                <img src="../IMG/sptech.png" alt="">
             </div>
         </div>
         <div class="texto format-Center">
@@ -314,28 +255,23 @@
             </span>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
     <script>
-                async function buscar(){
-        const url = 'http://localhost:8080';
-        const id = sessionStorage.getItem('userId');
+        async function buscar() {
+            const url = 'http://localhost:8080';
+            const id = sessionStorage.getItem('userId');
 
-        const resposta = await fetch(`${url}/doadores/${id}`);
-        const respostaDadosDoador = await resposta.json();
-        console.log("Resposta:", respostaDadosDoador);
+            const resposta = await fetch(`${url}/doadores/${id}`);
+            const respostaDadosDoador = await resposta.json();
+            console.log("Resposta:", respostaDadosDoador);
 
-        const nomeUsuario = await document.getElementById('nomeUsuario')
-        nomeUsuario.innerHTML = await respostaDadosDoador.nome
-        var usuario = await respostaDadosDoador.nome
+            const nomeUsuario = await document.getElementById('nomeUsuario')
+            nomeUsuario.innerHTML = await respostaDadosDoador.nome
+            var usuario = await respostaDadosDoador.nome
         }
         buscar()
-        
+
         document.getElementById('buttonConfirmarAgendamento').addEventListener('click', function () {
             Swal.fire({
                 title: "Gostaria de Confirmar seu Agendamento?",
@@ -412,3 +348,37 @@
 </body>
 
 </html>
+
+<script>
+    // Função para selecionar dia
+    const dias = document.querySelectorAll('.cardDiasDisponiveis .card'); // Seleciona todos os dias
+    dias.forEach(dia => {
+        dia.addEventListener('click', function () {
+            console.log('Dia selecionado:', this.dataset.dia); // Mostra no console o dia clicado
+            // Remove a seleção anterior
+            dias.forEach(d => d.classList.remove('selecionado'));
+            // Adiciona a classe "selecionado" ao dia atual
+            this.classList.add('selecionado');
+        });
+    });
+
+
+    // Função para selecionar horário
+    const horarios = document.querySelectorAll('.horas');
+    horarios.forEach(horario => {
+        horario.addEventListener('click', function () {
+            // Remove a seleção anterior
+            horarios.forEach(h => h.classList.remove('selecionado'));
+            // Marca o horário atual como selecionado
+            this.classList.add('selecionado');
+        });
+    });
+
+    function setDia(dia) {
+        document.getElementById('diaSelecionado').value = dia;
+    }
+
+    function setHora(hora) {
+        document.getElementById('horaSelecionada').value = hora;
+    }
+</script>
