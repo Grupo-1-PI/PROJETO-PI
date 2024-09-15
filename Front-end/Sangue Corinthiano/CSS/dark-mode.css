@@ -96,3 +96,26 @@ body.dark-mode .rodaPe .texto span {
 body.dark-mode .rodaPe .redeSocial img {
     filter: invert(1);
 }
+
+.dark-mode .containerPai {
+    background-color: #121212; /* Cor cinza */
+}
+
+.dark-mode .formatTitulo {
+    color: #FFFFFF; /* Cor branca */
+}
+
+.dark-mode .subNavBar.format-Center.space-evenly {
+    background-color: #121212; /* Cor cinza escura */
+    color: #FFFFFF; /* Cor do texto branca */
+}
+
+.dark-mode .botaoVizu {
+    background-color: #FFFFFF; /* Fundo branco */
+    color: #000000; /* Texto preto */
+    border: 1px solid #000000; /* Borda preta opcional */
+}
+
+.dark-mode .botaoVizu span {
+    color: inherit; /* Herda a cor do texto da div */
+}

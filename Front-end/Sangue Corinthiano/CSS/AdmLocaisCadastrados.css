@@ -20,17 +20,20 @@ body {
     justify-content: space-around;   
 
 }
-.inputCadastrado{
-  
-    height: 10%;
+
+
+.inputCadastrado {
+    height: 150px; 
     width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 15px;
     padding: 10px;
-    box-shadow: 0.5px 0.5px 0.5px 0.5px;
+    border: 1px solid #bebebe; 
+    box-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.1); 
 }
+
 .botaoVizuEdi{
     width: 25%;
     height: 100%;
@@ -40,21 +43,58 @@ body {
     
     border-radius: 15px;
 }
-.botaoVizu{
-    background-color: black;
-    width: 6vw;
+
+.botaoVizu {
+    background-color: #000000; /* Preto */
+    width: 5vw; /* Reduzindo a largura */
     display: flex;
     justify-content: center;
-    height: auto;
-    border-radius: 15px;
-    color: aliceblue;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 8px 16px; /* Menos espaçamento interno */
+    border-radius: 12px; /* Borda arredondada */
+    color: #F0F8FF; /* AliceBlue */
+    font-weight: bold;
+    font-size: 0.9em; /* Texto um pouco menor */
+    border: 2px solid transparent;
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s; /* Suavização */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Sombra menor */
+    cursor: pointer; /* Muda o cursor para indicar clique */
 }
-.botaoEdit{
-    background-color: rgb(255, 0, 0);
-    width: 4vw;
+
+.botaoVizu:hover {
+    background-color: #1A1A1A; /* Leve mudança no hover */
+    transform: scale(1.05); /* Leve aumento no hover */
+    border-color: #F0F8FF; /* Borda de AliceBlue no hover */
+}
+
+.botaoEdit {
+    background-color: #FF0000; /* Vermelho */
+    width: 3.5vw; /* Reduzindo a largura */
     display: flex;
     justify-content: center;
-    height: auto;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 8px 16px; /* Menos espaçamento interno */
+    border-radius: 12px;
     color: white;
-    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.9em; /* Texto um pouco menor */
+    border: 2px solid transparent;
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Sombra menor */
+    cursor: pointer;
+}
+
+.botaoEdit:hover {
+    background-color: #CC0000; /* Tom mais escuro no hover */
+    transform: scale(1.05); /* Leve aumento no hover */
+    border-color: #FFFFFF; /* Borda branca no hover */
+}
+
+
+
+.subNavBar {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 50px; /* Ajuste conforme necessário */
 }
