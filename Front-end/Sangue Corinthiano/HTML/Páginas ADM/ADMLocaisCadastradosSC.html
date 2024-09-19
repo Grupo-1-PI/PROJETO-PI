@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locais Sangue Corinthiano</title>
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
+    <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
+    <link rel="stylesheet" href="../../CSS/home.css">
+    <link rel="stylesheet" href="../../CSS/cardLocais.css"> 
+    <link rel="stylesheet" href="../../CSS/dark-mode.css">
+    <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
+    <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
+    <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
+    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar justificar-meio">
+        <div class="container">
+            <div class="usuario justificar-meio">
+                <div class="formatacao1 direcao-linha alinhar-meio space-between">
+                    <a href="TelaUsuario.html">
+                        <img src="../../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
+                    </a>
+                    <a class="texto3" id="nomeUsuario" href="Cadastro.html">
+                        ${ususario}
+                    </a>
+                    <span class="texto3">
+                        |
+                    </span>
+                    <a class="texto3" href="Login.html">
+                        Sair
+                    </a>
+                </div>
+            </div>
+            <div class="direcao-linha space-between">
+                <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                    <div class="textoConteudo">
+                        <button id="increase-font">A+</button>
+                    </div>
+                    <div class="textoConteudo">
+                        <button id="decrease-font">A-</button> 
+                    </div>
+                </div>
+
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="Home.html">
+                        INFORMAÇÕES
+                    </a>
+                </div>
+
+                <div class="logo justificarAlinhar-meio">
+                    <img src="../../IMG/logo.png" alt="" style="margin-top: 150px;">
+                </div>
+                
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="LocaisSC.html">
+                        DOAR AGORA
+                    </a>
+                </div>
+
+                <div class="formatacao2 alinhar-meio">
+                    <div class="conteudo formata">
+                        <img id="darkModeToggle" src="../../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+                    
+    
+    <div class="subNavBar format-Center space-evenly">
+        <a href="">
+            Cadastrar Locais 
+        </a>
+        <a href="">
+            Visualizar Locais 
+        </a>
+        <a href="">
+           Campanhas
+        </a>
+        <a href="">
+            Agendamentos 
+        </a>
+
+        <a href="">
+            Colaboradores
+        </a>
+        <a href="">
+            Dashboard
+        </a>
+    </div>
+
+
+    <div class="containerPai">
+    
+        <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Sangue Corinthiano - Locais Cadastrados</span>
+        
+        <span class="tituloPreto" style="margin-bottom: 20px;">Veja os locais que você cadastrou no sistema</span>
+        
+        <div class="containerFilho">
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </div>
+
+    
+    <!-- Footer Reutilizado da Home -->
+    <div class="rodaPe format-Center sombra">
+        <div class="titulo format-Center ">
+            <span class="rodaPeTitulo">
+                SIGA AS NOSSAS REDES SOCIAIS:
+            </span>
+        </div>
+        <div class="redeSocial format space-evenly">
+            <div class="icon">
+                <a href="https://www.instagram.com/sanguecorinthiano/" target="_blank">
+                    <img src="../../IMG/instagram icon.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.facebook.com/sangueCorinthiano/?_rdr" target="_blank">
+                    <img src="../../IMG/Facebook icon.png" alt="Facebook">
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.youtube.com/user/SangueCorintiano?app=desktop" target="_blank">
+                    <img src="../../IMG/youtube icon.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+        <div class="divLogoRodaPe row space-between">
+            <div class="logo1">
+                <img src="../../IMG/SangueCorinthiano-Logo.png" alt="">
+            </div>
+            <div class="logo2">
+                <img src="../../IMG/sptech.png" alt="">
+            </div>
+        </div>
+        <div class="texto format-Center">
+            <span class="rodapeTexto">
+                SPTECH JUNTO AO SANGUE CORINTHIANO </br>
+                TODOS OS DIREITOS RESERVADOS - © 2024 - PROTEÇÃO DE DADOS
+            </span>
+        </div>
+    </div>
+
+    <!-- Script do Leaflet para o Mapa -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../JS/LocaisSC.js"></script>
+
+    <!-- Script Para alterar o modo escuro  -->
+    <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+            
+            if(body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+            }
+        }
+    </script>
+
+    <!-- Script Para aumentar e diminuir fonte  -->
+<script>
+    async function buscar(){
+        const url = 'http://localhost:8080';
+        const id = sessionStorage.getItem('userId');
+
+        const resposta = await fetch(`${url}/doadores/${id}`);
+        const respostaDadosDoador = await resposta.json();
+        console.log("Resposta:", respostaDadosDoador);
+
+        const nomeUsuario = await document.getElementById('nomeUsuario')
+        nomeUsuario.innerHTML = await respostaDadosDoador.nome
+        var usuario = await respostaDadosDoador.nome
+        }
+        buscar()
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let fontSizeChange = 0;
+        const maxFontSizeChange = 3;
+        const minFontSizeChange = -3;
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+
+        document.getElementById('increase-font').addEventListener('click', function() {
+            if (fontSizeChange < maxFontSizeChange) {
+                fontSizeChange++;
+                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+            }
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function() {
+            if (fontSizeChange > minFontSizeChange) {
+                fontSizeChange--;
+                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+            }
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    });
+</script>
+
+<!-- Script Para uso da API VLIBRAS  -->
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Sangue Corinthiano</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
+    <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
+    <link rel="stylesheet" href="../../CSS/home.css">
+    <link rel="stylesheet" href="../../CSS/cardLocais.css"> 
+    <link rel="stylesheet" href="../../CSS/dark-mode.css">
+    <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
+    <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
+    <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
+    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+    <style>
+        .botaoEdit {
+    background-color: #FF0000; /* Vermelho */
+    width: 8vw; /* Reduzindo a largura */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 8px 16px; /* Menos espaçamento interno */
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em; /* Texto um pouco menor */
+    border: 2px solid transparent;
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Sombra menor */
+    cursor: pointer;
+}
+.botaoVizuEdi {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            font-weight: 800;
+            border: black solid 2px;
+            padding: 10px 30px 10px 15px;
+            font-size: 20px;
+            /* border: none; */
+            cursor: pointer;
+            width: 100%; /* O botão ocupará 100% do container */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Adicionando a seta para baixo */
+        .dropdown-toggle::after {
+            content: "\25BC"; /* Código unicode da seta para baixo */
+            font-size: 12px;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            right: 10px; /* Ajusta a posição da seta para a direita */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropdown-toggle:focus {
+            outline: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 100%; /* O menu dropdown terá o mesmo tamanho do botão */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-menu a {
+            color: black;
+            font-weight: 400;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%; /* Define a largura dos links para 100% */
+            box-sizing: border-box;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown.show .dropdown-menu {
+            display: block;
+        }
+
+        .boxDropdown {
+    width: 25%;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+        .boxDropdown .dropdown-toggle{
+            border-radius: 15px;
+            border: #ddd solid 2px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    </style>
+    <!-- Navbar -->
+    <div class="navbar justificar-meio">
+        <div class="container">
+            <div class="usuario justificar-meio">
+                <div class="formatacao1 direcao-linha alinhar-meio space-between">
+                    <a href="TelaUsuario.html">
+                        <img src="../../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
+                    </a>
+                    <a class="texto3" id="nomeUsuario" href="Cadastro.html">
+                        ${ususario}
+                    </a>
+                    <span class="texto3">
+                        |
+                    </span>
+                    <a class="texto3" href="Login.html">
+                        Sair
+                    </a>
+                </div>
+            </div>
+            <div class="direcao-linha space-between">
+                <div class="formatacao2 direcao-linha alinhar-meio space-between">
+                    <div class="textoConteudo">
+                        <button id="increase-font">A+</button>
+                    </div>
+                    <div class="textoConteudo">
+                        <button id="decrease-font">A-</button> 
+                    </div>
+                </div>
+
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="Home.html">
+                        INFORMAÇÕES
+                    </a>
+                </div>
+
+                <div class="logo justificarAlinhar-meio">
+                    <img src="../../IMG/logo.png" alt="" style="margin-top: 150px;">
+                </div>
+                
+                <div class="conteudo alinhar-meio">
+                    <a class="texto2" href="LocaisSC.html">
+                        DOAR AGORA
+                    </a>
+                </div>
+
+                <div class="formatacao2 alinhar-meio">
+                    <div class="conteudo formata">
+                        <img id="darkModeToggle" src="../../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+                    
+    
+    <div class="subNavBar format-Center space-evenly">
+        <a href="">
+            Cadastrar Locais 
+        </a>
+        <a href="">
+            Visualizar Locais 
+        </a>
+        <a href="">
+           Campanhas
+        </a>
+        <a href="">
+            Agendamentos 
+        </a>
+
+        <a href="">
+            Colaboradores
+        </a>
+        <a href="">
+            Dashboard
+        </a>
+    </div>
+
+
+    <div class="containerPai">
+    
+        <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Agendamentos</span>
+
+        <div class="dropdown">
+            <button class="dropdown-toggle" id="dropdownButton">Sangue Corinthiano - SP</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownButton">
+                <a href="#">Instituição Parceira 1</a>
+                <a href="#">Instituição Parceira 2</a>
+                <a href="#">Instituição Parceira 3</a>
+            </div>
+        </div>
+
+        <div class="boxDropdown">
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="dropdownButton2">Campanha de Julho</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownButton">
+                    <a href="#">Campanha de Julho</a>
+                    <a href="#">Campanha de Julho</a>
+                    <a href="#">Campanha de Julho</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="dropdownButton3">22/06/2024</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownButton">
+                    <a href="#">22/06/2024</a>
+                    <a href="#">22/06/2024</a>
+                    <a href="#">22/06/2024</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        <span class="tituloPreto" style="margin-bottom: 20px;text-align: start;width: 63%;">Total: $4 doadores</span>
+        
+        <div class="containerFilho">
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>$Nome Pessoa</span>
+                <span>$Horário</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Compareceu</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Não Compareceu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>$Nome Pessoa</span>
+                <span>$Horário</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Compareceu</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Não Compareceu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>$Nome Pessoa</span>
+                <span>$Horário</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Compareceu</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Não Compareceu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="inputCadastrado" style="margin-bottom: 20px;">
+                <span>$Nome Pessoa</span>
+                <span>$Horário</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Compareceu</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Não Compareceu</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+           
+        </div>
+    </div>
+
+    
+    <!-- Footer Reutilizado da Home -->
+    <div class="rodaPe format-Center sombra">
+        <div class="titulo format-Center ">
+            <span class="rodaPeTitulo">
+                SIGA AS NOSSAS REDES SOCIAIS:
+            </span>
+        </div>
+        <div class="redeSocial format space-evenly">
+            <div class="icon">
+                <a href="https://www.instagram.com/sanguecorinthiano/" target="_blank">
+                    <img src="../../IMG/instagram icon.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.facebook.com/sangueCorinthiano/?_rdr" target="_blank">
+                    <img src="../../IMG/Facebook icon.png" alt="Facebook">
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.youtube.com/user/SangueCorintiano?app=desktop" target="_blank">
+                    <img src="../../IMG/youtube icon.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+        <div class="divLogoRodaPe row space-between">
+            <div class="logo1">
+                <img src="../../IMG/SangueCorinthiano-Logo.png" alt="">
+            </div>
+            <div class="logo2">
+                <img src="../../IMG/sptech.png" alt="">
+            </div>
+        </div>
+        <div class="texto format-Center">
+            <span class="rodapeTexto">
+                SPTECH JUNTO AO SANGUE CORINTHIANO </br>
+                TODOS OS DIREITOS RESERVADOS - © 2024 - PROTEÇÃO DE DADOS
+            </span>
+        </div>
+    </div>
+
+    <!-- Script do Leaflet para o Mapa -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../JS/LocaisSC.js"></script>
+
+    <!-- Script Para alterar o modo escuro  -->
+    <script>
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+            
+            if(body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+            }
+        }
+    </script>
+
+    <!-- Script Para aumentar e diminuir fonte  -->
+<script>
+    async function buscar(){
+        const url = 'http://localhost:8080';
+        const id = sessionStorage.getItem('userId');
+
+        const resposta = await fetch(`${url}/doadores/${id}`);
+        const respostaDadosDoador = await resposta.json();
+        console.log("Resposta:", respostaDadosDoador);
+
+        const nomeUsuario = await document.getElementById('nomeUsuario')
+        nomeUsuario.innerHTML = await respostaDadosDoador.nome
+        var usuario = await respostaDadosDoador.nome
+        }
+        buscar()
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let fontSizeChange = 0;
+        const maxFontSizeChange = 3;
+        const minFontSizeChange = -3;
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+
+        document.getElementById('increase-font').addEventListener('click', function() {
+            if (fontSizeChange < maxFontSizeChange) {
+                fontSizeChange++;
+                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+            }
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function() {
+            if (fontSizeChange > minFontSizeChange) {
+                fontSizeChange--;
+                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+            }
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    });
+</script>
+
+<!-- Script Para uso da API VLIBRAS  -->
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+<script>
+    document.getElementById("dropdownButton").addEventListener("click", function() {
+        this.parentElement.classList.toggle("show");
+    });
+
+    // Fecha o dropdown se o usuário clicar fora dele
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            var dropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    document.getElementById("dropdownButton2").addEventListener("click", function() {
+        this.parentElement.classList.toggle("show");
+    });
+
+    // Fecha o dropdown se o usuário clicar fora dele
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            var dropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    document.getElementById("dropdownButton3").addEventListener("click", function() {
+        this.parentElement.classList.toggle("show");
+    });
+
+    // Fecha o dropdown se o usuário clicar fora dele
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            var dropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+    
+</body>
+
+</html>
