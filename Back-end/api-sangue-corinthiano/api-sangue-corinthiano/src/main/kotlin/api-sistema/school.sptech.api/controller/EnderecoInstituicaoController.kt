@@ -16,4 +16,9 @@ class EnderecoInstituicaoController(
         return ResponseEntity.status(200).body(service.atualizar(idInstituicao, enderecoInstituicao))
     }
 
+    @PostMapping("/{idInstituicao}")
+    fun cadastrar(@PathVariable idInstituicao: Int, @RequestBody enderecoInstituicao: EnderecoInstituicao): ResponseEntity<EnderecoInstituicao>{
+        return ResponseEntity.status(201).body(service.cadastrar(idInstituicao, enderecoInstituicao))
+    }
+
 }

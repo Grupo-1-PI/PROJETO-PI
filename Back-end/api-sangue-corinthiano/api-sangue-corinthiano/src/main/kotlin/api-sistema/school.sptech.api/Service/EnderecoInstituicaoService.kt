@@ -11,4 +11,9 @@ class EnderecoInstituicaoService(
         enderecoInstituicao.idInstituicao!!.idInstituicao = idInstituicao
         return repository.save(enderecoInstituicao)
     }
+
+    fun cadastrar(idInstituicao: Int, enderecoInstituicao: EnderecoInstituicao): EnderecoInstituicao{
+        enderecoInstituicao.idInstituicao!!.idInstituicao = idInstituicao
+        return repository.save(enderecoInstituicao)
+    }
 }
