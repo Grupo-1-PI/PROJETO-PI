@@ -5,7 +5,7 @@ import ProjetoPI.ProjetoDoadores.repository.AgendamentoRepository
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
+@CrossOrigin(origins = ["http://127.0.0.1:5500"])
 @RestController
 @RequestMapping("/agendamentos")
 class AgendamentoController(var repository: AgendamentoRepository) {
@@ -22,7 +22,6 @@ class AgendamentoController(var repository: AgendamentoRepository) {
 
     @PostMapping("/cadastrarAgendamento")
     fun criarAgendamento(@RequestBody @Valid novoAgendamentoRequest: Agendamento): ResponseEntity<String> {
-
         return try {
             val novoAgendamento = Agendamento(
                 data = novoAgendamentoRequest.data,

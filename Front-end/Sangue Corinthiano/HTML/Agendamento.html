@@ -126,10 +126,10 @@
             <div class="cardDiasDisponiveis center">
                 <div class="format space-between">
                     <!-- Cada dia com um data-dia único -->
-                    <div class="card format-Center" data-dia="24">
+                    <div class="card format-Center" data-dia="2024-09-24">
                         <span>24</span>
                     </div>
-                    <div class="card format-Center" data-dia="25">
+                    <div class="card format-Center" data-dia="2024-09-25">
                         <span>25</span>
                     </div>
                     <!-- Adicione mais dias conforme necessário -->
@@ -207,7 +207,7 @@
     <div class="confirmarAgendamento center marginTop">
         <div class="container center">
             <div class="botao">
-                <button id="buttonConfirmarAgendamento">
+                <button id="buttonConfirmarAgendamento" onclick="cadastrarAgendamento()">
                     <span>
                         CLIQUE AQUI CONFIRMAÇÃO DO AGENDAMENTO
                     </span>
@@ -272,24 +272,7 @@
         }
         buscar()
 
-        document.getElementById('buttonConfirmarAgendamento').addEventListener('click', function () {
-            Swal.fire({
-                title: "Gostaria de Confirmar seu Agendamento?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Confirmar Agendamento"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire("Agendamendo Confirmado!", "", "success");
-                    console.log("caiu aqui dentro")
-                } else if (result.isDenied) {
-                    Swal.fire("Erro no Agendamento!", "", "info");
-                    console.log("caiu dentro do else if")
-                }
-            });
-        });
+
 
         document.addEventListener('DOMContentLoaded', function () {
             let fontSizeChange = 0;
@@ -350,35 +333,80 @@
 </html>
 
 <script>
-    // Função para selecionar dia
-    const dias = document.querySelectorAll('.cardDiasDisponiveis .card'); // Seleciona todos os dias
+async function cadastrarAgendamento() {
+    const idDoador = sessionStorage.getItem('userId');
+    if (!idDoador) {
+        alert("Usuário não está logado. Faça o login para continuar.");
+        return;
+    }
+
+    let diaSelecionado = null;
+    let horaSelecionada = null;
+
+    // Captura a seleção de dias
+    const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
     dias.forEach(dia => {
         dia.addEventListener('click', function () {
-            console.log('Dia selecionado:', this.dataset.dia); // Mostra no console o dia clicado
-            // Remove a seleção anterior
+            diaSelecionado = this.dataset.dia; // Captura a data do dia selecionado
+            console.log('Dia selecionado:', diaSelecionado);
             dias.forEach(d => d.classList.remove('selecionado'));
-            // Adiciona a classe "selecionado" ao dia atual
             this.classList.add('selecionado');
         });
     });
 
-
-    // Função para selecionar horário
+    // Captura a seleção de horários
     const horarios = document.querySelectorAll('.horas');
     horarios.forEach(horario => {
         horario.addEventListener('click', function () {
-            // Remove a seleção anterior
+            horaSelecionada = this.dataset.horario; // Captura o horário selecionado
+            console.log('Horário selecionado:', horaSelecionada);
             horarios.forEach(h => h.classList.remove('selecionado'));
-            // Marca o horário atual como selecionado
             this.classList.add('selecionado');
         });
     });
 
-    function setDia(dia) {
-        document.getElementById('diaSelecionado').value = dia;
-    }
+    // Botão de confirmação
+    const botaoConfirmar = document.getElementById('buttonConfirmarAgendamento');
+    botaoConfirmar.addEventListener('click', async () => {
+        if (!diaSelecionado || !horaSelecionada) {
+            alert("Por favor, selecione um dia e um horário.");
+            return;
+        }
 
-    function setHora(hora) {
-        document.getElementById('horaSelecionada').value = hora;
-    }
+        // Envia a data e horário selecionados
+        const response = await fetch('http://localhost:8080/agendamentos/cadastrarAgendamento', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idDoador: idDoador,
+                data: diaSelecionado,
+                hora: horaSelecionada
+            })
+        });
+
+        const responseText = await response.text(); // Captura a resposta como texto
+        console.log("Resposta do servidor:", responseText); // Verifica a resposta
+
+        // Tenta converter para JSON se a resposta for válida
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (error) {
+            console.error("Erro ao parsear JSON:", error);
+            alert("Erro durante o agendamento: " + responseText);
+            return; // Interrompe a execução se a resposta não for válida
+        }
+
+        if (data.success) {
+            alert("Agendamento concluído com sucesso!"); // Mensagem simples ao usuário
+        } else {
+            alert("Erro durante o agendamento: " + data.message);
+        }
+    });
+}
+
+// Inicializa o agendamento
+cadastrarAgendamento();
 </script>

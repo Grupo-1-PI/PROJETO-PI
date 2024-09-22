@@ -1,12 +1,12 @@
-package org.example
+package ClassAbstract
 
-class Admin(
+class Root(
     nome: String,
     email: String,
     tel: String,
     dtNascimento: String,
     senha: String,
-    nivelAcesso: Int = 1,
+    nivelAcesso: Int = 2,
     sexo: String,
 ): Usuario(nome,email,tel,dtNascimento,senha,nivelAcesso,sexo) {
 

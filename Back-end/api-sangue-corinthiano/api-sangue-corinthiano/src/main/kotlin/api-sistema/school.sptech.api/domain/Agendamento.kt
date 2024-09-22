@@ -1,9 +1,6 @@
 package ProjetoPI.ProjetoDoadores.domain
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -21,14 +18,20 @@ data class Agendamento(
     var cpfDoador: Char = 0.toChar(),
 
     //@field:NotNull
+    //@field:ManyToOne
+    //@JoinColumn(name = "id_doador")
     var idDoador: Int = 1,
 
     //@field:NotNull
+    //@JoinColumn(name = "id_instituicao")
     var idInstituicao: Int = 1,
 
     //@field:NotNull
+   //@JoinColumn(name = "id_campanha")
     var idCampanha: Int = 1,
 
     //@field:NotNull
     var status: Int = 1
+
+
 )

@@ -1,4 +1,4 @@
-package org.example
+package ClassAbstract
 
 class Campanha(
     var nome: String,
