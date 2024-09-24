@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
     
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
 </head>
 
@@ -78,7 +78,7 @@
     </div>
     
                     
-    
+
     <div class="subNavBar format-Center space-evenly">
         <a href="">
             Cadastrar Locais 
@@ -101,15 +101,36 @@
         </a>
     </div>
 
+    <!-- Busca Avançada -->
+    <div class="busca-avancada" style="margin: 20px; text-align: center;">
+        <input type="text" id="searchInput" placeholder="Pesquisar locais..." style="padding: 10px; width: 200px;">
+        
+        <select id="filtroCidade" style="padding: 10px; margin-left: 10px;">
+            <option value="">Todas as cidades</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Campinas">Campinas</option>
+            <option value="Ribeirão Preto">Ribeirão Preto</option>
+            <!-- Adicione mais cidades conforme necessário -->
+        </select>
+
+        <select id="filtroTipo" style="padding: 10px; margin-left: 10px;">
+            <option value="">Todos os tipos</option>
+            <option value="Campanha">Campanha</option>
+            <option value="Local de Doação">Local de Doação</option>
+            <!-- Adicione mais tipos conforme necessário -->
+        </select>
+
+        <button onclick="filterLocations()" style="padding: 10px 20px; margin-left: 10px;">Buscar</button>
+    </div>
 
     <div class="containerPai">
-    
         <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Sangue Corinthiano - Locais Cadastrados</span>
         
         <span class="tituloPreto" style="margin-bottom: 20px;">Veja os locais que você cadastrou no sistema</span>
         
         <div class="containerFilho">
-            <div class="inputCadastrado" style="margin-bottom: 20px;">
+            <!-- Exemplo de locais com data-cidade e data-tipo para filtros -->
+            <div class="inputCadastrado" data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px;">
                 <span>Sangue Corinthiano São Paulo</span>
                 <div class="botaoVizuEdi">
                     <div class="botaoVizu">
@@ -120,8 +141,9 @@
                     </div>
                 </div>
             </div>
-            <div class="inputCadastrado" style="margin-bottom: 20px;">
-                <span>Sangue Corinthiano São Paulo</span>
+
+            <div class="inputCadastrado" data-cidade="Campinas" data-tipo="Campanha" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano Campinas</span>
                 <div class="botaoVizuEdi">
                     <div class="botaoVizu">
                         <span>Vizualizar</span>
@@ -131,19 +153,9 @@
                     </div>
                 </div>
             </div>
-            <div class="inputCadastrado" style="margin-bottom: 20px;">
-                <span>Sangue Corinthiano São Paulo</span>
-                <div class="botaoVizuEdi">
-                    <div class="botaoVizu">
-                        <span>Vizualizar</span>
-                    </div>
-                    <div class="botaoEdit">
-                        <span>Editar</span>
-                    </div>
-                </div>
-            </div>
-            <div class="inputCadastrado" style="margin-bottom: 20px;">
-                <span>Sangue Corinthiano São Paulo</span>
+
+            <div class="inputCadastrado" data-cidade="Ribeirão Preto" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                <span>Sangue Corinthiano Ribeirão Preto</span>
                 <div class="botaoVizuEdi">
                     <div class="botaoVizu">
                         <span>Vizualizar</span>
@@ -154,11 +166,10 @@
                 </div>
             </div>
             
-           
+            <!-- Adicione mais locais conforme necessário -->
         </div>
     </div>
 
-    
     <!-- Footer Reutilizado da Home -->
     <div class="rodaPe format-Center sombra">
         <div class="titulo format-Center ">
@@ -208,74 +219,37 @@
         function toggleDarkMode() {
             var body = document.body;
             body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-            
-            if(body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
-            }
         }
     </script>
 
-    <!-- Script Para aumentar e diminuir fonte  -->
-<script>
-    async function buscar(){
-        const url = 'http://localhost:8080';
-        const id = sessionStorage.getItem('userId');
+    <!-- Script para aumentar e diminuir a fonte -->
+    <script src="../../JS/AumentaDiminuiFonte.js"></script>
 
-        const resposta = await fetch(`${url}/doadores/${id}`);
-        const respostaDadosDoador = await resposta.json();
-        console.log("Resposta:", respostaDadosDoador);
+    <!-- Script de Busca Avançada -->
+    <script>
+        function filterLocations() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filtroCidade = document.getElementById('filtroCidade').value.toLowerCase();
+            const filtroTipo = document.getElementById('filtroTipo').value.toLowerCase();
+            const locations = document.getElementsByClassName('inputCadastrado');
 
-        const nomeUsuario = await document.getElementById('nomeUsuario')
-        nomeUsuario.innerHTML = await respostaDadosDoador.nome
-        var usuario = await respostaDadosDoador.nome
-        }
-        buscar()
+            for (let i = 0; i < locations.length; i++) {
+                const locationName = locations[i].getElementsByTagName('span')[0].innerText.toLowerCase();
+                const cidade = locations[i].getAttribute('data-cidade').toLowerCase();
+                const tipo = locations[i].getAttribute('data-tipo').toLowerCase();
 
-    document.addEventListener('DOMContentLoaded', function() {
-        let fontSizeChange = 0;
-        const maxFontSizeChange = 3;
-        const minFontSizeChange = -3;
-        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+                const matchesSearch = locationName.includes(searchInput);
+                const matchesCidade = filtroCidade === "" || cidade === filtroCidade;
+                const matchesTipo = filtroTipo === "" || tipo === filtroTipo;
 
-        document.getElementById('increase-font').addEventListener('click', function() {
-            if (fontSizeChange < maxFontSizeChange) {
-                fontSizeChange++;
-                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+                if (matchesSearch && matchesCidade && matchesTipo) {
+                    locations[i].style.display = "block";
+                } else {
+                    locations[i].style.display = "none";
+                }
             }
-        });
-
-        document.getElementById('decrease-font').addEventListener('click', function() {
-            if (fontSizeChange > minFontSizeChange) {
-                fontSizeChange--;
-                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
-            }
-        });
-
-        function changeFontSize(factor) {
-            contentElements.forEach(element => {
-                const currentSize = parseFloat(getComputedStyle(element).fontSize);
-                element.style.fontSize = (currentSize * factor) + 'px';
-            });
         }
-    });
-</script>
-
-<!-- Script Para uso da API VLIBRAS  -->
-
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-    
+    </script>
 </body>
 
 </html>
