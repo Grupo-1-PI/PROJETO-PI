@@ -9,4 +9,6 @@ class Campanha(
             Nome da Campanha: $nome
         """.trimIndent()
     }
+
+
 }

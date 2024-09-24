@@ -10,18 +10,18 @@ import java.time.LocalDate
 @Entity
 data class Campanha(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idCampanha: Int = 0,
+    val idCampanha: Int = 0 ,
 
     @field:NotBlank
-    var nome: String = "",
+    var nome: String = "" ,
 
     //@field:NotNull
-    var dtInicio: LocalDate = LocalDate.now(),
+    var dtInicio: Int = LocalDate.now() ,
 
-    var dtFim: LocalDate = LocalDate.now(),
+    var dtFim: Int = LocalDate.now() ,
 
     //@field:NotNull
-    var idInstituicao: Int = 1,
+    var idInstituicao: Int = 1 ,
 
     //@field:NotNull
     var idAdmin: Int = 1
