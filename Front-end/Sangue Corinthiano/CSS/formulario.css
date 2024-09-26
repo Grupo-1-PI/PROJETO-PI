@@ -165,6 +165,10 @@
 }
 
 @media (max-width: 480px) {
+    .formulario{
+        width: 100%;
+        height: auto;
+    }
     .formulario .login {
         width: 100%;
         height: auto;
