@@ -4,26 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Campanha</title>
+    <title>Visualizar Colaboradores</title>
 
     <!-- Link para o CSS -->
     <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../../CSS/home.css">
-    <link rel="stylesheet" href="../../CSS/cardLocais.css"> 
+    <link rel="stylesheet" href="../../CSS/cardLocais.css">
     <link rel="stylesheet" href="../../CSS/dark-mode.css">
     <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
     <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
-    <link rel="stylesheet" href="../../CSS/ADMCadastrarCampanha.css">
-    
+    <link rel="stylesheet" href="../../CSS/ADMVisualizarColaboradores.css">
+
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    
+
     <!-- Navbar -->
     <div class="navbar justificar-meio">
         <div class="container">
@@ -49,7 +49,7 @@
                         <button id="increase-font">A+</button>
                     </div>
                     <div class="textoConteudo">
-                        <button id="decrease-font">A-</button> 
+                        <button id="decrease-font">A-</button>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                 <div class="logo justificarAlinhar-meio">
                     <img src="../../IMG/logo.png" alt="" style="margin-top: 150px;">
                 </div>
-                
+
                 <div class="conteudo alinhar-meio">
                     <a class="texto2" href="LocaisSC.html">
                         DOAR AGORA
@@ -71,31 +71,29 @@
 
                 <div class="formatacao2 alinhar-meio">
                     <div class="conteudo formata">
-                        <img id="darkModeToggle" src="../../IMG/alternancia branco.png" alt="Alternar Modo Escuro" onclick="toggleDarkMode()">
+                        <img id="darkModeToggle" src="../../IMG/alternancia branco.png" alt="Alternar Modo Escuro"
+                            onclick="toggleDarkMode()">
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    
-                    
-    
+
     <div class="subNavBar format-Center space-evenly">
         <a href="">
-            Cadastrar Locais 
+            Cadastrar Locais
         </a>
         <a href="">
-            Visualizar Locais 
-        </a>
-        <a href="" style="color:#d40000;">
-           Campanhas
+            Visualizar Locais
         </a>
         <a href="">
-            Agendamentos 
+            Campanhas
         </a>
-
         <a href="">
+            Agendamentos
+        </a>
+        <a href="" style="color: #d40000;">
             Colaboradores
         </a>
         <a href="">
@@ -104,49 +102,56 @@
     </div>
 
 
-<!-- Botões Criar e Editar Campanha -->
-<div class="botoes-campanha">
-    <button class="botao-campanha ativo">Criar Campanha</button>
-    <button class="botao-campanha">Editar Campanha</button>
-</div>
 
-<p class="mensagem">Crie uma nova campanha:</p>
-
-    <!-- Formulário de Criação de Campanha -->
-    <div class="container-formulario">
-        <div class="campaign-form">
-            <div class="image-upload">
-                <input id="icon-img" type="image" alt=" "> <input type="file">
-            </div>
-
-
-            <form>
-                <label for="campaign-name">Nome da Campanha</label>
-                <input type="text" id="campaign-name" name="campaign-name" value="Campanha de Dezembro" required>
-
-                <label for="start-date">Data de Início</label>
-                <input type="date" id="start-date" name="start-date" value="2024-12-20" required>
-
-                <label for="end-date">Data Final</label>
-                <input type="date" id="end-date" name="end-date" value="2024-12-22" required>
-
-                <label for="responsible">Responsável</label>
-                <input type="text" id="responsible" name="responsible" value="Vania Simonetti" required>
-
-                <label for="location">Local</label>
-                <input type="text" id="location" name="location" value="Neo Química Arena" required>
-                
-                <div class="div-button">
-                    <button type="submit">Criar Campanha</button>
-                </div>
-
-            </form>
-
-        </div>
+     <!-- Botões Selecionar tipo de local que será cadastrado -->
+     <div class="botoes-campanha">
+        <button class="botao-campanha">Cadastrar Colaboradores</button>
+        <button class="botao-campanha ativo">Visualizar Colaboradores</button>
     </div>
 
 
-    
+    <!-- Busca por Local -->
+    <div class="busca-avancada" style="margin: 20px; text-align: center; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <!-- Filtro por Local -->
+        <select id="filtroLocal" style="padding: 10px; width: 200px;">
+            <option value="">Todos os Locais</option>
+            <option value="Hemocentro de São Paulo">Hemocentro de São Paulo</option>
+            <option value="Instituição Mais Vidas">Instituição Mais Vidas</option>
+            <option value="Instituição Pró Vida">Instituição Pró Vida</option>
+            <!-- Adicione mais locais conforme necessário -->
+        </select>
+
+        <!-- Botão de busca -->
+        <button onclick="filterColaboradores()" style="padding: 10px 20px;">Buscar</button>
+    </div>
+
+    <div class="containerPai">
+        <span class="tituloPreto" style="margin-bottom: 20px; display: block;">Veja os colaboradores do local selecionado:</span>
+
+        <div class="containerFilho" style="max-width: 800px; margin: 0 auto;">
+            <!-- Exemplo de colaboradores -->
+            <div class="colaborador-item" data-local="Hemocentro de São Paulo">
+                <span style="flex: 1; font-size: 16px;">Gabriel Costa</span>
+                <button class="delete-btn">Deletar</button>
+            </div>
+
+            <div class="colaborador-item" data-local="Instituição Mais Vidas">
+                <span style="flex: 1; font-size: 16px;">Clara Lima</span>
+                <button class="delete-btn">Deletar</button>
+            </div>
+
+            <div class="colaborador-item" data-local="Instituição Pró Vida">
+                <span style="flex: 1; font-size: 16px;">Pedro Santos</span>
+                <button class="delete-btn">Deletar</button>
+            </div>
+
+            <div class="colaborador-item" data-local="Hemocentro de São Paulo">
+                <span style="flex: 1; font-size: 16px;">Laura Oliveira</span>
+                <button class="delete-btn">Deletar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Reutilizado da Home -->
     <div class="rodaPe format-Center sombra">
         <div class="titulo format-Center ">
@@ -187,55 +192,68 @@
         </div>
     </div>
 
-    <!-- Script do Leaflet para o Mapa -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../JS/LocaisSC.js"></script>
-
-    <!-- Script Para alterar o modo escuro  -->
+    <!-- Script Para alterar o modo escuro -->
     <script>
         function toggleDarkMode() {
             var body = document.body;
             body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-            
-            if(body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+        }
+    </script>
+
+    <!-- Script para aumento e redução de fonte -->
+    <script>
+        const contentElements = document.querySelectorAll('body *');
+
+        document.getElementById('increase-font').addEventListener('click', function() {
+            changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function() {
+            changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    </script>
+
+    <!-- Script de filtro para colaboradores -->
+    <script>
+        function filterColaboradores() {
+            const local = document.getElementById('filtroLocal').value.toLowerCase();
+            const colaboradores = document.getElementsByClassName('colaborador-item');
+
+            for (let i = 0; i < colaboradores.length; i++) {
+                const colaboradorLocal = colaboradores[i].getAttribute('data-local').toLowerCase();
+
+                if (local === "" || colaboradorLocal === local) {
+                    colaboradores[i].style.display = "flex";
+                } else {
+                    colaboradores[i].style.display = "none";
+                }
             }
         }
     </script>
 
     <!-- Script Para aumentar e diminuir fonte  -->
 <script>
-    async function buscar(){
-        const url = 'http://localhost:8080';
-        const id = sessionStorage.getItem('userId');
-
-        const resposta = await fetch(`${url}/doadores/${id}`);
-        const respostaDadosDoador = await resposta.json();
-        console.log("Resposta:", respostaDadosDoador);
-
-        const nomeUsuario = await document.getElementById('nomeUsuario')
-        nomeUsuario.innerHTML = await respostaDadosDoador.nome
-        var usuario = await respostaDadosDoador.nome
-        }
-        buscar()
-
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let fontSizeChange = 0;
         const maxFontSizeChange = 3;
         const minFontSizeChange = -3;
-        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, span, label, input'); // Adicione outros seletores conforme necessário
 
-        document.getElementById('increase-font').addEventListener('click', function() {
+        document.getElementById('increase-font').addEventListener('click', function () {
             if (fontSizeChange < maxFontSizeChange) {
                 fontSizeChange++;
                 changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
             }
         });
 
-        document.getElementById('decrease-font').addEventListener('click', function() {
+        document.getElementById('decrease-font').addEventListener('click', function () {
             if (fontSizeChange > minFontSizeChange) {
                 fontSizeChange--;
                 changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
@@ -251,19 +269,18 @@
     });
 </script>
 
-<!-- Script Para uso da API VLIBRAS  -->
-
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+    <!-- API VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-    
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
 </body>
 
 </html>

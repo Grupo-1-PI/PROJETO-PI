@@ -1,0 +1,77 @@
+
+
+.botoes-campanha {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.botao-campanha {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #c9c5c5;
+    color: #333;
+    border-radius: 5px;
+}
+
+.botao-campanha.ativo {
+    background-color: #333;
+    color: #fff;
+}
+
+.botao-campanha:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.mensagem {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.barra-pesquisa-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.barra-pesquisa {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.barra-pesquisa:focus {
+    border-color: #333;
+}
+
+.botao-pesquisa {
+    padding: 10px;
+    background-color: #716f6f;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
+
+.botao-pesquisa:hover {
+    background-color: #d40000;
+}
+
+.icon-lupa {
+    font-size: 16px;
+    margin-right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url('../../IMG/lupa-icon.svg') no-repeat center;
+    background-size: contain;
+}

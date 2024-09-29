@@ -119,3 +119,16 @@ body.dark-mode .rodaPe .redeSocial img {
 .dark-mode .botaoVizu span {
     color: inherit; /* Herda a cor do texto da div */
 }
+
+.dark-mode .mensagem {
+    color:#FFFFFF; 
+}
+
+
+.dark-mode .containerFilho .agendamento-item span {
+    color: #FFFFFF !important; /* Força o texto branco */
+}
+
+.dark-mode .agendamento-item {
+    background-color: #1E1E1E !important; /* Ajusta o fundo para um cinza escuro */
+}

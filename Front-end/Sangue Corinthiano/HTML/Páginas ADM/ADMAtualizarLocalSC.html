@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Local - Sangue Corinthiano</title>
+    <title>Atualizar Local - Sangue Corinthiano</title>
 
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
     <link rel="stylesheet" href="../../CSS/bot.css">
     <link rel="stylesheet" href="../../CSS/dark-mode.css">
     <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
-    <link rel="stylesheet" href="../../CSS/ADMCadastrarSangueCorinthiano.css">
+    <link rel="stylesheet" href="../../CSS/ADMAtualizarLocalSC.css">
     <script src="../../JS/fetch-campanha.js"></script>
 
 
@@ -21,6 +21,7 @@
 
 <body>
 
+<!-- Navbar -->
     <div class="navbar justificar-meio">
         <div class="container">
             <div class="usuario justificar-meio">
@@ -96,13 +97,25 @@
 
     <!-- Botões Selecionar tipo de local que será cadastrado -->
 <div class="botoes-campanha">
-    <button class="botao-campanha ativo">Cadastrar Local SC</button>
-    <button class="botao-campanha">Atualizar Local SC</button>
+    <button class="botao-campanha">Cadastrar Local SC</button>
+    <button class="botao-campanha ativo">Atualizar Local SC</button>
     <button class="botao-campanha">Casastrar Local IP</button>
     <button class="botao-campanha">Atualizar Local IP</button>
 </div>
 
-<p class="mensagem">Cadastre um novo local do Sangue Corinthiano:</p>
+
+<p class="mensagem">Busque o Local SC que deseja alterar:</p>
+
+ <!-- Barra de pesquisa com ícone de lupa e botão de busca -->
+ <div class="barra-pesquisa-container">
+    <input type="text" class="barra-pesquisa" placeholder="Digite o nome do Local SC...">
+    <button class="botao-pesquisa">
+        <svg class="icon-lupa" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 18a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" />
+        </svg>
+        Buscar
+    </button>
+</div>
 
 
     <div class="box center marginTopADM">
@@ -159,7 +172,7 @@
                     <div class="boxBotao format-Center">
                         <button class="botao" id="botao-cadastrar" onclick="cadastrarInstituicaoCompleta()">
                             <span>
-                                CADASTRAR
+                               ATUALIZAR
                             </span>
                         </button>
                     </div>

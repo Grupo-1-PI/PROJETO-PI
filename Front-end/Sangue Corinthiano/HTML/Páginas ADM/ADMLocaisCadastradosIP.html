@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Campanha</title>
-
+    <title>Locais cadastrados - Instituição Parceira</title>
+    
     <!-- Link para o CSS -->
     <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
@@ -15,15 +15,16 @@
     <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
     <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
-    <link rel="stylesheet" href="../../CSS/ADMCadastrarCampanha.css">
+    <link rel="stylesheet" href="../../CSS/ADMLocaisCadstradosIP.css">
     
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    
+
+
     <!-- Navbar -->
     <div class="navbar justificar-meio">
         <div class="container">
@@ -80,15 +81,15 @@
     </div>
     
                     
-    
+
     <div class="subNavBar format-Center space-evenly">
         <a href="">
             Cadastrar Locais 
         </a>
-        <a href="">
+        <a href=""  style="color: #d40000;">
             Visualizar Locais 
         </a>
-        <a href="" style="color:#d40000;">
+        <a href="">
            Campanhas
         </a>
         <a href="">
@@ -103,50 +104,81 @@
         </a>
     </div>
 
-
-<!-- Botões Criar e Editar Campanha -->
+    <!-- Botões Selecionar tipo de local que será cadastrado -->
 <div class="botoes-campanha">
-    <button class="botao-campanha ativo">Criar Campanha</button>
-    <button class="botao-campanha">Editar Campanha</button>
+    <button class="botao-campanha">Visualizar Locais SC</button>
+    <button class="botao-campanha ativo">Visualizar Locais IP</button>
 </div>
 
-<p class="mensagem">Crie uma nova campanha:</p>
+    <!-- Busca Avançada -->
+    <div class="busca-avancada" style="margin: 20px; text-align: center;">
+        <input type="text" id="searchInput" placeholder="Pesquisar locais..." style="padding: 10px; width: 200px;">
+        
+        <select id="filtroCidade" style="padding: 10px; margin-left: 10px;">
+            <option value="">Todas as cidades</option>
+            <option value="São Paulo">Hemocentro de São Paulo</option>
+            <option value="Campinas">Instituição Mais Sangue</option>
+            <option value="Ribeirão Preto">Instituição Pró Sangue</option>
+            <!-- Adicione mais cidades conforme necessário -->
+        </select>
 
-    <!-- Formulário de Criação de Campanha -->
-    <div class="container-formulario">
-        <div class="campaign-form">
-            <div class="image-upload">
-                <input id="icon-img" type="image" alt=" "> <input type="file">
+        <select id="filtroTipo" style="padding: 10px; margin-left: 10px;">
+            <option value="">Todos os tipos</option>
+            <option value="Campanha">Campanha</option>
+            <option value="Local de Doação">Local de Doação</option>
+            <!-- Adicione mais tipos conforme necessário -->
+        </select>
+
+        <button onclick="filterLocations()" style="padding: 10px 20px; margin-left: 10px;">Buscar</button>
+    </div>
+
+    <div class="containerPai">
+        <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Instituições Parceiras - Locais Cadastrados</span>
+        
+        <span class="tituloPreto" style="margin-bottom: 20px;">Veja os locais que você cadastrou no sistema:</span>
+        
+        <div class="containerFilho">
+            <!-- Exemplo de locais com data-cidade e data-tipo para filtros -->
+            <div class="inputCadastrado" data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                <span>Hemocentro de São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
             </div>
 
-
-            <form>
-                <label for="campaign-name">Nome da Campanha</label>
-                <input type="text" id="campaign-name" name="campaign-name" value="Campanha de Dezembro" required>
-
-                <label for="start-date">Data de Início</label>
-                <input type="date" id="start-date" name="start-date" value="2024-12-20" required>
-
-                <label for="end-date">Data Final</label>
-                <input type="date" id="end-date" name="end-date" value="2024-12-22" required>
-
-                <label for="responsible">Responsável</label>
-                <input type="text" id="responsible" name="responsible" value="Vania Simonetti" required>
-
-                <label for="location">Local</label>
-                <input type="text" id="location" name="location" value="Neo Química Arena" required>
-                
-                <div class="div-button">
-                    <button type="submit">Criar Campanha</button>
+            <div class="inputCadastrado" data-cidade="Campinas" data-tipo="Campanha" style="margin-bottom: 20px;">
+                <span>Instituição Mais Sangue</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
                 </div>
+            </div>
 
-            </form>
-
+            <div class="inputCadastrado" data-cidade="Ribeirão Preto" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                <span>Instituição Pró Sangue</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Adicione mais locais conforme necessário -->
         </div>
     </div>
 
-
-    
     <!-- Footer Reutilizado da Home -->
     <div class="rodaPe format-Center sombra">
         <div class="titulo format-Center ">
@@ -196,46 +228,25 @@
         function toggleDarkMode() {
             var body = document.body;
             body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-            
-            if(body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
-            }
         }
     </script>
 
     <!-- Script Para aumentar e diminuir fonte  -->
 <script>
-    async function buscar(){
-        const url = 'http://localhost:8080';
-        const id = sessionStorage.getItem('userId');
-
-        const resposta = await fetch(`${url}/doadores/${id}`);
-        const respostaDadosDoador = await resposta.json();
-        console.log("Resposta:", respostaDadosDoador);
-
-        const nomeUsuario = await document.getElementById('nomeUsuario')
-        nomeUsuario.innerHTML = await respostaDadosDoador.nome
-        var usuario = await respostaDadosDoador.nome
-        }
-        buscar()
-
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let fontSizeChange = 0;
         const maxFontSizeChange = 3;
         const minFontSizeChange = -3;
-        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, span, label, input'); // Adicione outros seletores conforme necessário
 
-        document.getElementById('increase-font').addEventListener('click', function() {
+        document.getElementById('increase-font').addEventListener('click', function () {
             if (fontSizeChange < maxFontSizeChange) {
                 fontSizeChange++;
                 changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
             }
         });
 
-        document.getElementById('decrease-font').addEventListener('click', function() {
+        document.getElementById('decrease-font').addEventListener('click', function () {
             if (fontSizeChange > minFontSizeChange) {
                 fontSizeChange--;
                 changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
@@ -251,19 +262,34 @@
     });
 </script>
 
-<!-- Script Para uso da API VLIBRAS  -->
+    <!-- Script para aumentar e diminuir a fonte -->
+    <script src="../../JS/AumentaDiminuiFonte.js"></script>
 
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-    
+    <!-- Script de Busca Avançada -->
+    <script>
+        function filterLocations() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const filtroCidade = document.getElementById('filtroCidade').value.toLowerCase();
+            const filtroTipo = document.getElementById('filtroTipo').value.toLowerCase();
+            const locations = document.getElementsByClassName('inputCadastrado');
+
+            for (let i = 0; i < locations.length; i++) {
+                const locationName = locations[i].getElementsByTagName('span')[0].innerText.toLowerCase();
+                const cidade = locations[i].getAttribute('data-cidade').toLowerCase();
+                const tipo = locations[i].getAttribute('data-tipo').toLowerCase();
+
+                const matchesSearch = locationName.includes(searchInput);
+                const matchesCidade = filtroCidade === "" || cidade === filtroCidade;
+                const matchesTipo = filtroTipo === "" || tipo === filtroTipo;
+
+                if (matchesSearch && matchesCidade && matchesTipo) {
+                    locations[i].style.display = "block";
+                } else {
+                    locations[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

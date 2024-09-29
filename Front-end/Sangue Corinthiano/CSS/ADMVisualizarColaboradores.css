@@ -1,0 +1,60 @@
+
+.botoes-campanha {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.botao-campanha {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #c9c5c5;
+    color: #333;
+    border-radius: 5px;
+}
+
+.botao-campanha.ativo {
+    background-color: #333;
+    color: #fff;
+}
+
+.botao-campanha:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.mensagem {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.colaborador-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+}
+
+.delete-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: #e60000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
