@@ -3,25 +3,22 @@ package ProjetoPI.ProjetoDoadores.domain
 import jakarta.persistence.*
 import java.time.LocalDate
 
-@Entity
-class Doador(
+class Root(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idDoador: Int = 0,
+    val idRoot: Int = 0,
 
     nome: String,
     email: String,
-    dtNasc: LocalDate,
+    dtNasc: LocalDate = LocalDate.now(),
     sexo: Char,
-    var primeiraDoacao: Char,
     senha: String,
-    var idOrigemTrafego: Int,
-    nivelAcesso: Int,
+    nivelAcesso: Int = 1,
 
     @OneToMany(mappedBy = "doador", cascade = [CascadeType.ALL], orphanRemoval = true)
     val telefones: MutableList<TelefoneDoador> = mutableListOf()
 
 ): Usuario(nome,email,dtNasc,sexo, senha, nivelAcesso) {
     override fun autenticar(): Boolean {
-        return nivelAcesso >= 2
+        TODO("Not yet implemented")
     }
 }

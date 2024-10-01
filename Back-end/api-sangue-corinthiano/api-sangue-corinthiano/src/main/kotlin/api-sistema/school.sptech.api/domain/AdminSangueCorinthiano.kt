@@ -9,32 +9,27 @@ import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
 
 @Entity
-data class AdminSangueCorinthiano(
+class AdminSangueCorinthiano(
     @field:Id @field:GeneratedValue(strategy = GenerationType.IDENTITY)
     val idAdmin: Int = 0,
 
     @field:NotBlank
-    var nome: String = "",
-
-    @field:NotBlank
-    var cpf: Char = 0.toChar(),
-
-    @field:NotBlank
-    var email: String = "",
-
-    @field:NotBlank
-    var senha: String = "",
+    var cpf: String = "",
 
     @field:NotNull
-    var dtNasc: LocalDate = LocalDate.now(),
-
-    @field:NotNull
-    var sexo: Char = 0.toChar(),
+    var idCargo: Int = 0,
 
     @field:NotNull
     var idUnidade: Int = 0,
 
-    @field:NotNull
-    var idCargo: Int = 0
-) {
+    nome: String ,
+    email: String ,
+    dtNasc: LocalDate = LocalDate.now() ,
+    sexo: Char ,
+    senha: String ,
+    nivelAcesso: Int = 3 ,
+    ): Usuario(nome,email,dtNasc,sexo, senha, nivelAcesso) {
+    override fun autenticar(): Boolean {
+        return nivelAcesso >= 2
+    }
 }

@@ -32,7 +32,8 @@ class DoadorController (var repository: DoadorRepository, val telefoneRepository
                     sexo = novoDoadorRequest.sexo,
                     primeiraDoacao = novoDoadorRequest.primeiraDoacao,
                     senha = novoDoadorRequest.senha,
-                    idOrigemTrafego = novoDoadorRequest.idOrigemTrafego
+                    idOrigemTrafego = novoDoadorRequest.idOrigemTrafego,
+                    nivelAcesso = 1
                 )
 
                 val doadorSalvo = repository.save(novoDoador)
