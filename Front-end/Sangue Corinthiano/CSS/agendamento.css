@@ -217,6 +217,9 @@
     .formatTitulo, .formatTituloCinza, .formatTituloBranco, .formatTextoBranco {
         font-size: 18px;
     }
+    .banner{
+        margin-top: 75px;
+    }
 
     .textPreto {
         font-size: 8px;
@@ -277,6 +280,7 @@
     font-weight: bold;
     color: rgb(255, 255, 255);
 }   
+
 .navbar 
 .alinhar-meio {
     display: flex;
@@ -297,6 +301,11 @@
         font-size: 18px;
         font-weight: 600;
         color: var(--preto);
+    }
+}
+.navbar {
+    .margintop {
+        margin-top: 137px !important;
     }
 }
 .banner {
