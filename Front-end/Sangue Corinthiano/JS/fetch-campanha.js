@@ -38,7 +38,7 @@ async function cadastrarInstituicao(){
 async function cadastrarLocalSC(instituicaoId){
 
     try {
-        const response = await fetch(`http://localhost:8080/enderecos-instituicoes/${instituicaoId}`, {
+        const response = await fetch(`http://localhost:8080/enderecos-instituicoes/${idInstituicao}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
