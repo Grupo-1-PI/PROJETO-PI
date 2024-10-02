@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS instituicao (
   cnpj CHAR(14),
   latitude DECIMAL(10, 8),
   longitude DECIMAL(11, 8),
+  TipoInstituicao VARCHAR(45),
   PRIMARY KEY (id_instituicao)
 );
 
@@ -220,12 +221,12 @@ VALUES (NOW(), 1, 1),
        (NOW(), 5, 5);
 
 -- Inserindo dados na tabela 'instituicao'
-INSERT INTO instituicao (nome, cnpj, latitude, longitude) 
-VALUES ('Instituto Vida', '12345678901234', -23.550520, -46.633308), 
-       ('Banco de Sangue Esperança', '23456789012345', -22.908333, -43.196388), 
-       ('Hemocentro São Paulo', '34567890123456', -23.550520, -46.633308), 
-       ('Fundação Pró-Sangue', '45678901234567', -23.533773, -46.625290), 
-       ('Sangue Corinthiano', '56789012345678', -23.532183, -46.639513);
+INSERT INTO instituicao (nome, cnpj, latitude, longitude, TipoInstituicao) 
+VALUES ('Instituto Vida', '12345678901234', -23.550520, -46.633308, 'Instituição Parceira'), 
+       ('Banco de Sangue Esperança', '23456789012345', -22.908333, -43.196388, 'Instituição Parceira'), 
+       ('Hemocentro São Paulo', '34567890123456', -23.550520, -46.633308, 'Instituição Parceira'), 
+       ('Fundação Pró-Sangue', '45678901234567', -23.533773, -46.625290,'Instituição Parceira' ), 
+       ('Sangue Corinthiano', '56789012345678', -23.532183, -46.639513, 'Sangue Corinthiano');
 
 -- Inserindo dados na tabela 'endereco_instituicao'
 INSERT INTO endereco_instituicao (rua, numero, bairro, complemento, cidade, estado, cep, latitude, longitude, id_instituicao) 
@@ -494,3 +495,6 @@ GROUP BY DATE(a.data), TIME(a.hora)
 ORDER BY data_doacao, hora_doacao;
 
 SELECT * FROM vw_padroes_temporais_doacao;
+
+SELECT * FROM instituicao;
+SELECT * FROM endereco_instituicao;
