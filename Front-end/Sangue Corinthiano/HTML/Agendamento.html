@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../CSS/dark-mode.css">
     <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
 
-    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body>
@@ -118,6 +117,14 @@
               </form>
         </div>
     </div> -->
+    <div class="center marginTop">
+        <div class="container center">
+            <div class="botao">
+                <button id="buttonUndo" onclick="desfazerSelecao()">Desfazer Seleção</button>
+                <button id="buttonRedo" onclick="refazerSelecao()">Selecionar Novamente</button>
+            </div>
+        </div>
+    </div>
     <div class="diasDisponiveis center marginTop">
         <div class="container">
             <div class="titulo center">
@@ -333,6 +340,7 @@
 </html>
 
 <script>
+    
 async function cadastrarAgendamento() {
     const idDoador = sessionStorage.getItem('userId');
     if (!idDoador) {
@@ -372,7 +380,118 @@ async function cadastrarAgendamento() {
             alert("Por favor, selecione um dia e um horário.");
             return;
         }
+        // Variáveis para armazenar as pilhas de desfazer e refazer
+let pilhaSelecao = [];
+let pilhaRefazer = [];
 
+// Variáveis para armazenar seleção atual
+let diaSelecionado = null;
+let horaSelecionada = null;
+
+async function cadastrarAgendamento() {
+    const idDoador = sessionStorage.getItem('userId');
+    if (!idDoador) {
+        alert("Usuário não está logado. Faça o login para continuar.");
+        return;
+    }
+
+    // Captura a seleção de dias
+    const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
+    dias.forEach(dia => {
+        dia.addEventListener('click', function () {
+            // Salva a seleção atual na pilha
+            salvarSelecao(diaSelecionado, horaSelecionada);
+
+            diaSelecionado = this.dataset.dia;
+            console.log('Dia selecionado:', diaSelecionado);
+            dias.forEach(d => d.classList.remove('selecionado'));
+            this.classList.add('selecionado');
+        });
+    });
+
+    // Captura a seleção de horários
+    const horarios = document.querySelectorAll('.horas');
+    horarios.forEach(horario => {
+        horario.addEventListener('click', function () {
+            // Salva a seleção atual na pilha
+            salvarSelecao(diaSelecionado, horaSelecionada);
+
+            horaSelecionada = this.dataset.horario;
+            console.log('Horário selecionado:', horaSelecionada);
+            horarios.forEach(h => h.classList.remove('selecionado'));
+            this.classList.add('selecionado');
+        });
+    });
+}
+
+// Função para salvar a seleção atual na pilha
+function salvarSelecao(dia, hora) {
+    if (dia && hora) {
+        pilhaSelecao.push({ dia, hora });
+        // Limpa a pilha de refazer quando houver nova ação
+        pilhaRefazer = [];
+    }
+}
+
+// Função para desfazer a seleção
+function desfazerSelecao() {
+    if (pilhaSelecao.length > 0) {
+        // Move a seleção atual para a pilha de refazer
+        pilhaRefazer.push({ dia: diaSelecionado, hora: horaSelecionada });
+
+        // Recupera a última seleção da pilha
+        const ultimaSelecao = pilhaSelecao.pop();
+        diaSelecionado = ultimaSelecao.dia;
+        horaSelecionada = ultimaSelecao.hora;
+
+        // Atualiza a UI para refletir a seleção desfeita
+        atualizarSelecaoUI();
+    } else {
+        alert("Não há seleções para desfazer.");
+    }
+}
+
+// Função para refazer a seleção
+function refazerSelecao() {
+    if (pilhaRefazer.length > 0) {
+        // Move a seleção atual para a pilha de desfazer
+        pilhaSelecao.push({ dia: diaSelecionado, hora: horaSelecionada });
+
+        // Recupera a última seleção da pilha de refazer
+        const ultimaRefazer = pilhaRefazer.pop();
+        diaSelecionado = ultimaRefazer.dia;
+        horaSelecionada = ultimaRefazer.hora;
+
+        // Atualiza a UI para refletir a seleção refeita
+        atualizarSelecaoUI();
+    } else {
+        alert("Não há seleções para refazer.");
+    }
+}
+
+// Função para atualizar a UI com base na seleção atual
+function atualizarSelecaoUI() {
+    // Atualiza o estilo dos dias selecionados
+    document.querySelectorAll('.cardDiasDisponiveis .card').forEach(dia => {
+        dia.classList.remove('selecionado');
+        if (dia.dataset.dia === diaSelecionado) {
+            dia.classList.add('selecionado');
+        }
+    });
+
+    // Atualiza o estilo dos horários selecionados
+    document.querySelectorAll('.horas').forEach(horario => {
+        horario.classList.remove('selecionado');
+        if (horario.dataset.horario === horaSelecionada) {
+            horario.classList.add('selecionado');
+        }
+    });
+}
+
+// Função para inicializar o agendamento
+document.addEventListener('DOMContentLoaded', function () {
+    cadastrarAgendamento();
+});
         // Envia a data e horário selecionados
         const response = await fetch('http://localhost:8080/agendamentos/cadastrarAgendamento', {
             method: 'POST',
@@ -410,3 +529,159 @@ async function cadastrarAgendamento() {
 // Inicializa o agendamento
 cadastrarAgendamento();
 </script>
+
+<script>
+    // Variáveis para armazenar as pilhas de desfazer e refazer
+    let pilhaSelecao = [];
+    let pilhaRefazer = [];
+    
+    // Variáveis para armazenar seleção atual
+    let diaSelecionado = null;
+    let horaSelecionada = null;
+    
+    async function cadastrarAgendamento() {
+        const idDoador = sessionStorage.getItem('userId');
+        if (!idDoador) {
+            alert("Usuário não está logado. Faça o login para continuar.");
+            return;
+        }
+    
+        // Captura a seleção de dias
+        const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
+        dias.forEach(dia => {
+            dia.addEventListener('click', function () {
+                // Salva a seleção atual na pilha
+                salvarSelecao(diaSelecionado, horaSelecionada);
+    
+                diaSelecionado = this.dataset.dia; // Captura a data do dia selecionado
+                console.log('Dia selecionado:', diaSelecionado);
+                dias.forEach(d => d.classList.remove('selecionado'));
+                this.classList.add('selecionado');
+            });
+        });
+    
+        // Captura a seleção de horários
+        const horarios = document.querySelectorAll('.horas');
+        horarios.forEach(horario => {
+            horario.addEventListener('click', function () {
+                // Salva a seleção atual na pilha
+                salvarSelecao(diaSelecionado, horaSelecionada);
+    
+                horaSelecionada = this.dataset.horario; // Captura o horário selecionado
+                console.log('Horário selecionado:', horaSelecionada);
+                horarios.forEach(h => h.classList.remove('selecionado'));
+                this.classList.add('selecionado');
+            });
+        });
+    
+        // Botão de confirmação
+        const botaoConfirmar = document.getElementById('buttonConfirmarAgendamento');
+        botaoConfirmar.addEventListener('click', async () => {
+            if (!diaSelecionado || !horaSelecionada) {
+                alert("Por favor, selecione um dia e um horário.");
+                return;
+            }
+    
+            // Envia a data e horário selecionados
+            const response = await fetch('http://localhost:8080/agendamentos/cadastrarAgendamento', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    idDoador: idDoador,
+                    data: diaSelecionado,
+                    hora: horaSelecionada
+                })
+            });
+    
+            const responseText = await response.text(); // Captura a resposta como texto
+            console.log("Resposta do servidor:", responseText); // Verifica a resposta
+    
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (error) {
+                console.error("Erro ao parsear JSON:", error);
+                alert("Erro durante o agendamento: " + responseText);
+                return; // Interrompe a execução se a resposta não for válida
+            }
+    
+            if (data.success) {
+                alert("Agendamento concluído com sucesso!"); // Mensagem simples ao usuário
+            } else {
+                alert("Erro durante o agendamento: " + data.message);
+            }
+        });
+    }
+    
+    // Função para salvar a seleção atual na pilha
+    function salvarSelecao(dia, hora) {
+        if (dia && hora) {
+            pilhaSelecao.push({ dia, hora });
+            // Limpa a pilha de refazer quando houver nova ação
+            pilhaRefazer = [];
+        }
+    }
+    
+    // Função para desfazer a seleção
+    function desfazerSelecao() {
+        if (pilhaSelecao.length > 0) {
+            // Move a seleção atual para a pilha de refazer
+            pilhaRefazer.push({ dia: diaSelecionado, hora: horaSelecionada });
+    
+            // Recupera a última seleção da pilha
+            const ultimaSelecao = pilhaSelecao.pop();
+            diaSelecionado = ultimaSelecao.dia;
+            horaSelecionada = ultimaSelecao.hora;
+    
+            // Atualiza a UI para refletir a seleção desfeita
+            atualizarSelecaoUI();
+        } else {
+            alert("Não há seleções para desfazer.");
+        }
+    }
+    
+    // Função para refazer a seleção
+    function refazerSelecao() {
+        if (pilhaRefazer.length > 0) {
+            // Move a seleção atual para a pilha de desfazer
+            pilhaSelecao.push({ dia: diaSelecionado, hora: horaSelecionada });
+    
+            // Recupera a última seleção da pilha de refazer
+            const ultimaRefazer = pilhaRefazer.pop();
+            diaSelecionado = ultimaRefazer.dia;
+            horaSelecionada = ultimaRefazer.hora;
+    
+            // Atualiza a UI para refletir a seleção refeita
+            atualizarSelecaoUI();
+        } else {
+            alert("Não há seleções para refazer.");
+        }
+    }
+    
+    // Função para atualizar a UI com base na seleção atual
+    function atualizarSelecaoUI() {
+        // Atualiza o estilo dos dias selecionados
+        document.querySelectorAll('.cardDiasDisponiveis .card').forEach(dia => {
+            dia.classList.remove('selecionado');
+            if (dia.dataset.dia === diaSelecionado) {
+                dia.classList.add('selecionado');
+            }
+        });
+    
+        // Atualiza o estilo dos horários selecionados
+        document.querySelectorAll('.horas').forEach(horario => {
+            horario.classList.remove('selecionado');
+            if (horario.dataset.horario === horaSelecionada) {
+                horario.classList.add('selecionado');
+            }
+        });
+    }
+    
+    // Inicializa o agendamento
+    document.addEventListener('DOMContentLoaded', function () {
+        cadastrarAgendamento();
+    });
+    </script>
+    
