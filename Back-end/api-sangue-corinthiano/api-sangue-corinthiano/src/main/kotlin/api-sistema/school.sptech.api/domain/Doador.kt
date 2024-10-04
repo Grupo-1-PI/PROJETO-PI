@@ -6,7 +6,7 @@ import java.time.LocalDate
 @Entity
 class Doador(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idDoador: Int = 0,
+    var idDoador: Int = 0,
 
     nome: String,
     email: String,
@@ -24,4 +24,15 @@ class Doador(
     override fun autenticar(): Boolean {
         return nivelAcesso >= 2
     }
+    constructor() : this(
+        nome = "",
+        email = "",
+        dtNasc = LocalDate.now(),
+        sexo = 'M',
+        primeiraDoacao = 'N',
+        senha = "",
+        idOrigemTrafego = 0,
+        nivelAcesso = 0
+    )
+
 }
