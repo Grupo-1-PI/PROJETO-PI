@@ -156,6 +156,8 @@ h2{
     }
 .div-dados-usuario{
     width: 62%;
+    left: 0px !important;
+    
 }
 .minhas-doacoes{
     font-size: 15px;

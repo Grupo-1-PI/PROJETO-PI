@@ -34,3 +34,87 @@
     color: #333;
 }
 
+@media only screen and (max-width: 480px) {
+    .subNavBar {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        margin-top: 64px;
+        flex-wrap: wrap;
+    }
+    .subNavBar {
+        a {
+            padding: 3%;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+    .container-formulario {
+        /* display: flex;
+        justify-content: center; */
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 0 !important;
+    }
+    .rodaPe {
+        height: auto;
+        padding: 0px !important;
+    }
+    .box {
+        height: 179vh;
+        width: 100%;
+    }
+    .box {
+        & .formatar {
+            .conteudo {
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+    .box {
+        & .formatar {
+            & .conteudo {
+                img {
+                    width: 50%;
+                    height: 50%;
+                    background-color: white;
+                    display: none;
+                }
+            }
+        }
+    }
+    .navbar {
+        & .logo {
+            img {
+                width: 200px;
+                height: 200px;
+                margin-top: 154px !important;
+            }
+        }
+    }
+    .col-10 {
+        flex: 0 0 auto;
+        width: 100% !important;
+    }
+    .botoes-campanha {
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 28px;
+    }
+    .g-2, .gx-2 {
+        --bs-gutter-x: 0.5rem;
+        margin-top: 16px!important;
+    }
+    .rodaPe {
+        .rodapeTexto {
+            text-align: center;
+            font-size: 13px !important;
+            color: var(--preto-transparente);
+        }
+    }
+}
+
