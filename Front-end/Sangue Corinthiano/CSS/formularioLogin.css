@@ -134,6 +134,15 @@
     }
 
 }@media (max-width: 768px) {
+    .navbar {
+        & .logo {
+            img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: -9px !important;
+            }
+        }
+    }
     .formulario .login {
         width: 100%;
         height: auto;
