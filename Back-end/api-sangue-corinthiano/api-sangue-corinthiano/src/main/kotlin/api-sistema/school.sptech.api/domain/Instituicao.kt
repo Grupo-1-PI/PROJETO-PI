@@ -1,17 +1,16 @@
 package ProjetoPI.ProjetoDoadores.domain
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity
-class Instituicao(
-    @field:Id @field:GeneratedValue(strategy = GenerationType.IDENTITY)
+data class Instituicao(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idInstituicao: Int? = null,
-    var nome: String? = null,
-    var cnpj: String? = null,
-    var latitude: String? = null,
-    var longitude: String? = null
-) {
-}
+
+    val nome: String,
+    val tipoInstituicao: String,
+
+    @OneToOne(mappedBy = "instituicao", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    val enderecoInstituicao: EnderecoInstituicao? = null
+)
