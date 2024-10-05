@@ -143,3 +143,34 @@ label{
     background: url('../../IMG/lupa-icon.svg') no-repeat center;
     background-size: contain;
 }
+@media only screen and (max-width: 480px) {
+    .subNavBar {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: center;
+        margin-top: 64px;
+        flex-wrap: wrap;
+    }
+    .subNavBar {
+        a {
+            padding: 3%;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+    .container-formulario {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 0 !important;
+    }
+    .rodaPe {
+        height: auto;
+        padding: 0px !important;
+    }
+
+}
