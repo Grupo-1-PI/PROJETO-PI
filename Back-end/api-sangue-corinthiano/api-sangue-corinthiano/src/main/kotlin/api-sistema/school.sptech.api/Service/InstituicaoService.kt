@@ -2,6 +2,7 @@ package ProjetoPI.ProjetoDoadores.repository
 
 import ProjetoPI.ProjetoDoadores.domain.Instituicao
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 
 @Service
@@ -17,5 +18,7 @@ class InstituicaoService(
         novaInstituicao.idInstituicao = idInstituicao
         return repository.save(novaInstituicao)
     }
+
+
 
 }

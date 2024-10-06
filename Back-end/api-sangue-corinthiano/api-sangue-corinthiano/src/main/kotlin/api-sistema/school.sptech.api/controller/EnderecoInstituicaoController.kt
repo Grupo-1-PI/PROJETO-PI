@@ -21,4 +21,10 @@ class EnderecoInstituicaoController(
         return ResponseEntity.status(201).body(service.cadastrar(idInstituicao, enderecoInstituicao))
     }
 
+    @GetMapping
+    fun listar(@RequestParam parceiro: Boolean): ResponseEntity<List<EnderecoInstituicao>>{
+        val listaEnderecoInstituicao = service.buscar(parceiro)
+        return ResponseEntity.status(200).body(listaEnderecoInstituicao)
+    }
+
 }

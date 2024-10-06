@@ -12,6 +12,7 @@ class Instituicao(
     var nome: String? = null,
     var cnpj: String? = null,
     var latitude: String? = null,
-    var longitude: String? = null
+    var longitude: String? = null,
+    var parceiro: Boolean? = false
 ) {
 }

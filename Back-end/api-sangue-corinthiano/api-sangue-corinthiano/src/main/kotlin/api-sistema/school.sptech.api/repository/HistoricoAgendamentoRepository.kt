@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface HistoricoAgendamentoRepository:JpaRepository<HistoricoAgendamento,Int> {
 
+
+
 }

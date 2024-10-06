@@ -9,6 +9,12 @@
 //   });
 
 
+function verificarSeEVisualizacao(){
+    if(sessionStorage.getItem("ENDERECO-INSTITUICAO-ID")){
+        
+    }
+}
+
 async function cadastrarInstituicao(){
 
     try {
