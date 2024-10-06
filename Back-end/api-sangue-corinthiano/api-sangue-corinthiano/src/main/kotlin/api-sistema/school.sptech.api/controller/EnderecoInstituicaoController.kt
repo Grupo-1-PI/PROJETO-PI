@@ -1,6 +1,6 @@
 package ProjetoPI.ProjetoDoadores.controller
 
-import ProjetoPI.ProjetoDoadores.repository.EnderecoInstituicao
+import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import ProjetoPI.ProjetoDoadores.repository.EnderecoInstituicaoService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

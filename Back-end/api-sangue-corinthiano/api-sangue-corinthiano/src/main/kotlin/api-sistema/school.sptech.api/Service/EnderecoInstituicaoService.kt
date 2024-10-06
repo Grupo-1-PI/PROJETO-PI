@@ -1,6 +1,6 @@
 package ProjetoPI.ProjetoDoadores.repository
 
-import ProjetoPI.ProjetoDoadores.domain.Instituicao
+import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import org.springframework.http.HttpStatusCode
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
@@ -19,12 +19,13 @@ class EnderecoInstituicaoService(
     }
 
     fun atualizar(idInstituicao: Int, enderecoInstituicao: EnderecoInstituicao): EnderecoInstituicao{
-        enderecoInstituicao.idInstituicao!!.idInstituicao = idInstituicao
+        enderecoInstituicao.instituicao!!.idInstituicao = idInstituicao
         return repository.save(enderecoInstituicao)
     }
 
-    fun cadastrar(idInstituicao: Int, enderecoInstituicao: EnderecoInstituicao): EnderecoInstituicao{
-        enderecoInstituicao.idInstituicao!!.idInstituicao = idInstituicao
+    fun cadastrar(idInstituicao: Int, enderecoInstituicao: EnderecoInstituicao): EnderecoInstituicao {
+        // Atribui a instituição correta ao endereço antes de salvar
+        enderecoInstituicao.instituicao!!.idInstituicao = idInstituicao
         return repository.save(enderecoInstituicao)
     }
 

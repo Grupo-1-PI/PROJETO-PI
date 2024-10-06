@@ -1,23 +1,24 @@
-package ProjetoPI.ProjetoDoadores.repository
+package ProjetoPI.ProjetoDoadores.domain
 
-import ProjetoPI.ProjetoDoadores.domain.Instituicao
 import jakarta.persistence.*
 
 @Entity
-class EnderecoInstituicao(
-    @field:Id @field:GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idEnderecoInstituicao: Int? = null,
-    var rua: String? = null,
-    var numero: Int? = null,
-    var bairro: String? = null,
-    var complemento: String? = null,
-    var cidade: String? = null,
-    var estado: String? = null,
-    var cep: String? = null,
-    var latitude: Double? = null,
-    var longitude: Double? = null,
-    @field:ManyToOne
-    @JoinColumn(name = "id_instituicao")
-    var idInstituicao: Instituicao? = null
-) {
-}
+data class EnderecoInstituicao(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val idEnderecoInstituicao: Int? = null,
+
+    val rua: String,
+    val numero: Int,
+    val bairro: String,
+    val complemento: String?,
+    val cidade: String,
+    val estado: String,
+    val cep: String,
+    val latitude: Double,
+    val longitude: Double,
+
+    @OneToOne
+    @JoinColumn(name = "idInstituicao")  // Nome da coluna de chave estrangeira
+    val instituicao: Instituicao? = null
+)
