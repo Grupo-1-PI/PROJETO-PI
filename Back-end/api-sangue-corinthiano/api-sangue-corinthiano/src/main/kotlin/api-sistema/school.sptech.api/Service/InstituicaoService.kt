@@ -2,7 +2,9 @@ package ProjetoPI.ProjetoDoadores.repository
 
 import ProjetoPI.ProjetoDoadores.domain.Instituicao
 import ProjetoPI.ProjetoDoadores.dto.InstituicaoDto
+import org.springframework.http.HttpStatusCode
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 
 
 @Service
@@ -10,6 +12,14 @@ class InstituicaoService(
     val repository: InstituicaoRepository
 ) {
 
+
+    fun validarExistencia(idInstituicao: Int){
+        if(!repository.existsById(idInstituicao)){
+            throw ResponseStatusException(
+                HttpStatusCode.valueOf(404), "Instituição não encontrada."
+            )
+        }
+    }
     fun cadastrar(novaInstituicao: Instituicao): Instituicao{
        return repository.save(novaInstituicao)
     }

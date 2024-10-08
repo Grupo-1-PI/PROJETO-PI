@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 @Repository
-interface InstituicaoRepository : JpaRepository<Instituicao, Long> {
+interface InstituicaoRepository : JpaRepository<Instituicao, Int> {
 
     @Query("""
         SELECT new ProjetoPI.ProjetoDoadores.dto.InstituicaoDto(i.nome, e.latitude, e.longitude) 

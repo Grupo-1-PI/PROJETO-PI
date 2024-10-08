@@ -9,10 +9,10 @@ data class Instituicao(
     var idInstituicao: Int? = null,
     var nome: String? = null,
     var cnpj: String? = null,
-    var latitude: String? = null,
-    var longitude: String? = null,
     var parceiro: Boolean? = false,
-    @OneToOne(mappedBy = "instituicao", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val enderecoInstituicao: EnderecoInstituicao? = null
+    var tipoInstituicao: String? = null,
+    @OneToMany(mappedBy = "instituicao")
+    val enderecoInstituicao: List<EnderecoInstituicao>? = null
 ) {
+
 }

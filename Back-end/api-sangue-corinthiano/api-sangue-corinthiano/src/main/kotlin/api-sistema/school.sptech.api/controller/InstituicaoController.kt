@@ -2,7 +2,8 @@ package ProjetoPI.ProjetoDoadores.controller
 
 import ProjetoPI.ProjetoDoadores.domain.Instituicao
 import ProjetoPI.ProjetoDoadores.dto.InstituicaoDto
-import ProjetoPI.ProjetoDoadores.service.InstituicaoService
+import ProjetoPI.ProjetoDoadores.repository.InstituicaoService
+import `api-sistema`.school.sptech.api.dto.EnderecoInstituicaoDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -40,6 +41,8 @@ class InstituicaoController(
         val locais = service.getInstituicoesPorTipo("Instituição Parceira")
         return ResponseEntity.ok(locais)
     }
+
+
 
 
 }

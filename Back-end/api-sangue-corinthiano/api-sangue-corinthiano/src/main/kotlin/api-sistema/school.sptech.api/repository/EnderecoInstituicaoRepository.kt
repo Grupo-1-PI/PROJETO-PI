@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface EnderecoInstituicaoRepository: JpaRepository<EnderecoInstituicao, Int> {
 
-    fun findByIdInstituicaoParceiroIs(parceiro: Boolean): MutableList<EnderecoInstituicao>
+    fun findByInstituicaoParceiroIs(parceiro: Boolean): MutableList<EnderecoInstituicao>
+
+    fun findByIdEnderecoInstituicao(idEnderecoInstituicao: Int): EnderecoInstituicao
 }
