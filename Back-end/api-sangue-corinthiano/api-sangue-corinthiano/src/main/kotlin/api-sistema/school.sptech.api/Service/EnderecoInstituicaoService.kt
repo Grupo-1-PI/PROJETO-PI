@@ -72,7 +72,7 @@ class EnderecoInstituicaoService(
         validarExistencia(idEnderecoInstituicao)
 
 
-        enderecoInstituicao.instituicao!!.idInstituicao = idInstituicao
+            enderecoInstituicao.instituicao!!.idInstituicao = idInstituicao
         enderecoInstituicao.idEnderecoInstituicao = idEnderecoInstituicao
         val enderecoInstituicaoRetorno = repository.save(enderecoInstituicao)
         return transformarEmDto(enderecoInstituicaoRetorno)

@@ -104,8 +104,11 @@ async function cadastrarInstituicao(){
 
 async function cadastrarLocalSC(instituicaoId){
 
+    console.log(instituicaoId);
+    
+
     try {
-        const response = await fetch(`http://localhost:8080/enderecos-instituicoes/${idInstituicao}`, {
+        const response = await fetch(`http://localhost:8080/enderecos-instituicoes/${instituicaoId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -250,6 +253,17 @@ function atualizarEstadoCheck(){
     elChecked.checked = !elChecked.checked
 }
 
+function atualizarCorBotao(elementoBotao){
+    if(elementoBotao.classList.contains('sc')){
+        document.querySelector('.ip').classList.remove('ativo')
+        elementoBotao.classList.add('ativo')
+    }
+
+    if(elementoBotao.classList.contais('ip')){
+        document.querySelector('.sc').classList.remove('ativo')
+        elementoBotao.classList.add('ativo')
+    }
+}
 
 
 verificarSeEVisualizacao()

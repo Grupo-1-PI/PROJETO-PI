@@ -1,6 +1,7 @@
 package ProjetoPI.ProjetoDoadores.domain
 
 import jakarta.persistence.*
+import org.hibernate.validator.constraints.br.CPF
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -15,7 +16,8 @@ data class Agendamento(
     var hora: LocalTime = LocalTime.now(),
 
     //@field:NotNull
-    var cpfDoador: Char = 0.toChar(),
+//    @field:CPF
+    var cpfDoador: String,
 
     //@field:NotNull
     //@field:ManyToOne
