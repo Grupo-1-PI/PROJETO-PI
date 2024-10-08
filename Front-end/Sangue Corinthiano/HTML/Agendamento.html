@@ -14,6 +14,15 @@
 </head>
 
 <body>
+    <!-- Script Para uso da API VLIBRAS  -->
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <div class="navbar justificar-meio">
         <div class="container">
             <div class="usuario justificar-meio">
@@ -68,7 +77,7 @@
         </div>
     </div>
 
-    <div class="banner center marginTop">
+    <div class="banner center marginTop50">
         <div class="container">
             <div class="imagem center">
                 <div class="container">
@@ -117,15 +126,18 @@
               </form>
         </div>
     </div> -->
-    <div class="center marginTop">
-        <div class="container center">
-            <div class="botao">
-                <button id="buttonUndo" onclick="desfazerSelecao()">Desfazer Seleção</button>
-                <button id="buttonRedo" onclick="refazerSelecao()">Selecionar Novamente</button>
+
+    <div class="boxCpf marginTop20">
+        <div class="container format column">
+            <div class="titulo center">
+                <span>Coloque seu CPF</span>
             </div>
+            <input class="marginTop10" type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14"
+                required>
         </div>
     </div>
-    <div class="diasDisponiveis center marginTop">
+
+    <div class="diasDisponiveis center marginTop20">
         <div class="container">
             <div class="titulo center">
                 <span>DIAS DISPONÍVEIS</span>
@@ -144,12 +156,20 @@
             </div>
         </div>
     </div>
-    <div class="horasDisponiveis center">
+    <div class="horasDisponiveis center marginTop20">
         <div class="container">
-            <div class="titulo center marginTop">
+            <div class="titulo center">
                 <span>
                     HORÁRIOS DISPONÍVEIS
                 </span>
+            </div>
+            <div class="center marginTop10">
+                <div class="container center">
+                    <div class="botao">
+                        <button id="buttonUndo" onclick="desfazerSelecao()">Desfazer Seleção</button>
+                        <button id="buttonRedo" onclick="refazerSelecao()">Selecionar Novamente</button>
+                    </div>
+                </div>
             </div>
             <div class="format meio-baixo">
                 <div class="boxHorarios format-Center">
@@ -211,7 +231,7 @@
     <input type="hidden" id="diaSelecionado" name="diaSelecionado">
     <input type="hidden" id="horaSelecionada" name="horaSelecionada">
 
-    <div class="confirmarAgendamento center marginTop">
+    <div class="confirmarAgendamento center marginTop20">
         <div class="container center">
             <div class="botao">
                 <button id="buttonConfirmarAgendamento" onclick="cadastrarAgendamento()">
@@ -223,7 +243,7 @@
         </div>
     </div>
 
-    <div class="rodaPe format-Center sombra marginTop">
+    <div class="rodaPe format-Center sombra marginTop50">
         <div class="titulo format-Center ">
             <span class="rodaPeTitulo">
                 SIGA AS NOSSAS REDES SOCIAIS:
@@ -262,318 +282,71 @@
             </span>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        async function buscar() {
-            const url = 'http://localhost:8080';
-            const id = sessionStorage.getItem('userId');
-
-            const resposta = await fetch(`${url}/doadores/${id}`);
-            const respostaDadosDoador = await resposta.json();
-            console.log("Resposta:", respostaDadosDoador);
-
-            const nomeUsuario = await document.getElementById('nomeUsuario')
-            nomeUsuario.innerHTML = await respostaDadosDoador.nome
-            var usuario = await respostaDadosDoador.nome
-        }
-        buscar()
-
-
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let fontSizeChange = 0;
-            const maxFontSizeChange = 3;
-            const minFontSizeChange = -3;
-            const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
-
-            document.getElementById('increase-font').addEventListener('click', function () {
-                if (fontSizeChange < maxFontSizeChange) {
-                    fontSizeChange++;
-                    changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
-                }
-            });
-
-            document.getElementById('decrease-font').addEventListener('click', function () {
-                if (fontSizeChange > minFontSizeChange) {
-                    fontSizeChange--;
-                    changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
-                }
-            });
-
-            function changeFontSize(factor) {
-                contentElements.forEach(element => {
-                    const currentSize = parseFloat(getComputedStyle(element).fontSize);
-                    element.style.fontSize = (currentSize * factor) + 'px';
-                });
-            }
-        });
-
-        function toggleDarkMode() {
-            var body = document.body;
-            body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-
-            if (body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
-            }
-        }
-    </script>
-
-    <!-- Script Para uso da API VLIBRAS  -->
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
 </body>
 
 </html>
-
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
-    
-async function cadastrarAgendamento() {
-    const idDoador = sessionStorage.getItem('userId');
-    if (!idDoador) {
-        alert("Usuário não está logado. Faça o login para continuar.");
-        return;
-    }
 
-    let diaSelecionado = null;
-    let horaSelecionada = null;
+    const idCpf = document.getElementById("cpf")
 
-    // Captura a seleção de dias
-    const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
-    dias.forEach(dia => {
-        dia.addEventListener('click', function () {
-            diaSelecionado = this.dataset.dia; // Captura a data do dia selecionado
-            console.log('Dia selecionado:', diaSelecionado);
-            dias.forEach(d => d.classList.remove('selecionado'));
-            this.classList.add('selecionado');
-        });
+    idCpf.addEventListener('input', function (e) {
+        let cpf = e.target.value;
+
+        // Remove tudo que não for número
+        cpf = cpf.replace(/\D/g, "");
+
+        // Adiciona os pontos e o traço conforme o CPF é digitado
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+        e.target.value = cpf;
     });
 
-    // Captura a seleção de horários
-    const horarios = document.querySelectorAll('.horas');
-    horarios.forEach(horario => {
-        horario.addEventListener('click', function () {
-            horaSelecionada = this.dataset.horario; // Captura o horário selecionado
-            console.log('Horário selecionado:', horaSelecionada);
-            horarios.forEach(h => h.classList.remove('selecionado'));
-            this.classList.add('selecionado');
-        });
-    });
-
-    // Botão de confirmação
-    const botaoConfirmar = document.getElementById('buttonConfirmarAgendamento');
-    botaoConfirmar.addEventListener('click', async () => {
-        if (!diaSelecionado || !horaSelecionada) {
-            alert("Por favor, selecione um dia e um horário.");
-            return;
-        }
-        // Variáveis para armazenar as pilhas de desfazer e refazer
-let pilhaSelecao = [];
-let pilhaRefazer = [];
-
-// Variáveis para armazenar seleção atual
-let diaSelecionado = null;
-let horaSelecionada = null;
-
-async function cadastrarAgendamento() {
-    const idDoador = sessionStorage.getItem('userId');
-    if (!idDoador) {
-        alert("Usuário não está logado. Faça o login para continuar.");
-        return;
-    }
-
-    // Captura a seleção de dias
-    const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
-    dias.forEach(dia => {
-        dia.addEventListener('click', function () {
-            // Salva a seleção atual na pilha
-            salvarSelecao(diaSelecionado, horaSelecionada);
-
-            diaSelecionado = this.dataset.dia;
-            console.log('Dia selecionado:', diaSelecionado);
-            dias.forEach(d => d.classList.remove('selecionado'));
-            this.classList.add('selecionado');
-        });
-    });
-
-    // Captura a seleção de horários
-    const horarios = document.querySelectorAll('.horas');
-    horarios.forEach(horario => {
-        horario.addEventListener('click', function () {
-            // Salva a seleção atual na pilha
-            salvarSelecao(diaSelecionado, horaSelecionada);
-
-            horaSelecionada = this.dataset.horario;
-            console.log('Horário selecionado:', horaSelecionada);
-            horarios.forEach(h => h.classList.remove('selecionado'));
-            this.classList.add('selecionado');
-        });
-    });
-}
-
-// Função para salvar a seleção atual na pilha
-function salvarSelecao(dia, hora) {
-    if (dia && hora) {
-        pilhaSelecao.push({ dia, hora });
-        // Limpa a pilha de refazer quando houver nova ação
-        pilhaRefazer = [];
-    }
-}
-
-// Função para desfazer a seleção
-function desfazerSelecao() {
-    if (pilhaSelecao.length > 0) {
-        // Move a seleção atual para a pilha de refazer
-        pilhaRefazer.push({ dia: diaSelecionado, hora: horaSelecionada });
-
-        // Recupera a última seleção da pilha
-        const ultimaSelecao = pilhaSelecao.pop();
-        diaSelecionado = ultimaSelecao.dia;
-        horaSelecionada = ultimaSelecao.hora;
-
-        // Atualiza a UI para refletir a seleção desfeita
-        atualizarSelecaoUI();
-    } else {
-        alert("Não há seleções para desfazer.");
-    }
-}
-
-// Função para refazer a seleção
-function refazerSelecao() {
-    if (pilhaRefazer.length > 0) {
-        // Move a seleção atual para a pilha de desfazer
-        pilhaSelecao.push({ dia: diaSelecionado, hora: horaSelecionada });
-
-        // Recupera a última seleção da pilha de refazer
-        const ultimaRefazer = pilhaRefazer.pop();
-        diaSelecionado = ultimaRefazer.dia;
-        horaSelecionada = ultimaRefazer.hora;
-
-        // Atualiza a UI para refletir a seleção refeita
-        atualizarSelecaoUI();
-    } else {
-        alert("Não há seleções para refazer.");
-    }
-}
-
-// Função para atualizar a UI com base na seleção atual
-function atualizarSelecaoUI() {
-    // Atualiza o estilo dos dias selecionados
-    document.querySelectorAll('.cardDiasDisponiveis .card').forEach(dia => {
-        dia.classList.remove('selecionado');
-        if (dia.dataset.dia === diaSelecionado) {
-            dia.classList.add('selecionado');
-        }
-    });
-
-    // Atualiza o estilo dos horários selecionados
-    document.querySelectorAll('.horas').forEach(horario => {
-        horario.classList.remove('selecionado');
-        if (horario.dataset.horario === horaSelecionada) {
-            horario.classList.add('selecionado');
-        }
-    });
-}
-
-// Função para inicializar o agendamento
-document.addEventListener('DOMContentLoaded', function () {
-    cadastrarAgendamento();
-});
-        // Envia a data e horário selecionados
-        const response = await fetch('http://localhost:8080/agendamentos/cadastrarAgendamento', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                idDoador: idDoador,
-                data: diaSelecionado,
-                hora: horaSelecionada
-            })
-        });
-
-        const responseText = await response.text(); // Captura a resposta como texto
-        console.log("Resposta do servidor:", responseText); // Verifica a resposta
-
-        // Tenta converter para JSON se a resposta for válida
-        let data;
-        try {
-            data = JSON.parse(responseText);
-        } catch (error) {
-            console.error("Erro ao parsear JSON:", error);
-            alert("Erro durante o agendamento: " + responseText);
-            return; // Interrompe a execução se a resposta não for válida
-        }
-
-        if (data.success) {
-            alert("Agendamento concluído com sucesso!"); // Mensagem simples ao usuário
-        } else {
-            alert("Erro durante o agendamento: " + data.message);
-        }
-    });
-}
-
-// Inicializa o agendamento
-cadastrarAgendamento();
-</script>
-
-<script>
     // Variáveis para armazenar as pilhas de desfazer e refazer
     let pilhaSelecao = [];
     let pilhaRefazer = [];
-    
+
     // Variáveis para armazenar seleção atual
     let diaSelecionado = null;
     let horaSelecionada = null;
-    
+
     async function cadastrarAgendamento() {
         const idDoador = sessionStorage.getItem('userId');
         if (!idDoador) {
             alert("Usuário não está logado. Faça o login para continuar.");
             return;
         }
-    
+
         // Captura a seleção de dias
         const dias = document.querySelectorAll('.cardDiasDisponiveis .card');
         dias.forEach(dia => {
             dia.addEventListener('click', function () {
                 // Salva a seleção atual na pilha
                 salvarSelecao(diaSelecionado, horaSelecionada);
-    
+
                 diaSelecionado = this.dataset.dia; // Captura a data do dia selecionado
                 console.log('Dia selecionado:', diaSelecionado);
                 dias.forEach(d => d.classList.remove('selecionado'));
                 this.classList.add('selecionado');
             });
         });
-    
+
         // Captura a seleção de horários
         const horarios = document.querySelectorAll('.horas');
         horarios.forEach(horario => {
             horario.addEventListener('click', function () {
                 // Salva a seleção atual na pilha
                 salvarSelecao(diaSelecionado, horaSelecionada);
-    
+
                 horaSelecionada = this.dataset.horario; // Captura o horário selecionado
                 console.log('Horário selecionado:', horaSelecionada);
                 horarios.forEach(h => h.classList.remove('selecionado'));
                 this.classList.add('selecionado');
             });
         });
-    
+
         // Botão de confirmação
         const botaoConfirmar = document.getElementById('buttonConfirmarAgendamento');
         botaoConfirmar.addEventListener('click', async () => {
@@ -581,7 +354,8 @@ cadastrarAgendamento();
                 alert("Por favor, selecione um dia e um horário.");
                 return;
             }
-    
+
+
             // Envia a data e horário selecionados
             const response = await fetch('http://localhost:8080/agendamentos/cadastrarAgendamento', {
                 method: 'POST',
@@ -591,13 +365,14 @@ cadastrarAgendamento();
                 body: JSON.stringify({
                     idDoador: idDoador,
                     data: diaSelecionado,
-                    hora: horaSelecionada
-                })
+                    hora: horaSelecionada,
+                    cpfDoador: idCpf.value,
+                })         
             });
-    
+
             const responseText = await response.text(); // Captura a resposta como texto
             console.log("Resposta do servidor:", responseText); // Verifica a resposta
-    
+
             let data;
             try {
                 data = JSON.parse(responseText);
@@ -606,7 +381,7 @@ cadastrarAgendamento();
                 alert("Erro durante o agendamento: " + responseText);
                 return; // Interrompe a execução se a resposta não for válida
             }
-    
+
             if (data.success) {
                 alert("Agendamento concluído com sucesso!"); // Mensagem simples ao usuário
             } else {
@@ -614,62 +389,50 @@ cadastrarAgendamento();
             }
         });
     }
-    
+
     // Função para salvar a seleção atual na pilha
-    function salvarSelecao(dia, hora) {
-        if (dia && hora) {
-            pilhaSelecao.push({ dia, hora });
+    function salvarSelecao(hora) {
+        if (hora) {
+            pilhaSelecao.push(hora);
             // Limpa a pilha de refazer quando houver nova ação
             pilhaRefazer = [];
         }
     }
-    
+
     // Função para desfazer a seleção
     function desfazerSelecao() {
         if (pilhaSelecao.length > 0) {
             // Move a seleção atual para a pilha de refazer
-            pilhaRefazer.push({ dia: diaSelecionado, hora: horaSelecionada });
-    
+            pilhaRefazer.push(horaSelecionada);
+
             // Recupera a última seleção da pilha
-            const ultimaSelecao = pilhaSelecao.pop();
-            diaSelecionado = ultimaSelecao.dia;
-            horaSelecionada = ultimaSelecao.hora;
-    
+            horaSelecionada = pilhaSelecao.pop();
+
             // Atualiza a UI para refletir a seleção desfeita
             atualizarSelecaoUI();
         } else {
             alert("Não há seleções para desfazer.");
         }
     }
-    
+
     // Função para refazer a seleção
     function refazerSelecao() {
         if (pilhaRefazer.length > 0) {
             // Move a seleção atual para a pilha de desfazer
-            pilhaSelecao.push({ dia: diaSelecionado, hora: horaSelecionada });
-    
+            pilhaSelecao.push(horaSelecionada);
+
             // Recupera a última seleção da pilha de refazer
-            const ultimaRefazer = pilhaRefazer.pop();
-            diaSelecionado = ultimaRefazer.dia;
-            horaSelecionada = ultimaRefazer.hora;
-    
+            horaSelecionada = pilhaRefazer.pop();
+
             // Atualiza a UI para refletir a seleção refeita
             atualizarSelecaoUI();
         } else {
             alert("Não há seleções para refazer.");
         }
     }
-    
+
     // Função para atualizar a UI com base na seleção atual
     function atualizarSelecaoUI() {
-        // Atualiza o estilo dos dias selecionados
-        document.querySelectorAll('.cardDiasDisponiveis .card').forEach(dia => {
-            dia.classList.remove('selecionado');
-            if (dia.dataset.dia === diaSelecionado) {
-                dia.classList.add('selecionado');
-            }
-        });
-    
         // Atualiza o estilo dos horários selecionados
         document.querySelectorAll('.horas').forEach(horario => {
             horario.classList.remove('selecionado');
@@ -678,10 +441,80 @@ cadastrarAgendamento();
             }
         });
     }
-    
+
+    // Modifique as funções que capturam a seleção de horários para usar a nova lógica
+    const horarios = document.querySelectorAll('.horas');
+    horarios.forEach(horario => {
+        horario.addEventListener('click', function () {
+            // Salva a seleção atual na pilha
+            salvarSelecao(horaSelecionada);
+
+            horaSelecionada = this.dataset.horario; // Captura o horário selecionado
+            console.log('Horário selecionado:', horaSelecionada);
+            horarios.forEach(h => h.classList.remove('selecionado'));
+            this.classList.add('selecionado');
+        });
+    });
+
     // Inicializa o agendamento
     document.addEventListener('DOMContentLoaded', function () {
         cadastrarAgendamento();
     });
-    </script>
-    
+
+    async function buscar() {
+        const url = 'http://localhost:8080';
+        const id = sessionStorage.getItem('userId');
+
+        const resposta = await fetch(`${url}/doadores/${id}`);
+        const respostaDadosDoador = await resposta.json();
+        console.log("Resposta:", respostaDadosDoador);
+
+        const nomeUsuario = await document.getElementById('nomeUsuario')
+        nomeUsuario.innerHTML = await respostaDadosDoador.nome
+        var usuario = await respostaDadosDoador.nome
+    }
+    buscar()
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let fontSizeChange = 0;
+        const maxFontSizeChange = 3;
+        const minFontSizeChange = -3;
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+
+        document.getElementById('increase-font').addEventListener('click', function () {
+            if (fontSizeChange < maxFontSizeChange) {
+                fontSizeChange++;
+                changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
+            }
+        });
+
+        document.getElementById('decrease-font').addEventListener('click', function () {
+            if (fontSizeChange > minFontSizeChange) {
+                fontSizeChange--;
+                changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
+            }
+        });
+
+        function changeFontSize(factor) {
+            contentElements.forEach(element => {
+                const currentSize = parseFloat(getComputedStyle(element).fontSize);
+                element.style.fontSize = (currentSize * factor) + 'px';
+            });
+        }
+    });
+
+    function toggleDarkMode() {
+        var body = document.body;
+        body.classList.toggle("dark-mode");
+        var toggleIcon = document.getElementById("darkModeToggle");
+
+        if (body.classList.contains("dark-mode")) {
+            toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+        } else {
+            toggleIcon.src = "../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+        }
+    }
+
+</script>
