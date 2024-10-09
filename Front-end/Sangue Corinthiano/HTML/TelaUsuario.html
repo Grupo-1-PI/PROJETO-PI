@@ -436,8 +436,8 @@
            });
        });
        
-document.querySelector('.c5ancelarAgendamento').addEventListener('click', function() {
-    const agendamentoId = id; // Aqui você pode pegar o ID real do agendamento
+document.querySelector('.cancelarAgendamento').addEventListener('click', function() {
+    const agendamentoId = userId; // Aqui você pode pegar o ID real do agendamento
 
     Swal.fire({
         title: 'Tem certeza?',
@@ -450,7 +450,7 @@ document.querySelector('.c5ancelarAgendamento').addEventListener('click', functi
         cancelButtonText: 'Não, manter'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Faz a requisição DELETE para o back-end AQUI É O CRU DE CANCELAMENTO PONTO PONTO
+            // Faz a requisição DELETE para o back-end AQUI É O CRUD DE CANCELAMENTO PONTO PONTO
             fetch(`/${url}/agendamentos/${agendamentoId}`, {
                 method: 'DELETE',
                 headers: {
