@@ -21,6 +21,4 @@ Thumbs.db
 *.log
 
 # Credenciais sensíveis
-application.properties
-application.yml
-
+src/main/resources/application.properties
