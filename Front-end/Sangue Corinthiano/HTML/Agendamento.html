@@ -30,7 +30,7 @@
                     <a href="TelaUsuario.html">
                         <img src="../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
                     </a>
-                    <a class="texto3" id="nomeUsuario" href="Cadastro.html">
+                    <a class="texto3" id="nomeUsuario" href="TelaUsuario.html">
                         ${ususario}
                     </a>
                     <span class="texto3">
@@ -58,11 +58,11 @@
                 </div>
 
                 <div class="logo justificarAlinhar-meio" style=" height: 85px;">
-                    <img src="../IMG/logo.png" alt="" class="margintop">
+                    <img src="../IMG/logo.png" alt="" style="margin-top: 165px;">
                 </div>
 
                 <div class="conteudo alinhar-meio">
-                    <a class="texto2" href="LocaisSC.html">
+                    <a class="texto2" href="CampanhaSC.html">
                         DOAR AGORA
                     </a>
                 </div>
@@ -83,7 +83,11 @@
                 <div class="container">
                     <div class="botao format">
                         <a href="CampanhaSC.html">
-                            <button class="view-button">Voltar</button>
+                            <button class="view-button">
+                                <span>
+                                    VOLTAR
+                                </span>
+                            </button>
                         </a>
                     </div>
                     <div class="titulo meio-baixo">
@@ -165,9 +169,17 @@
             </div>
             <div class="center marginTop10">
                 <div class="container center">
-                    <div class="botao">
-                        <button id="buttonUndo" onclick="desfazerSelecao()">Desfazer Seleção</button>
-                        <button id="buttonRedo" onclick="refazerSelecao()">Selecionar Novamente</button>
+                    <div class="botaoPilha">
+                        <button id="buttonUndo" onclick="desfazerSelecao()">
+                            <span>
+                                Desfazer Seleção
+                            </span>
+                        </button>
+                        <button id="buttonRedo" onclick="refazerSelecao()">
+                            <span>
+                                Selecionar Novamente
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>

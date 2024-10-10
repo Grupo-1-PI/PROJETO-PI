@@ -16,6 +16,41 @@
     margin-top: 50px;
 }
 
+.botaoPilha {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+    width: 33%;
+
+
+    /* background-color: aqua; */
+
+    button {
+        height: 30px;
+        width: 180px;
+        cursor: pointer;
+
+        background-color: rgb(0, 0, 0);
+        border-radius: 20px;
+        border: 1px solid black;
+        transition: background-color 0.4s ease, color 0.4s ease; /* Suavizar a transição para o fundo e a cor */
+        span {
+            font-weight: bold;
+            color: rgb(255, 255, 255);  /* Cor inicial do texto */
+            transition: color 0.4s ease; /* Suavizar a transição para a cor do texto */
+        }
+
+        &:hover {
+            background-color: rgb(255, 255, 255); /* Fundo muda para preto ao passar o mouse */
+            span {
+                color: rgb(0, 0, 0); /* Texto muda para branco ao passar o mouse */
+            }
+
+        }
+    }
+}
+
 .banner {
     height: 650px;
 
@@ -31,17 +66,28 @@
     .botao {
         height: 70px;
         width: 100%;
-
+    
         button {
             height: 30px;
             width: 120px;
-
+            cursor: pointer;
+    
             background-color: white;
             border-radius: 20px;
             border: none;
-
+            transition: background-color 0.4s ease, color 0.4s ease; /* Suavizar a transição para o fundo e a cor */
+    
             span {
                 font-weight: bold;
+                color: black; /* Cor inicial do texto */
+                transition: color 0.4s ease; /* Suavizar a transição para a cor do texto */
+            }
+    
+            &:hover {
+                background-color: black; /* Fundo muda para preto ao passar o mouse */
+                span {
+                    color: white; /* Texto muda para branco ao passar o mouse */
+                }
             }
         }
     }
