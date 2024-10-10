@@ -1,0 +1,26 @@
+# Maven / Gradle
+target/
+build/
+
+# Arquivos de configuração de IDEs
+*.iml
+.idea/
+*.class
+*.log
+*.swp
+*.tmp
+*.DS_Store
+.vscode/
+out/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Credenciais sensíveis
+application.properties
+application.yml
+
