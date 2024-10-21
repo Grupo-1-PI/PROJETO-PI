@@ -1,19 +1,21 @@
 package ProjetoPI.ProjetoDoadores.controller
 
 import ProjetoPI.ProjetoDoadores.domain.Campanha
+import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import ProjetoPI.ProjetoDoadores.repository.CampanhaRepository
+import ProjetoPI.ProjetoDoadores.repository.CampanhaService
+import ProjetoPI.ProjetoDoadores.repository.EnderecoInstituicaoService
+import `api-sistema`.school.sptech.api.dto.EnderecoInstituicaoDto
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.Stack
 
 @RestController
 @RequestMapping("/campanhas")
-class CampanhaController(var repository: CampanhaRepository) {
+class CampanhaController(
+    var repository: CampanhaRepository,
+    val service: CampanhaService
+) {
     val pilhaCampanhas = Stack<Campanha>()
 
     @PostMapping()
@@ -57,4 +59,10 @@ class CampanhaController(var repository: CampanhaRepository) {
 
         return ResponseEntity.status(200).body(campanhasEmpilhadas)
     }
+
+    @PostMapping("/{campanhas}")
+    fun cadastrar( @RequestBody campanha: Campanha): ResponseEntity<Campanha>{
+        return ResponseEntity.status(201).body(service.cadastrar(campanha))
+    }
+
 }

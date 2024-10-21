@@ -16,9 +16,9 @@ data class Campanha(
     var nome: String = "" ,
 
     //@field:NotNull
-    var dtInicio: LocalDate = LocalDate.now() ,
+    var dtInicio: LocalDate? = null,
 
-    var dtFim: LocalDate = LocalDate.now() ,
+    var dtFim: LocalDate? = null,
 
     //@field:NotNull
     var idInstituicao: Int = 1 ,

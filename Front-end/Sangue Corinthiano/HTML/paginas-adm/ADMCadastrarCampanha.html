@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
     <link rel="stylesheet" href="../../CSS/ADMCadastrarCampanha.css">
-    
+    <script src="../../JS/cadastroCampanha.js">
+    </script>
     <link
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
@@ -122,13 +123,13 @@
 
             <form>
                 <label for="campaign-name">Nome da Campanha</label>
-                <input type="text" id="campaign-name" name="campaign-name" value="Campanha de Dezembro" required>
+                <input type="text" id="campaign-name" name="campaign-name" value="" required>
 
                 <label for="start-date">Data de Início</label>
-                <input type="date" id="start-date" name="start-date" value="2024-12-20" required>
+                <input type="date" id="start-date" name="start-date" value="" required>
 
                 <label for="end-date">Data Final</label>
-                <input type="date" id="end-date" name="end-date" value="2024-12-22" required>
+                <input type="date" id="end-date" name="end-date" value="" required>
 
                 <label for="responsible">Responsável</label>
                 <input type="text" id="responsible" name="responsible" value="Vania Simonetti" required>
@@ -137,7 +138,7 @@
                 <input type="text" id="location" name="location" value="Neo Química Arena" required>
                 
                 <div class="div-button">
-                    <button type="submit">Criar Campanha</button>
+                    <button type="submit" onclick="cadastrarCampanhaSC()">Criar Campanha</button>
                 </div>
 
             </form>
