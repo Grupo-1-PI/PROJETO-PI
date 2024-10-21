@@ -369,3 +369,5 @@ select * from instituicao;
 select * from endereco_instituicao;
 select * from agendamento;
 desc agendamento;
+
+SELECT a.hora AS hora, d.nome AS nome FROM agendamento a JOIN doador d ON a.id_doador = d.id_doador

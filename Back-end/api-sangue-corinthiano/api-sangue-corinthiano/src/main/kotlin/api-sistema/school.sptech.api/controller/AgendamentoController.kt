@@ -3,18 +3,22 @@ package ProjetoPI.ProjetoDoadores.controller
 import ProjetoPI.ProjetoDoadores.domain.Agendamento
 import ProjetoPI.ProjetoDoadores.repository.AgendamentoRepository
 import ProjetoPI.ProjetoDoadores.repository.HistoricoAgendamentoRepository
+import `api-sistema`.school.sptech.api.dto.DoadorAgendamentoDTO
 
 
 import jakarta.validation.Valid
+import org.modelmapper.ModelMapper
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.time.LocalTime
 
 @CrossOrigin(origins = ["http://127.0.0.1:5500"])
 @RestController
 @RequestMapping("/agendamentos")
 class AgendamentoController(
     var repository: AgendamentoRepository,
-    var historicoAgendamentoRepository: HistoricoAgendamentoRepository
+    var historicoAgendamentoRepository: HistoricoAgendamentoRepository,
+    var modelMapper: ModelMapper = ModelMapper()
 ) {
     @GetMapping
     fun listarAgendamentos(): ResponseEntity<List<Agendamento>> {
@@ -58,4 +62,27 @@ class AgendamentoController(
             ResponseEntity.status(404).build()
         }
     }
+
+    @GetMapping("/doadoresAgendamento")
+    fun getDoadoresAgendamento(): List<DoadorAgendamentoDTO> {
+        val result = repository.getDoadoresAgendamentos()
+
+        return result.map { map ->
+            val horaSql = map["hora"] as java.sql.Time
+            val hora = horaSql.toLocalTime()
+            val nome = map["nome"] as String
+            DoadorAgendamentoDTO(hora = hora, nome = nome)
+        }
+    }
+
+    @GetMapping("/doadoresTotalPorCampanha")
+    fun getTotalDoadoresAgendamentos(): ResponseEntity<Int> {
+        val listaAgendamentos = repository.getTotalDoadoresPorCampanha()
+
+        if (listaAgendamentos == 0) {
+            return ResponseEntity.status(204).build()
+        }
+        return ResponseEntity.status(200).body(listaAgendamentos)
+    }
+
 }

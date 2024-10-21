@@ -1,6 +1,7 @@
 package ProjetoPI.ProjetoDoadores.repository
 
 import ProjetoPI.ProjetoDoadores.domain.Agendamento
+import `api-sistema`.school.sptech.api.dto.DoadorAgendamentoDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
@@ -12,5 +13,17 @@ AgendamentoRepository: JpaRepository<Agendamento, Int> {
     )
     fun cadastraAgendamento(): Agendamento?
 
+    @Query(
+        value = "SELECT a.hora AS hora, d.nome AS nome FROM agendamento a " +
+                "JOIN doador d ON a.id_doador = d.id_doador",
+        nativeQuery = true
+    )
+    fun getDoadoresAgendamentos(): List<Map<String,Any>>
+
+    @Query(
+        value = "SELECT COUNT(*) FROM agendamento",
+        nativeQuery = true
+    )
+    fun getTotalDoadoresPorCampanha(): Int
 
 }
