@@ -370,4 +370,8 @@ select * from endereco_instituicao;
 select * from agendamento;
 desc agendamento;
 
-SELECT a.hora AS hora, d.nome AS nome FROM agendamento a JOIN doador d ON a.id_doador = d.id_doador
+SELECT * FROM admin_sangue_corinthiano;
+
+ALTER TABLE admin_sangue_corinthiano
+ADD COLUMN nivel_acesso INT NOT NULL DEFAULT 3;
+
