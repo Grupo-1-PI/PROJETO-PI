@@ -10,35 +10,39 @@ import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
 
 @Entity
-data class AdminSangueCorinthiano(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+class AdminSangueCorinthiano(
+    @field:Id @field:GeneratedValue(strategy = GenerationType.IDENTITY)
     val idAdmin: Int = 0,
 
-    @NotBlank(message = "CPF é obrigatório")
+    @field:NotBlank(message = "CPF é obrigatório")
     var cpf: String = "",
 
-    @NotBlank(message = "Nome é obrigatório")
+    @field:NotBlank(message = "Nome é obrigatório")
     var nome: String = "",
 
-    @NotBlank(message = "E-mail é obrigatório")
-    @Email(message = "E-mail deve ser válido")
+    @field:NotBlank(message = "E-mail é obrigatório")
+    @field:Email(message = "E-mail deve ser válido")
     var email: String = "",
 
-    @NotNull(message = "Data de nascimento é obrigatória")
+    @field:NotNull(message = "Data de nascimento é obrigatória")
     var dtNasc: LocalDate = LocalDate.now(),
 
-    @NotBlank(message = "Sexo é obrigatório")
-    var sexo: String = "",
+    @field:NotBlank(message = "Sexo é obrigatório")
+    var sexo: String = "", // Agora é String
 
-    @NotBlank(message = "Senha é obrigatória")
+    @field:NotBlank(message = "Senha é obrigatória")
     var senha: String = "",
 
-    @NotNull(message = "Cargo é obrigatório")
+    @field:NotNull(message = "Cargo é obrigatório")
     var idCargo: Int = 0,
 
-    @NotNull(message = "Unidade é obrigatória")
+    @field:NotNull(message = "Unidade é obrigatória")
     var idUnidade: Int = 0,
 
-    // Adicionando o campo de status para soft delete
-    var status: String = "ATIVO"
-)
+    @field:NotNull(message = "Nível de acesso é obrigatório")
+    var nivelAcesso: Int = 3
+) {
+    fun autenticar(): Boolean {
+        return nivelAcesso >= 2
+    }
+}

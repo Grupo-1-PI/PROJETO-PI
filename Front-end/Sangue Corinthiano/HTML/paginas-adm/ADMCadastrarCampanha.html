@@ -108,7 +108,7 @@
 <!-- Botões Criar e Editar Campanha -->
 <div class="botoes-campanha">
     <button class="botao-campanha ativo"><a style="text-decoration: none; color: white;" href="../paginas-adm/ADMCadastrarCampanha.html">Criar Campanha</a></button>
-    <button class="botao-campanha"><a style="text-decoration: none; color: black;" href="../paginas-adm/ADMAtualizarCampanha.html">Editar Campanha</a></button>
+    <button class="botao-campanha"><a style="text-decoration: none; color: black;" href="../paginas-adm/ADMAtualizarCampanha.html">Vizualizar Campanha</a></button>
 </div>
 
 <p class="mensagem">Crie uma nova campanha:</p>
@@ -138,7 +138,7 @@
                 <input type="text" id="location" name="location" value="Neo Química Arena" required>
                 
                 <div class="div-button">
-                    <button type="submit" onclick="cadastrarCampanhaSC()">Criar Campanha</button>
+                    <button type="submit" id="btn-criar-campanha" onclick="cadastrarCampanhaSC(event)">Criar Campanha</button>
                 </div>
 
             </form>

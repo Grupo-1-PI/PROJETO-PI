@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.time.LocalTime
-import kotlin.text.get
 
 @CrossOrigin(origins = ["http://127.0.0.1:5500"])
 @RestController
@@ -42,6 +41,7 @@ class AgendamentoController(
             idDoador = novoAgendamentoRequest.idDoador,
             idInstituicao = novoAgendamentoRequest.idInstituicao,
             idCampanha = novoAgendamentoRequest.idCampanha,
+
         )
         val agendamentoSalvo = repository.save(novoAgendamento)
 
@@ -52,20 +52,17 @@ class AgendamentoController(
     @DeleteMapping("/{id}")
     fun cancelarAgendamento(@PathVariable id: Int): ResponseEntity<String> {
         return if (repository.existsById(id)) {
-            try {
-                // Tente deletar o histórico
-                historicoAgendamentoRepository.deleteById(id)
-                // Em seguida, delete o agendamento
-                repository.deleteById(id)
-                ResponseEntity.ok("Agendamento e histórico cancelados com sucesso!")
-            } catch (e: Exception) {
-                ResponseEntity.status(500).body("Erro ao cancelar o agendamento: ${e.message}")
-            }
+
+            historicoAgendamentoRepository.deleteById(id)
+
+            // Depois, excluir o próprio agendamento
+            repository.deleteById(id)
+
+            ResponseEntity.status(200).body("Agendamento e histórico cancelados com sucesso!")
         } else {
-            ResponseEntity.status(404).body("Agendamento não encontrado.")
+            ResponseEntity.status(404).build()
         }
     }
-    
 
     @GetMapping("/doadoresAgendamento")
     fun getDoadoresAgendamento(): List<DoadorAgendamentoDTO> {
@@ -89,6 +86,5 @@ class AgendamentoController(
         return ResponseEntity.status(200).body(listaAgendamentos)
     }
 
-
-
 }
+

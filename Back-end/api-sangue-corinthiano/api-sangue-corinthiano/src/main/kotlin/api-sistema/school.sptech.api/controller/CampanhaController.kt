@@ -65,15 +65,4 @@ class CampanhaController(
         return ResponseEntity.status(201).body(service.cadastrar(campanha))
     }
 
-
-    @GetMapping("/listar/{idUsuario}")
-    fun listarCampanhasPorId(@PathVariable idUsuario: Int): ResponseEntity<List<Array<Any>>> {
-        val listaCampanhas = repository.listarCampanhaPorId(idUsuario)
-
-        return if (listaCampanhas.isEmpty()) {
-            ResponseEntity.status(204).build()
-        } else {
-            ResponseEntity.status(200).body(listaCampanhas)
-        }
-    }
 }

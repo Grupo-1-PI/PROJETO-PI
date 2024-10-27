@@ -2,7 +2,6 @@ package ProjetoPI.ProjetoDoadores.repository
 
 import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import ProjetoPI.ProjetoDoadores.domain.InstituicaoEnderecoDto
-import ProjetoPI.ProjetoDoadores.service.InstituicaoService
 import `api-sistema`.school.sptech.api.dto.EnderecoInstituicaoDto
 import org.springframework.http.HttpStatusCode
 import org.springframework.stereotype.Service

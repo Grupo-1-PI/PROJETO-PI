@@ -35,7 +35,7 @@ function preencherCardsDeLocais(locais, parceiro){
   containerFilho.innerHTML = ""
   for(var i = 0; i < locais.length; i++){
     containerFilho.innerHTML += `
-    <div class="inputCadastrado"data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+    <div class="inputCadastrado"data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px; ">
                 <span>${validarParceiro(parceiro)} ${locais[i].instituicao.nome}</span>
                 <div class="botaoVizuEdi">
                     <div id="${locais[i].idEnderecoInstituicao}" onclick="visualizarLocal(this.id)" class="botaoVizu">

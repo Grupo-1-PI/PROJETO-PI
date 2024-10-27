@@ -140,11 +140,38 @@
 
        
 
-        <div class="div-lista-campanhas">
-            <h2 class="minhas-doacoes">Campanhas</h2>
-           
+        <div class="div-lista-doacoes">
+            <h2 class="minhas-doacoes">Minhas Doações</h2>
+            <div class="div-campanha">
+                <img class="img-campanha"
+                    src="../IMG/ProSangue.png"                   alt="">
+                <div class="div-informacoes-campanha">
+                    <h5 class="minhas-doacoes">Campanha de Julho</h5>
+                        <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
+                        <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
+                            César, São Paulo - SP, 05403-000</span>
+                        <div class="div-info">
+                            <h5 class="minhas-doacoes">Doação Concluida</h5>
+                        </div>
+                        <button class="cancelarAgendamento">Cancelar</button>
+                </div>
+            </div>
+                        <div class="div-campanha">
+                <img class="img-campanha"
+                    src="../IMG/MaisSangue.png"
+                    alt="">
+                <div class="div-informacoes-campanha">
+                    <h5 class="minhas-doacoes">Campanha de Julho</h5>
+                        <span class="data-campanha">22/07/2024 a 23/07/2024</span><br>
+                        <span class="text-body-secondary">Av. Dr. Enéas Carvalho de Aguiar, 155 - 1° andar - Cerqueira
+                            César, São Paulo - SP, 05403-000</span>
+                        <div class="div-info">
+                            <h5 class="minhas-doacoes">Doação Concluida</h5>
+                        </div>
+                        <button class="cancelarAgendamento">Cancelar</button>
+                </div>
+            </div>
         </div>
-        
     </div>
 
     <div class="rodaPe format-Center sombra marginTop">
@@ -408,59 +435,10 @@
                }
            });
        });
+       
+document.querySelector('.cancelarAgendamento').addEventListener('click', function() {
+    const agendamentoId = userId; // Aqui você pode pegar o ID real do agendamento
 
-       // Função para buscar e exibir os dados da campanha
-       function listarCampanhaPorId() {
-    const userId = sessionStorage.getItem('userId');
-    const url = `http://localhost:8080`;
-
-    fetch(`${url}/campanhas/listar/${userId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const campanhaDiv = document.querySelector(".div-lista-campanhas");
-            campanhaDiv.innerHTML = ""; // Limpa o conteúdo anterior
-
-            data.forEach(campanha => {
-                const campanhaHTML = `
-                    <div class="div-campanha" id="agendamento-${campanha.id}"> <!-- Aqui deve estar o ID real -->
-                        <img class="img-campanha" src="../IMG/MaisSangue.png" alt="">
-                        <div class="div-informacoes-campanha">
-                            <h5 class="minhas-doacoes">${campanha[5]}</h5>
-                            <h5 class="minhas-doacoes">${campanha[0]}</h5>
-                            <span class="data-campanha">${campanha[7]}</span><br>
-                            <span class="text-body-secondary">${campanha[1]}, ${campanha[2]}, ${campanha[3]}, ${campanha[4]}</span>
-                            <div class="div-info">
-                                <h5 class="minhas-doacoes">${campanha[6]}</h5>
-                            </div>
-                            <button class="cancelarAgendamento" data-agendamento-id="${campanha.id}">Cancelar</button>
-                        </div>
-                    </div>
-                `;
-                campanhaDiv.innerHTML += campanhaHTML; // Adiciona o conteúdo à div de campanhas
-            });
-
-            // Adiciona o evento de clique a cada botão de cancelamento
-            document.querySelectorAll('.cancelarAgendamento').forEach(button => {
-                button.addEventListener('click', function() {
-                    const agendamentoId = this.dataset.agendamentoId; // Obtém o ID do agendamento a partir do data attribute
-                    cancelarAgendamento(agendamentoId); // Chama a função de cancelamento
-                });
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao buscar os dados:', error);
-            const campanhaDiv = document.querySelector(".div-lista-campanhas");
-            campanhaDiv.innerHTML = "<p>Erro ao carregar os dados.</p>";
-        });
-}
-
-function cancelarAgendamento(agendamentoId) {
-    const url = 'http://localhost:8080';
     Swal.fire({
         title: 'Tem certeza?',
         text: "Você não poderá reverter isso!",
@@ -472,14 +450,15 @@ function cancelarAgendamento(agendamentoId) {
         cancelButtonText: 'Não, manter'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`${url}/agendamentos/${agendamentoId}`, {
+            // Faz a requisição DELETE para o back-end AQUI É O CRUD DE CANCELAMENTO PONTO PONTO
+            fetch(`/${url}/agendamentos/${agendamentoId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
             .then(response => {
-                if (response.ok) {
+                if (response.status === 200) {
                     return response.text(); // Pega a mensagem de sucesso
                 } else if (response.status === 404) {
                     throw new Error('Agendamento não encontrado.');
@@ -505,11 +484,7 @@ function cancelarAgendamento(agendamentoId) {
             });
         }
     });
-}
-
-// Chame a função
-listarCampanhaPorId();
-
+});
 
 
 

@@ -2,7 +2,8 @@ package ProjetoPI.ProjetoDoadores.controller
 
 import ProjetoPI.ProjetoDoadores.domain.Instituicao
 import ProjetoPI.ProjetoDoadores.dto.InstituicaoDto
-import ProjetoPI.ProjetoDoadores.service.InstituicaoService
+import ProjetoPI.ProjetoDoadores.repository.InstituicaoService
+import `api-sistema`.school.sptech.api.dto.EnderecoInstituicaoDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -27,13 +28,6 @@ class InstituicaoController(
         return ResponseEntity.status(201).body(instituicao)
     }
 
-    // Endpoint para buscar todas as instituições
-    @GetMapping
-    fun getAllInstituicoes(): ResponseEntity<List<InstituicaoDto>> {
-        val instituicoes = service.getAllInstituicoes()
-        return ResponseEntity.ok(instituicoes)
-    }
-
     // Endpoint para buscar instituições do tipo "Sangue Corinthiano"
     @GetMapping("/sangue-corinthiano")
     fun getLocaisSangueCorinthiano(): ResponseEntity<List<InstituicaoDto>> {
@@ -47,5 +41,8 @@ class InstituicaoController(
         val locais = service.getInstituicoesPorTipo("Instituição Parceira")
         return ResponseEntity.ok(locais)
     }
-}
 
+
+
+
+}

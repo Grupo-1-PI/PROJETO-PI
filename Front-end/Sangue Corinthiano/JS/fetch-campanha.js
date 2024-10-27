@@ -125,7 +125,9 @@ async function cadastrarLocalSC(instituicaoId){
                 longitude:document.getElementById("input-longitude").value,
                 instituicao: {
 		            idInstituicao: instituicaoId
-	            }
+                    
+	            }       
+                
             })
         });
 
