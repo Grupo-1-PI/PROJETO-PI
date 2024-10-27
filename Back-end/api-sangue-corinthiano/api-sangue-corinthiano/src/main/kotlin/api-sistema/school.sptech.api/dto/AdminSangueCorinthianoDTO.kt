@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 
 data class AdminSangueCorinthianoDTO(
+    val idAdmin: Int, // Adicione este campo
     @field:NotBlank val nome: String,
     @field:NotBlank val cpf: String,
     @field:Email val email: String,

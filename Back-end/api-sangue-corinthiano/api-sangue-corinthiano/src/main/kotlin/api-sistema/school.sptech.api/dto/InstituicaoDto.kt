@@ -1,7 +1,8 @@
+
 package ProjetoPI.ProjetoDoadores.dto
 
 data class InstituicaoDto(
-    val nome: String,
-    val latitude: Double,
-    val longitude: Double
+    val idInstituicao: Int,
+    val nome: String
 )
+
