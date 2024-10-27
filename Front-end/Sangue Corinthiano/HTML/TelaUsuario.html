@@ -409,8 +409,8 @@
            });
        });
 
-       // Função para buscar e exibir os dados da campanha
-       function listarCampanhaPorId() {
+     // Função para buscar e exibir os dados da campanha
+function listarCampanhaPorId() {
     const userId = sessionStorage.getItem('userId');
     const url = `http://localhost:8080`;
 
@@ -425,30 +425,34 @@
             const campanhaDiv = document.querySelector(".div-lista-campanhas");
             campanhaDiv.innerHTML = ""; // Limpa o conteúdo anterior
 
-            data.forEach(campanha => {
-                const campanhaHTML = `
-                    <div class="div-campanha" id="agendamento-${campanha.id}"> <!-- Aqui deve estar o ID real -->
-                        <img class="img-campanha" src="../IMG/MaisSangue.png" alt="">
-                        <div class="div-informacoes-campanha">
-                            <h5 class="minhas-doacoes">${campanha[5]}</h5>
-                            <h5 class="minhas-doacoes">${campanha[0]}</h5>
-                            <span class="data-campanha">${campanha[7]}</span><br>
-                            <span class="text-body-secondary">${campanha[1]}, ${campanha[2]}, ${campanha[3]}, ${campanha[4]}</span>
-                            <div class="div-info">
-                                <h5 class="minhas-doacoes">${campanha[6]}</h5>
-                            </div>
-                            <button class="cancelarAgendamento" data-agendamento-id="${campanha.id}">Cancelar</button>
-                        </div>
+          data.forEach(campanha => {
+    // Adicione uma verificação para ignorar campanhas com status 0
+    if (campanha[7] === 1) { // supondo que campanha[6] é o status
+        const campanhaHTML = `
+            <div class="div-campanha" id="agendamento-${campanha[0]}">
+                <img class="img-campanha" src="../IMG/MaisSangue.png" alt="">
+                <div class="div-informacoes-campanha">
+                    <h5 class="minhas-doacoes">${campanha[6]}</h5> <!-- nome da campanha -->
+                    <h5 class="minhas-doacoes">${campanha[2]}</h5> <!-- cidade -->
+                    <span class="data-campanha">${campanha[8]}</span><br> <!-- data, ajuste conforme necessário -->
+                    <span class="text-body-secondary">${campanha[2]}, ${campanha[3]}, ${campanha[4]}</span> <!-- rua, bairro, estado -->
+                    <div class="div-info">
+                        <h5 class="minhas-doacoes">${campanha[6]}</h5> <!-- status -->
                     </div>
-                `;
-                campanhaDiv.innerHTML += campanhaHTML; // Adiciona o conteúdo à div de campanhas
-            });
+                    <button class="cancelarAgendamento" data-agendamento-id="${campanha[0]}">Cancelar</button> <!-- ID do agendamento -->
+                </div>
+            </div>
+        `;
+        campanhaDiv.innerHTML += campanhaHTML;
+    }
+});
+
 
             // Adiciona o evento de clique a cada botão de cancelamento
             document.querySelectorAll('.cancelarAgendamento').forEach(button => {
                 button.addEventListener('click', function() {
-                    const agendamentoId = this.dataset.agendamentoId; // Obtém o ID do agendamento a partir do data attribute
-                    cancelarAgendamento(agendamentoId); // Chama a função de cancelamento
+                    const agendamentoId = this.dataset.agendamentoId;
+                    cancelarAgendamento(userId, agendamentoId); // Passa o userId e agendamentoId para a função
                 });
             });
         })
@@ -459,59 +463,55 @@
         });
 }
 
-function cancelarAgendamento(agendamentoId) {
-    const url = 'http://localhost:8080';
-    Swal.fire({
-        title: 'Tem certeza?',
-        text: "Você não poderá reverter isso!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, cancelar!',
-        cancelButtonText: 'Não, manter'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`${url}/agendamentos/${agendamentoId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
+function cancelarAgendamento(idDoador, agendamentoId) {
+            const url = 'http://localhost:8080';
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Você não poderá reverter isso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, cancelar!',
+                cancelButtonText: 'Não, manter'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`${url}/agendamentos/cancelarAgendamento/${idDoador}/${agendamentoId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.text();
+                        } else if (response.status === 404) {
+                            throw new Error('Agendamento não encontrado.');
+                        } else {
+                            throw new Error('Erro ao cancelar o agendamento.');
+                        }
+                    })
+                    .then(message => {
+                        Swal.fire(
+                            'Cancelado!',
+                            message,
+                            'success'
+                        );
+                        document.getElementById(`agendamento-${agendamentoId}`).remove();
+                    })
+                    .catch(error => {
+                        Swal.fire(
+                            'Erro!',
+                            error.message,
+                            'error'
+                        );
+                    });
                 }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.text(); // Pega a mensagem de sucesso
-                } else if (response.status === 404) {
-                    throw new Error('Agendamento não encontrado.');
-                } else {
-                    throw new Error('Erro ao cancelar o agendamento.');
-                }
-            })
-            .then(message => {
-                Swal.fire(
-                    'Cancelado!',
-                    message, // Mostra a mensagem de sucesso retornada pelo back-end
-                    'success'
-                );
-                // Remove o agendamento da interface
-                document.getElementById(`agendamento-${agendamentoId}`).remove();
-            })
-            .catch(error => {
-                Swal.fire(
-                    'Erro!',
-                    error.message,
-                    'error'
-                );
             });
         }
-    });
-}
 
-// Chame a função
-listarCampanhaPorId();
-
-
-
+        // Chama a função para listar campanhas
+        listarCampanhaPorId();
 
 </script>
 <script>
