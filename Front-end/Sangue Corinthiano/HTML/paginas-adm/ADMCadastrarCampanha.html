@@ -407,21 +407,28 @@ try {
         })
     });
 
-    const dados = await response.json()
-    console.log(dados)
+    if (response.ok) {
+            const dados = await response.json();
+            console.log(dados);
 
-    return dados
+            // Exibir o alert de sucesso
+            alert("Campanha atualizada com sucesso!");
+            window.location.href = "../paginas-adm/ADMVisualisarCampanhas.html";
+            return dados;
+        } else {
+            alert("Erro ao atualizar a campanha.");
+        }
 
-
-} catch (error) {
-
-    console.log(`Houve um erro: ${error}`)
-}
+    } catch (error) {
+        console.log(`Houve um erro: ${error}`);
+        alert("Ocorreu um erro ao tentar atualizar a campanha.");
+    }
 }
 
 
 
 
 verificarSeEVisualizacao()
+
 
 </script>
