@@ -39,10 +39,10 @@ function preencherCardsDeLocais(locais, parceiro){
                 <span>${validarParceiro(parceiro)} ${locais[i].instituicao.nome}</span>
                 <div class="botaoVizuEdi">
                     <div id="${locais[i].idEnderecoInstituicao}" onclick="visualizarLocal(this.id)" class="botaoVizu">
-                        <span>Vizualizar</span>
+                        <span>Visualizar</span>
                     </div>
                     <div class="botaoEdit">
-                        <span>Editar</span>
+                        <span>Deletar</span>
                     </div>
                 </div>
             </div>`

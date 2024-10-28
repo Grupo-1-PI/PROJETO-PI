@@ -3,7 +3,9 @@ package ProjetoPI.ProjetoDoadores.repository
 import ProjetoPI.ProjetoDoadores.domain.Agendamento
 import `api-sistema`.school.sptech.api.dto.DoadorAgendamentoDTO
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.query.Param
 
 interface
 AgendamentoRepository: JpaRepository<Agendamento, Int> {
@@ -47,9 +49,25 @@ AgendamentoRepository: JpaRepository<Agendamento, Int> {
                 "JOIN \n" +
                 "    endereco_instituicao ei ON i.id_instituicao = ei.id_instituicao\n" +
                 "WHERE \n" +
-                "    d.id_doador = 1;",
+                "    d.id_doador = :idDoador\n" +
+                "    AND a.status = 1;\n",
         nativeQuery =true
     )
     fun getDadosCampanha(): List<Map<String,Any>>
+
+    @Modifying
+    @Query(
+        value = """
+    UPDATE agendamento 
+    SET status = 0 
+    WHERE id_doador = :idDoador 
+      AND id_agendamento = :idAgendamento
+    """,
+        nativeQuery = true
+    )
+    fun cancelarAgendamentoPorDoador(
+        @Param("idDoador") idDoador: Int,
+        @Param("idAgendamento") idAgendamento: Int
+    ): Int
 }
 

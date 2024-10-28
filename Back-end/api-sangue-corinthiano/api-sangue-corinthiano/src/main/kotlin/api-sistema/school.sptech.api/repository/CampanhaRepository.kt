@@ -2,16 +2,19 @@ package ProjetoPI.ProjetoDoadores.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import ProjetoPI.ProjetoDoadores.domain.Campanha
+import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 
 
 interface CampanhaRepository: JpaRepository<Campanha, Int> {
 
-    @Query(
+    fun findByIdCampanha(idEnderecoInstituicao: Int): Campanha
 
+    @Query(
         value = """
         SELECT 
+            a.id_agendamento AS id_agendamento,
             i.nome AS nome_instituicao,
             ei.cidade,
             ei.rua,
@@ -35,7 +38,5 @@ interface CampanhaRepository: JpaRepository<Campanha, Int> {
     """,
         nativeQuery = true
     )
-
     fun listarCampanhaPorId(@Param("idDoador") idDoador: Int): List<Array<Any>>
 }
-

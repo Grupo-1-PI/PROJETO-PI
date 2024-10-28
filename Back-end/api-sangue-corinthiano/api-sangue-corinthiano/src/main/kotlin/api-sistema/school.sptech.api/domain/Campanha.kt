@@ -10,7 +10,7 @@ import java.time.LocalDate
 @Entity
 data class Campanha(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idCampanha: Int = 0 ,
+    var idCampanha: Int = 0 ,
 
     @field:NotBlank
     var nome: String = "" ,

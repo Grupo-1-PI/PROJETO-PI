@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Campanha</title>
+    <title>Locais cadastrados - Instituição Parceira</title>
 
+    <!-- <script src="/JS/fetch-campanha2.js"></script> -->
+    
     <!-- Link para o CSS -->
     <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
@@ -14,16 +16,17 @@
     <link rel="stylesheet" href="../../CSS/dark-mode.css">
     <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
     <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
-    <link rel="stylesheet" href="../../CSS/ADMAtualizarCampanha.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
+    <link rel="stylesheet" href="../../CSS/ADMLocaisCadstradosIP.css">
     
     <link
-        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    
+
+
     <!-- Navbar -->
     <div class="navbar justificar-meio">
         <div class="container">
@@ -80,15 +83,15 @@
     </div>
     
                     
-    
+
     <div class="subNavBar format-Center space-evenly">
         <a href="../paginas-adm/ADMCadastrarSangueCorinthiano.html">
             Cadastrar Locais 
         </a>
-        <a href="../paginas-adm/ADMLocaisCadastradosSC.html">
+        <a href="../paginas-adm/ADMLocaisCadastradosSC.html"  style="color: #d40000;">
             Visualizar Locais 
         </a>
-        <a href="../paginas-adm/ADMCadastrarCampanha.html" style="color:#d40000;">
+        <a href="../paginas-adm/ADMCadastrarCampanha.html">
            Campanhas
         </a>
         <a href="../paginas-adm/ADMAgendamento.html">
@@ -102,62 +105,55 @@
             Dashboard
         </a>
     </div>
+        
 
-
-<!-- Botões Criar e Editar Campanha -->
-<div class="botoes-campanha">
-    <button class="botao-campanha"><a style="text-decoration: none; color: black;" href="../paginas-adm/ADMCadastrarCampanha.html">Criar Campanha</a></button>
-    <button class="botao-campanha ativo"><a style="text-decoration: none; color: white;" href="../paginas-adm/ADMAtualizarCampanha.html">Editar Campanha</a></button>
-</div>
-
-<p class="mensagem">Busque a campanha que deseja alterar:</p>
-
- <!-- Barra de pesquisa com ícone de lupa e botão de busca -->
- <div class="barra-pesquisa-container">
-    <input type="text" class="barra-pesquisa" placeholder="Digite o nome da campanha...">
-    <button class="botao-pesquisa">
-        <svg class="icon-lupa" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 18a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" />
-        </svg>
-        Buscar
-    </button>
-</div>
-
-    <!-- Formulário de Criação de Campanha -->
-    <div class="container-formulario">
-        <div class="campaign-form">
-            <div class="image-upload">
-                <input id="icon-img" type="image" alt=" "> <input type="file">
+    <div class="containerPai">
+        <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Campanhas Cadastradas</span>
+        
+        <span class="tituloPreto" style="margin-bottom: 20px;">Veja as campanhas que você cadastrou no sistema:</span>
+        
+        <div class="containerFilho">
+            <!-- Exemplo de locais com data-cidade e data-tipo para filtros -->
+            <div class="inputCadastrado" data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                <span>Hemocentro de São Paulo</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
             </div>
 
-
-            <form>
-                <label for="campaign-name">Nome da Campanha</label>
-                <input type="text" id="campaign-name" name="campaign-name" value="Campanha de Dezembro" required>
-
-                <label for="start-date">Data de Início</label>
-                <input type="date" id="start-date" name="start-date" value="2024-12-20" required>
-
-                <label for="end-date">Data Final</label>
-                <input type="date" id="end-date" name="end-date" value="2024-12-22" required>
-
-                <label for="responsible">Responsável</label>
-                <input type="text" id="responsible" name="responsible" value="Vania Simonetti" required>
-
-                <label for="location">Local</label>
-                <input type="text" id="location" name="location" value="Neo Química Arena" required>
-                
-                <div class="div-button">
-                    <button type="submit">Atualizar Campanha</button>
+            <div class="inputCadastrado" data-cidade="Campinas" data-tipo="Campanha" style="margin-bottom: 20px;">
+                <span>Instituição Mais Sangue</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
                 </div>
+            </div>
 
-            </form>
-
+            <div class="inputCadastrado" data-cidade="Ribeirão Preto" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                <span>Instituição Pró Sangue</span>
+                <div class="botaoVizuEdi">
+                    <div class="botaoVizu">
+                        <span>Vizualizar</span>
+                    </div>
+                    <div class="botaoEdit">
+                        <span>Editar</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Adicione mais locais conforme necessário -->
         </div>
     </div>
 
-
-    
     <!-- Footer Reutilizado da Home -->
     <div class="rodaPe format-Center sombra">
         <div class="titulo format-Center ">
@@ -199,54 +195,33 @@
     </div>
 
     <!-- Script do Leaflet para o Mapa -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../JS/LocaisSC.js"></script>
+    <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../JS/LocaisSC.js"></script> -->
 
     <!-- Script Para alterar o modo escuro  -->
     <script>
         function toggleDarkMode() {
             var body = document.body;
             body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-            
-            if(body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
-            }
         }
     </script>
 
     <!-- Script Para aumentar e diminuir fonte  -->
 <script>
-    async function buscar(){
-        const url = 'http://localhost:8080';
-        const id = sessionStorage.getItem('userId');
-
-        const resposta = await fetch(`${url}/doadores/${id}`);
-        const respostaDadosDoador = await resposta.json();
-        console.log("Resposta:", respostaDadosDoador);
-
-        const nomeUsuario = await document.getElementById('nomeUsuario')
-        nomeUsuario.innerHTML = await respostaDadosDoador.nome
-        var usuario = await respostaDadosDoador.nome
-        }
-        buscar()
-
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let fontSizeChange = 0;
         const maxFontSizeChange = 3;
         const minFontSizeChange = -3;
-        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
+        const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, span, label, input'); // Adicione outros seletores conforme necessário
 
-        document.getElementById('increase-font').addEventListener('click', function() {
+        document.getElementById('increase-font').addEventListener('click', function () {
             if (fontSizeChange < maxFontSizeChange) {
                 fontSizeChange++;
                 changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
             }
         });
 
-        document.getElementById('decrease-font').addEventListener('click', function() {
+        document.getElementById('decrease-font').addEventListener('click', function () {
             if (fontSizeChange > minFontSizeChange) {
                 fontSizeChange--;
                 changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
@@ -262,20 +237,60 @@
     });
 </script>
 
-<!-- Script Para uso da API VLIBRAS  -->
+    <!-- Script para aumentar e diminuir a fonte -->
+    <!-- <script src="../../JS/AumentaDiminuiFonte.js"></script> -->
 
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
-    
 </body>
 
 </html>
+
+<script>
+    async function buscarCampanha(){
+    try {
+        const response = await fetch(`http://localhost:8080/campanhas/listar`, {
+            method: "GET",
+        });
+
+        if(response.status == 204){
+            console.log('Nenhum dado cadastrado.')
+            return []
+        }
+
+        const dados = await response.json()
+        console.log(dados)
+
+        preencherCardsDeCampanha(dados)
+
+    } catch (error) {
+
+        console.log(`Houve um erro: ${error}`)
+    }
+    
+}
+
+function preencherCardsDeCampanha(locais){
+    const containerFilho = document.querySelector('.containerFilho')
+    containerFilho.innerHTML = ""
+    for(var i = 0; i < locais.length; i++){
+      containerFilho.innerHTML += `
+      <div class="inputCadastrado"data-cidade="São Paulo" data-tipo="Local de Doação" style="margin-bottom: 20px;">
+                  <span>${locais[i].nome}</span>
+                  <div class="botaoVizuEdi">
+                      <div id="${locais[i].idCampanha}" onclick="visualizarCampanha(this.id)" class="botaoVizu">
+                          <span>Visualizar</span>
+                      </div>
+                      <div class="botaoEdit">
+                          <span>Deletar</span>
+                      </div>
+                  </div>
+              </div>`
+    }
+  }
+
+  function visualizarCampanha(campanhaId){
+    sessionStorage.setItem("CAMPANHA-ID", campanhaId)
+    location.assign("http://127.0.0.1:5500/HTML/paginas-adm/ADMCadastrarCampanha.html")
+}
+
+buscarCampanha()
+</script>
