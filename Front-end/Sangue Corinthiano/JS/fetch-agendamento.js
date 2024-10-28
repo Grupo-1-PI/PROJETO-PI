@@ -64,7 +64,7 @@ function carregarTotalDoadores() {
 //         fetch(`http://localhost:8080/agendamentos/atualizarComparecimento/${agendamentoId}`, {
 //             method: 'PUT',
 //             headers: {
-//                 'Content-Type': 'a   pplication/json'
+//                 'Content-Type': 'application/json'
 //             },
 //             body: JSON.stringify({
 //                 compareceu: compareceu

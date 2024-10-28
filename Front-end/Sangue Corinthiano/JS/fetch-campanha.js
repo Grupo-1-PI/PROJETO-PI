@@ -90,25 +90,14 @@ async function cadastrarInstituicao(){
             })
         });
 
-        if (response.ok) {
-            const body = document.querySelector("body");
-        
-            // Exibir o alert
-            alert("Instituição cadastrada com sucesso!");
-        
-            // Aplicar a animação de fade-out
-            body.style.transition = "opacity 1s";
-            body.style.opacity = "0";
-        
-            // Redirecionar após 1 segundo, tempo da animação
-            setTimeout(() => {
-                window.location.href = "../paginas-adm/ADMLocaisCadastradosSC.html";
-            }, 1000);
-        
-        } else {
-            // Exibir erro se a resposta não for bem-sucedida
+        if (!response.ok) {
             alert("Erro ao cadastrar a instituição.");
-        }
+            return
+        } 
+
+        var dados = await response.json()
+        console.log(dados)
+        return dados 
 
     } catch (error) {
         console.log(`Houve um erro: ${error}`);
@@ -174,25 +163,13 @@ async function atualizarInstituicao(idInstituicao){
             })
         });
 
-        if (response.ok) {
-            const body = document.querySelector("body");
-        
-            // Exibir o alert
-            alert("Instituição atualizada com sucesso!");
-        
-            // Aplicar a animação de fade-out
-            body.style.transition = "opacity 1s";
-            body.style.opacity = "0";
-        
-            // Redirecionar após 1 segundo, tempo da animação
-            setTimeout(() => {
-                window.location.href = "../paginas-adm/ADMLocaisCadastradosSC.html";
-            }, 1000);
-        } else {
-            // Exibir erro se a resposta não for bem-sucedida
+        if (!response.ok) {
             alert("Erro ao cadastrar a instituição.");
-        }
+            return
+        } 
 
+        console.log(await response.json())
+        
     } catch (error) {
         console.log(`Houve um erro: ${error}`);
         alert("Ocorreu um erro ao tentar cadastrar a instituição.");
@@ -266,12 +243,14 @@ function adicionarEscutaBotaoAtualizar() {
 async function cadastrarInstituicaoCompleta(){
     const novaInstituicao = await cadastrarInstituicao()
     cadastrarLocalSC(novaInstituicao.idInstituicao)
+    trocaTela()
 }
 
 async function atualizarInstituicaoCompleta(){
     const botaoAtualizar = document.querySelector('.botao-cadastrar')
     const novaInstituicao = await atualizarInstituicao(botaoAtualizar.value)
     atualizarLocalSC(botaoAtualizar.id, botaoAtualizar.value)
+    trocaTela()
 }
 
 function removerCacheSessionStorage(){
@@ -296,5 +275,22 @@ function atualizarCorBotao(elementoBotao){
     }
 }
 
+
+function trocaTela(){
+    const body = document.querySelector("body");
+        
+    // Exibir o alert
+    alert("Instituição cadastrada com sucesso!");
+
+    // Aplicar a animação de fade-out
+    body.style.transition = "opacity 1s";
+    body.style.opacity = "0";
+
+    // Redirecionar após 1 segundo, tempo da animação
+    setTimeout(() => {
+        window.location.href = "../paginas-adm/ADMLocaisCadastradosSC.html";
+    }, 1000);
+
+}
 
 verificarSeEVisualizacao()

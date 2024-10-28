@@ -42,6 +42,7 @@ class AgendamentoController(
             idInstituicao = novoAgendamentoRequest.idInstituicao,
             idCampanha = novoAgendamentoRequest.idCampanha,
 
+
         )
         val agendamentoSalvo = repository.save(novoAgendamento)
 
