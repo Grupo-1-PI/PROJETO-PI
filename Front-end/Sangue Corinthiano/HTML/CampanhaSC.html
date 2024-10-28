@@ -219,11 +219,19 @@
         console.log("Resposta:", respostaCampanha);
 
 
-const cardsContainer = document.getElementById("cards");
+        const cardsContainer = document.getElementById("cards");
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Mês de 0 a 11, então somamos 1
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        const dataFormatada = `${ano}-${mes}-${dia}`;
+        console.log(dataFormatada); // Exemplo: "2024-10-28"
+
         cardsContainer.innerHTML = ''; // Limpa o conteúdo anterior
 
         respostaCampanha.forEach(campanha => {
-            cardsContainer.innerHTML += `
+            if(campanha.dtInicio < dataFormatada){
+                cardsContainer.innerHTML += `
                 <div class="location-card">
                     <div class="location-image">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbVdTIJgWRbh2mi09WTmQKnzCCWm8PQ8I59g&s">
@@ -231,13 +239,36 @@ const cardsContainer = document.getElementById("cards");
                     <div class="location-details">
                         <h2>${campanha.nome}</h2>
                         <span class="subCardButton">
-                            <p class="hours">Horário entre: 9:00 ás 15:30</p>
+                            <p class="hours">Data: ${campanha.dtInicio}</p>
+                            <p class="hours">Horário: 9:00 ás 15:30</p>
                             <button class="view-button">Concluido</button>
                         </span>
                         <p class="address">Av. Miguel Ignácio Curi, 111 - Vila Carmosina, São Paulo - SP, 08295-005</p>
                     </div>
                 </div>
             `;
+            } else{
+                cardsContainer.innerHTML += `
+                <div class="location-card">
+                    <div class="location-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbVdTIJgWRbh2mi09WTmQKnzCCWm8PQ8I59g&s">
+                    </div>
+                    <div class="location-details">
+                        <h2>${campanha.nome}</h2>
+                        <span class="subCardButton">
+                            <p class="hours">Data: ${campanha.dtInicio}</p>
+                            <p class="hours">Horário: 9:00 ás 15:30</p>
+                            
+                        <a href="Agendamento.html">
+                            <button class="view-button">Agendar</button>
+                        </a>
+                        </span>
+                        <p class="address">Av. Miguel Ignácio Curi, 111 - Vila Carmosina, São Paulo - SP, 08295-005</p>
+                    </div>
+                </div>
+            `;
+            }
+
         });
     }
     buscar();
