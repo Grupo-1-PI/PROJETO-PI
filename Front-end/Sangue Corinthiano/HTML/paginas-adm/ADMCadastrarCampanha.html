@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Campanha</title>
 
+    <!-- <script src="/JS/fetch-campanha2.js"></script> -->
+
     <!-- Link para o CSS -->
     <link rel="stylesheet" href="../../CSS/LocaisParceiros.css">
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="../../CSS/AdmLocaisCadastrados.css">
     <link rel="stylesheet" href="../../CSS/adm-cadastro-sangue.css">
     <link rel="stylesheet" href="../../CSS/ADMCadastrarCampanha.css">
-    <script src="../../JS/cadastroCampanha.js">
+    <!-- <script src="../../JS/cadastroCampanha.js"> -->
     </script>
     <link
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -106,10 +108,10 @@
 
 
 <!-- Botões Criar e Editar Campanha -->
-<div class="botoes-campanha">
+<!-- <div class="botoes-campanha">
     <button class="botao-campanha ativo"><a style="text-decoration: none; color: white;" href="../paginas-adm/ADMCadastrarCampanha.html">Criar Campanha</a></button>
     <button class="botao-campanha"><a style="text-decoration: none; color: black;" href="../paginas-adm/ADMAtualizarCampanha.html">Editar Campanha</a></button>
-</div>
+</div> -->
 
 <p class="mensagem">Crie uma nova campanha:</p>
 
@@ -138,7 +140,7 @@
                 <input type="text" id="location" name="location" value="Neo Química Arena" required>
                 
                 <div class="div-button">
-                    <button type="submit" onclick="cadastrarCampanhaSC()">Criar Campanha</button>
+                    <button class="botao-cadastrar" id="btn-criar-campanha" onclick="cadastrarCampanhaSC(event)">Criar Campanha</button>
                 </div>
 
             </form>
@@ -189,8 +191,8 @@
     </div>
 
     <!-- Script do Leaflet para o Mapa -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="../../JS/LocaisSC.js"></script>
+    <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../JS/LocaisSC.js"></script> -->
 
     <!-- Script Para alterar o modo escuro  -->
     <script>
@@ -221,7 +223,7 @@
         nomeUsuario.innerHTML = await respostaDadosDoador.nome
         var usuario = await respostaDadosDoador.nome
         }
-        buscar()
+        //buscar()
 
     document.addEventListener('DOMContentLoaded', function() {
         let fontSizeChange = 0;
@@ -268,3 +270,158 @@
 </body>
 
 </html>
+
+<script>
+    async function cadastrarCampanhaSC(event) {
+    event.preventDefault();  // Previne o comportamento padrão do formulário
+
+    try {
+        const response = await fetch(`http://localhost:8080/campanhas`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: document.getElementById("campaign-name").value,
+                dtInicio: document.getElementById("start-date").value,
+                dtFim: document.getElementById("end-date").value,
+                responsavel: document.getElementById("responsible").value,
+                local: document.getElementById("location").value
+            })
+        });
+
+        // Verifica o tipo de conteúdo da resposta
+        const contentType = response.headers.get("Content-Type");
+
+        if (response.ok) {
+            // Se o tipo de conteúdo for JSON, tenta analisar a resposta como JSON
+            if (contentType && contentType.includes("application/json")) {
+                const dados = await response.json();
+                console.log(dados);
+                alert("Campanha criada com sucesso!");
+            } else {
+                // Se não for JSON, captura o texto simples da resposta
+                const text = await response.text();
+                console.log(text);
+                alert("Campanha criada com sucesso");
+            }
+        } else {
+            // Captura o erro da resposta e exibe a mensagem
+            const errorMessage = contentType.includes("application/json") ? await response.json() : await response.text();
+            alert(`Erro ao cadastrar a campanha: ${errorMessage}`);
+        }
+
+    } catch (error) {
+        console.log(`Houve um erro: ${error}`);
+        alert(`Erro ao cadastrar a campanha: ${error.message}`);
+    }
+}
+
+    async function verificarSeEVisualizacao(){
+    if(sessionStorage.getItem("CAMPANHA-ID") != null){
+        const enderecoInstituicao = await buscarEnderecoInstituicaoUnico()
+        
+        bloquearInputs()
+        preencherInputsEnderecoInstituicao(enderecoInstituicao)
+
+        const botaoCadastro = document.querySelector('#btn-criar-campanha')
+        botaoCadastro.innerText = "Editar Campanha"
+        botaoCadastro.setAttribute('onclick', 'redefinirBotaoCadastro()')
+    }
+}
+
+async function redefinirBotaoCadastro() {
+    event.preventDefault();
+
+    desbloquearInputs()
+    const botao = document.querySelector('#btn-criar-campanha')
+    const enderecoInstituicao = await buscarEnderecoInstituicaoUnico()
+    botao.innerText = "Atualizar Campanha"
+    botao.id = enderecoInstituicao.idCampanha
+    botao.value = enderecoInstituicao.idCampanha
+    botao.setAttribute('onclick', 'atualizarInstituicaoCompleta(event)')
+}
+
+function bloquearInputs(){
+    const inputs = document.querySelectorAll("input")
+    inputs.forEach(input => input.disabled = true)
+}
+
+function desbloquearInputs(){
+    const inputs = document.querySelectorAll("input")
+    inputs.forEach(input => input.disabled = false)
+}
+
+async function buscarEnderecoInstituicaoUnico(){
+    var campanhaId = sessionStorage.getItem('CAMPANHA-ID')
+ 
+     try {
+         const response = await fetch(`http://localhost:8080/campanhas/listar/${campanhaId}`, {
+             method: "GET",
+         });
+ 
+         const dados = await response.json()
+         console.log(dados)
+ 
+         return dados
+ 
+     } catch (error) {
+ 
+         console.log(`Houve um erro: ${error}`)
+     }
+ }
+
+ function preencherInputsEnderecoInstituicao(enderecoInstituicao){
+    document.getElementById('campaign-name').value = enderecoInstituicao.nome
+    document.getElementById('start-date').value = enderecoInstituicao.dtInicio
+    document.getElementById('end-date').value = enderecoInstituicao.dtFim
+    document.getElementById('responsible').value = enderecoInstituicao.idInstituicao
+    document.getElementById('location').value = enderecoInstituicao.idAdmin
+
+}
+
+async function atualizarInstituicaoCompleta(){
+    event.preventDefault();
+    const botaoAtualizar = document.querySelector('.botao-cadastrar')
+    await atualizarInstituicao(botaoAtualizar.value)
+    //atualizarLocalSC(botaoAtualizar.id, botaoAtualizar.value)
+}
+
+//mexer aq tb
+async function atualizarInstituicao(idInstituicao){
+
+try {
+    const response = await fetch(`http://localhost:8080/campanhas/${idInstituicao}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idCampanha: idInstituicao,
+            nome: document.getElementById('campaign-name').value,
+            dtInicio: document.getElementById('start-date').value,
+            dtFim: document.getElementById('end-date').value,
+            idInstituicao: document.getElementById('responsible').value,
+            idAdmin: document.getElementById('location').value,
+
+        })
+    });
+
+    const dados = await response.json()
+    console.log(dados)
+
+    return dados
+
+
+} catch (error) {
+
+    console.log(`Houve um erro: ${error}`)
+}
+}
+
+
+
+
+verificarSeEVisualizacao()
+
+</script>

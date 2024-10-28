@@ -20,6 +20,13 @@
 </head>
 
 <body>
+    <style>
+        #cards{
+            overflow-x: hidden;
+            overflow-y: scroll;
+            height: 500px;
+        }
+    </style>
     <!-- Navbar -->
     <div class="navbar justificar-meio">
         <div class="container">
@@ -91,6 +98,7 @@
     <!-- Seção do Mapa -->
     <div id="map"></div>
 
+    <div id="cards">
     <!-- Local Pro Sangue -->
     <div class="location-card">
         <div class="location-image">
@@ -104,7 +112,7 @@
     </div>
 
     <!-- Local Mais Sangue -->
-    <div class="location-card">
+    <!-- <div class="location-card">
         <div class="location-image">
             <img src="../IMG/MaisSangue.png" alt="Fundação Mais Sangue - São Paulo">
         </div>
@@ -113,7 +121,8 @@
             <p class="hours">Horário de funcionamento: 8:00 às 16:00</p>
             <p class="address">Av. Dr. Aguiar Prereira Dutra, 344 - 5° andar - Santa Cruz, São Paulo - SP, 02403-765</p>
         </div>
-    </div>
+    </div> -->
+</div>
 
     <!-- Footer Reutilizado da Home -->
     <div class="rodaPe format-Center sombra">
@@ -186,6 +195,31 @@
         const nomeUsuario = await document.getElementById('nomeUsuario')
         nomeUsuario.innerHTML = await respostaDadosDoador.nome
         var usuario = await respostaDadosDoador.nome
+
+        const resposta2 = await fetch(`${url}/enderecos-instituicoes?parceiro=true`);
+        const respostaLocal = await resposta2.json();
+        console.log("Resposta:", respostaLocal);
+
+
+const cardsContainer = document.getElementById("cards");
+        cardsContainer.innerHTML = ''; 
+        var tamanho = 0
+
+        respostaLocal.forEach(campanha => {
+            cardsContainer.innerHTML += `
+    <div class="location-card">
+        <div class="location-image">
+            <img src="../IMG/ProSangue.png" alt="Fundação Pró-Sangue Hemocentro de São Paulo">
+        </div>
+        <div class="location-details">
+            <h2>${respostaLocal[tamanho].instituicao.nome}</h2>
+            <p class="hours">Horário de funcionamento: 9:00 às 15:00</p>
+            <p class="address">${respostaLocal[tamanho].rua}, ${respostaLocal[tamanho].numero} - ${respostaLocal[tamanho].complemento} - ${respostaLocal[tamanho].bairro}, ${respostaLocal[tamanho].cidade} - ${respostaLocal[tamanho].estado}, ${respostaLocal[tamanho].cep}</p>
+        </div>
+    </div>
+            `
+            tamanho++;
+        });
         }
         buscar()
 
