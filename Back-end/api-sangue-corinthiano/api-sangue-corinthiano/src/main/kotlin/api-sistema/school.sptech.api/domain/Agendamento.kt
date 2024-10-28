@@ -33,7 +33,7 @@ data class Agendamento(
     var idCampanha: Int = 1,
 
     //@field:NotNull
-    var status: Int = 1
+    var status: Int = 1,
 
 
 )

@@ -90,14 +90,29 @@ async function cadastrarInstituicao(){
             })
         });
 
-        const dados = await response.json()
-        console.log(dados)
-
-        return dados
+        if (response.ok) {
+            const body = document.querySelector("body");
+        
+            // Exibir o alert
+            alert("Instituição cadastrada com sucesso!");
+        
+            // Aplicar a animação de fade-out
+            body.style.transition = "opacity 1s";
+            body.style.opacity = "0";
+        
+            // Redirecionar após 1 segundo, tempo da animação
+            setTimeout(() => {
+                window.location.href = "../paginas-adm/ADMLocaisCadastradosSC.html";
+            }, 1000);
+        
+        } else {
+            // Exibir erro se a resposta não for bem-sucedida
+            alert("Erro ao cadastrar a instituição.");
+        }
 
     } catch (error) {
-
-        console.log(`Houve um erro: ${error}`)
+        console.log(`Houve um erro: ${error}`);
+        alert("Ocorreu um erro ao tentar cadastrar a instituição.");
     }
 }
 
@@ -125,7 +140,9 @@ async function cadastrarLocalSC(instituicaoId){
                 longitude:document.getElementById("input-longitude").value,
                 instituicao: {
 		            idInstituicao: instituicaoId
-	            }
+                    
+	            }       
+                
             })
         });
 
@@ -157,17 +174,31 @@ async function atualizarInstituicao(idInstituicao){
             })
         });
 
-        const dados = await response.json()
-        console.log(dados)
-
-        return dados
-
+        if (response.ok) {
+            const body = document.querySelector("body");
+        
+            // Exibir o alert
+            alert("Instituição atualizada com sucesso!");
+        
+            // Aplicar a animação de fade-out
+            body.style.transition = "opacity 1s";
+            body.style.opacity = "0";
+        
+            // Redirecionar após 1 segundo, tempo da animação
+            setTimeout(() => {
+                window.location.href = "../paginas-adm/ADMLocaisCadastradosSC.html";
+            }, 1000);
+        } else {
+            // Exibir erro se a resposta não for bem-sucedida
+            alert("Erro ao cadastrar a instituição.");
+        }
 
     } catch (error) {
-
-        console.log(`Houve um erro: ${error}`)
+        console.log(`Houve um erro: ${error}`);
+        alert("Ocorreu um erro ao tentar cadastrar a instituição.");
     }
 }
+
 
 
 

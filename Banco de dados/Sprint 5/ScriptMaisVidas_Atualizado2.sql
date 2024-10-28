@@ -184,6 +184,17 @@ BEGIN
 END//
 DELIMITER ;
 
+ALTER TABLE acesso_admin
+DROP FOREIGN KEY fk_acesso_admin_admin;
+
+ALTER TABLE acesso_admin
+ADD CONSTRAINT fk_acesso_admin_admin
+FOREIGN KEY (id_admin) REFERENCES admin_sangue_corinthiano(id_admin)
+ON DELETE CASCADE;
+
+ALTER TABLE admin_sangue_corinthiano
+ADD COLUMN status VARCHAR(10) DEFAULT 'ATIVO';
+
 -- Inserindo dados na tabela 'origem_trafego'
 INSERT INTO origem_trafego (opcao) VALUES ('A'), ('B'), ('C'), ('D'), ('E');
 
@@ -260,12 +271,13 @@ VALUES ('Administrador', 'TI', 1, 201),
        ('Voluntário', 'Eventos', 5, 205);
 
 -- Inserindo dados na tabela 'admin_sangue_corinthiano'
-INSERT INTO admin_sangue_corinthiano (nome, cpf, email, senha, dt_nasc, sexo, id_unidade, id_cargo) 
-VALUES ('Carlos Administrador', '12345678901', 'admin.carlos@example.com', 'senhaadmin', '1980-06-15', 'M', 1, 1), 
-       ('Maria Gerente', '23456789012', 'gerente.maria@example.com', 'senhagerente', '1975-08-20', 'F', 2, 2), 
-       ('João Coordenador', '34567890123', 'coord.joao@example.com', 'senhacoord', '1985-02-10', 'M', 3, 3), 
-       ('Ana Assistente', '45678901234', 'assist.ana@example.com', 'senhaassist', '1990-04-25', 'F', 4, 4), 
-       ('Pedro Voluntário', '56789012345', 'volunt.pedro@example.com', 'senhavolunt', '1995-11-30', 'M', 5, 5);
+INSERT INTO admin_sangue_corinthiano (nome, cpf, email, senha, dt_nasc, sexo, id_unidade, id_cargo, status) 
+VALUES ('Carlos Administrador', '12345678901', 'admin.carlos@example.com', 'senhaadmin', '1980-06-15', 'M', 1, 1, 'ATIVO'), 
+       ('Maria Gerente', '23456789012', 'gerente.maria@example.com', 'senhagerente', '1975-08-20', 'F', 2, 2, 'ATIVO'), 
+       ('João Coordenador', '34567890123', 'coord.joao@example.com', 'senhacoord', '1985-02-10', 'M', 3, 3, 'ATIVO'), 
+       ('Ana Assistente', '45678901234', 'assist.ana@example.com', 'senhaassist', '1990-04-25', 'F', 4, 4, 'ATIVO'), 
+       ('Pedro Voluntário', '56789012345', 'volunt.pedro@example.com', 'senhavolunt', '1995-11-30', 'M', 5, 5, 'ATIVO');
+
 
 -- Inserindo dados na tabela 'telefone_admin'
 INSERT INTO telefone_admin (ddd, tel_cel, id_admin) 
@@ -369,3 +381,10 @@ select * from instituicao;
 select * from endereco_instituicao;
 select * from agendamento;
 desc agendamento;
+
+SELECT * FROM admin_sangue_corinthiano;
+select* from instituicao;
+
+ALTER TABLE admin_sangue_corinthiano
+ADD COLUMN nivel_acesso INT NOT NULL DEFAULT 3;
+

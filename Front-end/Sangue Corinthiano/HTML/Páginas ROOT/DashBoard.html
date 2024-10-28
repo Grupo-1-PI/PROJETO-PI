@@ -8,8 +8,9 @@
 
     <link rel="stylesheet" href="../../CSS/sangueCorinthiano.css">
     <link rel="stylesheet" href="../../CSS/DashBoard_.css">
-    <link rel="stylesheet" href="../CSS/AumentaDiminuiFonte.css">
+    <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
     <link rel="stylesheet" href="../CSS/dark-mode.css">
+
 
 
 </head>
@@ -19,61 +20,76 @@
         <div class="container">
             <div class="usuario justificar-meio">
                 <div class="formatacao1 direcao-linha alinhar-meio space-between">
-                    <div class="icon justificarAlinhar-meio">
-                        <img src="../../IMG/User Branco.png" alt="">
-                    </div>
-                    <a class="texto3" href="">
-                        Cadastrar
+                    <a href="TelaUsuario.html">
+                        <img src="../../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
+                    </a>
+                    <a class="texto3" id="nomeUsuario" href="../Cadastro.html">
+                        ${ususario}
                     </a>
                     <span class="texto3">
                         |
                     </span>
-                    <a class="texto3" href="">
-                        Login
+                    <a class="texto3" href="../Login.html">
+                        Sair
                     </a>
                 </div>
             </div>
             <div class="direcao-linha space-between">
                 <div class="formatacao2 direcao-linha alinhar-meio space-between">
                     <div class="textoConteudo">
-                        <a id="increase-font" class="texto2" href="#">
-                            A+
-                        </a>
+                        <button id="increase-font">A+</button>
                     </div>
                     <div class="textoConteudo">
-                        <a id="decrease-font" class="texto2" href="#">
-                            A-
-                        </a>
+                        <button id="decrease-font">A-</button>
                     </div>
                 </div>
+
                 <div class="conteudo alinhar-meio">
-                    <a class="texto2" href="">
+                    <a class="texto2" href="../Home.html">
                         INFORMAÇÕES
                     </a>
                 </div>
+
                 <div class="logo justificarAlinhar-meio">
-                    <img src="../../IMG/logo.png" alt="" class="margintop">
+                    <img src="../../IMG/logo.png" alt="" style="margin-top: 150px;">
                 </div>
+
                 <div class="conteudo alinhar-meio">
-                    <a class="texto2" href="">
+                    <a class="texto2" href="../CampanhaSC.html">
                         DOAR AGORA
                     </a>
                 </div>
+
                 <div class="formatacao2 alinhar-meio">
-                    <div class="imagem justificarAlinhar-meio">
+                    <div class="conteudo formata">
                         <img id="darkModeToggle" src="../../IMG/alternancia branco.png" alt="Alternar Modo Escuro"
                             onclick="toggleDarkMode()">
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
     <div class="subNavBar format-Center space-evenly">
-        <a href="">
-            Sangue Corinthiano
+        <a href="../paginas-adm/ADMCadastrarSangueCorinthiano.html">
+            Cadastrar Locais
         </a>
-        <a href="">
-            Instituições parceiras
+        <a href="../paginas-adm/ADMLocaisCadastradosSC.html">
+            Visualizar Locais
+        </a>
+        <a href="../paginas-adm/ADMCadastrarCampanha.html">
+            Campanhas
+        </a>
+        <a href="../paginas-adm/ADMAgendamento.html">
+            <a href="../paginas-adm/ADMAgendamento.html" >
+                Agendamentos
+            </a>
+        </a>
+        <a href="../paginas-adm/ADMCadastrarColaborador.html">
+            Colaboradores
+        </a>
+        <a href="../Páginas ROOT/DashBoard.html" style="color: #d40000;">
+            Dashboard
         </a>
     </div>
     <div class="titulo center marginTop1">

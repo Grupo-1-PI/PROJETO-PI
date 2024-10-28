@@ -4,14 +4,15 @@ body {
 
 .div-painel {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
     margin: auto;
-    height: 30rem;
+    height: 53rem;
+    flex-direction: column;
+    margin-bottom: 4%;
+    margin-top: 11%;
 }
-
 .div-usuario {
     height: 15rem;
     width: 20%;
@@ -57,14 +58,15 @@ img {
 .div-lista-doacoes {
     padding: 5px;
     overflow-x: hidden;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height: 90%;
-    width: 32%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 13px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin-top: 4%;
 }
 
 .div-campanha {
