@@ -138,13 +138,15 @@
             </div>
 
         </div>
-        <div class="div-lista-doacoes">
+
+    </div>
+
+    <div class="div-lista-doacoes">
 
 
-            <div class="div-lista-campanhas">
-                <h2 class="minhas-doacoes">Campanhas</h2>
+        <div class="div-lista-campanhas">
+            <h2 class="minhas-doacoes">Campanhas</h2>
 
-            </div>
         </div>
     </div>
 
@@ -415,7 +417,7 @@
         const userId = sessionStorage.getItem('userId');
         const url = `http://localhost:8080`;
 
-        fetch(`${url}/campanhas/listar/${userId}`)
+        fetch(`${url}/campanhas/listarCampanhas/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

@@ -43,13 +43,7 @@ class CampanhaController(
         return ResponseEntity.status(200).body(listaCampanhas)
     }
 
-    @GetMapping("/listar/{idCampanha}")
-    fun buscarCampanhaUnica(
-        @PathVariable idCampanha: Int,
-    ): ResponseEntity<CampanhaDto> {
-        val enderecoInstituicao = service.buscarUm(idCampanha)
-        return ResponseEntity.status(200).body(enderecoInstituicao)
-    }
+
 
 
 //    @GetMapping
@@ -84,7 +78,15 @@ class CampanhaController(
         return ResponseEntity.status(201).body(campanha)
     }
 
-    @GetMapping("/listar/{idUsuario}")
+    @GetMapping("/listar/{idCampanha}")
+    fun buscarCampanhaUnica(
+        @PathVariable idCampanha: Int,
+    ): ResponseEntity<CampanhaDto> {
+        val enderecoInstituicao = service.buscarUm(idCampanha)
+        return ResponseEntity.status(200).body(enderecoInstituicao)
+    }
+
+    @GetMapping("/listarCampanhas/{idUsuario}")
     fun listarCampanhasPorId(@PathVariable idUsuario: Int): ResponseEntity<List<Array<Any>>> {
         val listaCampanhas = repository.listarCampanhaPorId(idUsuario)
 
