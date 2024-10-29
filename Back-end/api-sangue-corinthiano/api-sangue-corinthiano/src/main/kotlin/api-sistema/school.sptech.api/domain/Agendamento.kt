@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @Entity
-data class Agendamento(
+class Agendamento(
     @field:Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val idAgendamento: Int = 0,
 
@@ -36,4 +36,6 @@ data class Agendamento(
     var status: Int = 1,
 
 
-)
+){
+    constructor() : this(0, LocalDate.now(), LocalTime.now(), "", 1, 1, 1, 1)
+}

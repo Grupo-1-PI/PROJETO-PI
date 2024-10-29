@@ -187,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="kpi format-Center column sombraKPI bordaKpi">
+                    <!-- <div class="kpi format-Center column sombraKPI bordaKpi">
                         <div class="containerKPI column space-evenly">
                             <div class="titulo center">
                                 <span>
@@ -216,7 +216,7 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="formatar column space-between">
@@ -256,15 +256,18 @@ async function buscar(){
     spanQtdDoadores2.innerHTML = qtdDoadores
 
     //
-    const campanha = await fetch(`${url}/campanhas`)
+    const campanha = await fetch(`${url}/campanhas/listar`)
     const respostaDadosCampanha = await campanha.json()
     console.log("Campanhas", respostaDadosCampanha)
 
     const campanhas2023 = new Array(12).fill(0);
     const campanhas2024 = new Array(12).fill(0);
 
+    console.log("Resposta da API de campanhas:", respostaDadosCampanha);
+
+
     respostaDadosCampanha.forEach(item => {
-    const data = new Date(item.data);
+    const data = new Date(item.dtInicio);
     const ano = data.getFullYear();
     const mes = data.getMonth(); 
 
@@ -273,6 +276,9 @@ async function buscar(){
     } else if (ano === 2024) {
         campanhas2024[mes]++;
     }
+
+    //     console.log("Campanhas", respostaDadosCampanha);
+    //     console.log("Total de campanhas:", respostaDadosCampanha.length);
 });
 
 console.log("Campanhas em 2023:", campanhas2023);
@@ -290,19 +296,19 @@ console.log("Campanhas em 2024:", campanhas2024);
     const qtdAgendamentos = respostaDadosAgendamentos.length
     spanTotalAgendamentos.innerHTML = qtdAgendamentos
 
-    const taxaRetencao = await fetch(`${url}/taxa-retencao`)
-    const respostaTaxaRetencao = await taxaRetencao.json()
-    console.log("Taxa Retencao", respostaTaxaRetencao)
+    // const taxaRetencao = await fetch(`${url}/taxa-retencao`)
+    // const respostaTaxaRetencao = await taxaRetencao.json()
+    // console.log("Taxa Retencao", respostaTaxaRetencao)
 
-    const spanTaxaRetencao = document.getElementById("taxaRetencao")
-    spanTaxaRetencao.innerHTML = respostaTaxaRetencao
+    // const spanTaxaRetencao = document.getElementById("taxaRetencao")
+    // spanTaxaRetencao.innerHTML = respostaTaxaRetencao
 
-    const taxaCancelamento = await fetch(`${url}/taxa-cancelamento`)
-    const respostaTaxaCancelamento = await taxaCancelamento.json()
-    console.log("Taxa Cancelamento", respostaTaxaCancelamento)
+    // const taxaCancelamento = await fetch(`${url}/taxa-cancelamento`)
+    // const respostaTaxaCancelamento = await taxaCancelamento.json()
+    // console.log("Taxa Cancelamento", respostaTaxaCancelamento)
 
-    const spanTaxaCancelamento = document.getElementById("taxaCancelamento")
-    spanTaxaCancelamento.innerHTML = respostaTaxaCancelamento
+    // const spanTaxaCancelamento = document.getElementById("taxaCancelamento")
+    // spanTaxaCancelamento.innerHTML = respostaTaxaCancelamento
 
     //const nomeUsuario = await document.getElementById('nomeUsuario')
     //nomeUsuario.innerHTML = await respostaDadosDoador.nome
@@ -324,6 +330,8 @@ console.log("Campanhas em 2024:", campanhas2024);
     } else if (ano === 2024) {
         agendamentos2024[mes]++;
     }
+        console.log("Data do item:", item.dtInicio);
+        console.log("Ano:", ano, "Mês:", mes);
 });
 
 console.log("Agendamentos em 2023:", agendamentos2023);
