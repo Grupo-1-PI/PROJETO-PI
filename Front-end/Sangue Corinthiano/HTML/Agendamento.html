@@ -297,7 +297,53 @@
 </body>
 
 </html>
+
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    //script de triagem
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      Swal.fire({
+        title: 'Você tem 18 anos ou mais?',
+        icon: 'question',
+        showDenyButton: true,
+        confirmButtonText: 'Sim',
+        denyButtonText: 'Não',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Bem-vindo!', 'Você pode continuar com o agendamento.', 'success');
+        } else if (result.isDenied) {
+          Swal.fire({
+            title: 'Menores de 18 anos precisam preencher um termo.',
+            text: 'Já fez o download do termo?',
+            icon: 'info',
+            showDenyButton: true,
+            confirmButtonText: 'Sim',
+            denyButtonText: 'Não',
+          }).then((downloadResult) => {
+            if (downloadResult.isDenied) {
+              Swal.fire({
+                title: 'Download do Termo',
+                text: 'Clique no botão abaixo para baixar o termo.',
+                icon: 'info',
+                confirmButtonText: 'Download',
+              }).then(() => {
+                window.location.href = '../termo-consentimento-sangue-corinthiano.pdf';
+
+              });
+            } else {
+              Swal.fire('Ótimo!', 'Lembre-se de levar o termo no dia da doação.', 'success');
+            }
+          });
+        }
+      });
+    });
+  </script>
+
 <script>
 
     const idCpf = document.getElementById("cpf")
