@@ -226,6 +226,7 @@
 
 <script>
     const url = 'http://localhost:8080';
+    const adminEmail     = 'vania@email.com'
     
             document.getElementById('formLogin').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -244,13 +245,19 @@
                     .then(data => {
                         console.log(data);
                         if (data.message === "Login realizado com sucesso!") {
-                            const userId = data.userId; 
-                            alert("Login realizado com sucesso! ID do usuário: " + userId);
-                            sessionStorage.setItem('userId', userId);
-                            window.location.href = "\LocaisSC.html";
-                        } else {
-                            alert("Login inválido!");
-                        }
+                const userId = data.userId; 
+                alert("Login realizado com sucesso! ID do usuário: " + userId);
+                sessionStorage.setItem('userId', userId);
+
+                // Verifica se o email é do administrador
+                if (email === adminEmail) {
+                    window.location.href = "\paginas-adm/ADMLocaisCadastradosSC.html"; // Página do administrador
+                } else {
+                    window.location.href = "\CampanhaSC.html"; // Página do doador
+                }
+            } else {
+                alert("Login inválido!");
+            }
                     })
                     .catch(error => {
                         console.error('Erro durante a requisição:', error);
