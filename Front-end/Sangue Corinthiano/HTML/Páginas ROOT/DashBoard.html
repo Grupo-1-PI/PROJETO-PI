@@ -10,12 +10,24 @@
     <link rel="stylesheet" href="../../CSS/DashBoard_.css">
     <link rel="stylesheet" href="../../CSS/AumentaDiminuiFonte.css">
     <link rel="stylesheet" href="../CSS/dark-mode.css">
-
-
-
 </head>
 
 <body>
+    <style>
+        label{
+            font-size: 40px;
+            font-weight: 600;
+            padding-right: 15px;
+        }
+        #categoryFilter{
+            font-size: 20px;
+        }
+        .marginTop1 {
+    align-items: center;
+    /* width: 80%; */
+    margin: 50px 100px 50px 70px;
+}
+    </style>
     <div class="navbar justificar-meio">
         <div class="container">
             <div class="usuario justificar-meio">
@@ -24,7 +36,7 @@
                         <img src="../../IMG/User Branco.png" alt="Usuário" style="width: 25px; height: 25px;">
                     </a>
                     <a class="texto3" id="nomeUsuario" href="../Cadastro.html">
-                        ${ususario}
+                        Vânia
                     </a>
                     <span class="texto3">
                         |
@@ -70,24 +82,23 @@
             </div>
         </div>
     </div>
-    <div class="subNavBar format-Center space-evenly">
+    <div class="subNavBar format-Center space-evenly" style="margin-top: 60px;">
         <a href="../paginas-adm/ADMCadastrarSangueCorinthiano.html">
             Cadastrar Locais
         </a>
         <a href="../paginas-adm/ADMLocaisCadastradosSC.html">
             Visualizar Locais
         </a>
-        <a href="../paginas-adm/ADMCadastrarCampanha.html">
+        <a href="../paginas-adm/ADMCadastrarCampanha.html" style="z-index: 2;">
             Campanhas
         </a>
         <a href="../paginas-adm/ADMAgendamento.html">
-            <a href="../paginas-adm/ADMAgendamento.html" >
-                Agendamentos
-            </a>
+            Agendamentos
         </a>
-        <a href="../paginas-adm/ADMCadastrarColaborador.html">
+
+        <!-- <a href="../paginas-adm/ADMCadastrarColaborador.html">
             Colaboradores
-        </a>
+        </a> -->
         <a href="../Páginas ROOT/DashBoard.html" style="color: #d40000;">
             Dashboard
         </a>
@@ -99,15 +110,26 @@
             </span>
         </div>
     </div>
+
+    <!-- <label>Campanha:</label>
+    <select id="categoryFilter" onchange="applyCategoryFilter()">
+        <option value="all">Todas</option>
+        <option value="janeiro">Janeiro</option>
+        <option value="abril">Abril</option>
+        <option value="agosto">Agosto</option>
+        <option value="dezembro">Dezembro</option>
+    </select> -->
+<!-- <button id="applyFilterButton">Filtrar</button> -->
+
     <div class="dashBoardDoador center marginTop3">
         <div class="container center full ">
             <div class="dashboard row">
                 <div class="formatar space-between">
                     <div class="dash format-Center bordaKpi sombraKPI">
-                        <canvas id="doadoresOpcao" style="height: 100%; width: 95%;"></canvas>
+                        <canvas id="doadoresOpcao" style="height: 90%; width: 90%;"></canvas>
                     </div>
                     <div class="dash format-Center bordaKpi sombraKPI">
-                        <canvas id="sexoIdade" style="height: 100%; width: 95%;"></canvas>
+                        <canvas id="sexoIdade" style="height: 90%; width: 90%;"></canvas>
                     </div>
                 </div>
                 <div class="formatar1 format column space-evenly">
@@ -130,8 +152,8 @@
                         <div class="containerKPI column space-evenly">
                             <div class="titulo center">
                                 <span>
-                                    Quantidade <br>
-                                    Doadores
+                                    Média <br>
+                                    De Idades
                                 </span>
                             </div>
                             <div class="valor format-Center">
@@ -151,18 +173,22 @@
                 SOBRE CAMPANHA
             </span>
         </div>
+        <label>Ano:</label>
+        <select id="categoryFilter"></select>
     </div>
+
+    <!-- <button id="applyFilterButton">Filtrar</button>     -->
 
     <div class="dashBoardCampanha center marginTop3">
         <div class="container center full">
             <div class="dashboard row">
-                <div class="formatar1 column format space-between">
+                <div class="formatar1 column format space-evenly">
                     <div class="kpi format-Center column sombraKPI bordaKpi">
                         <div class="containerKPI column space-evenly">
                             <div class="titulo center">
                                 <span>
-                                    Total <br>
-                                    Cadastro
+                                    Quantidade <br>
+                                    Campanhas
                                 </span>
                             </div>
                             <div class="valor format-Center">
@@ -177,7 +203,7 @@
                             <div class="titulo center">
                                 <span>
                                     Quantidade <br>
-                                    Doadores
+                                    Agendamentos
                                 </span>
                             </div>
                             <div class="valor format-Center">
@@ -240,364 +266,564 @@
 
 <script>
 
-async function buscar(){
-    const url = 'http://localhost:8080';
-    //const id = sessionStorage.getItem('userId');
-
-    const usuario = await fetch(`${url}/doadores`);
-    const respostaDadosDoador = await usuario.json();
-    console.log("Resposta:", respostaDadosDoador);
-
-    const qtdDoadores = respostaDadosDoador.length
-    const spanQtdDoadores = document.getElementById("qtdDoadores")
-    spanQtdDoadores.innerHTML = qtdDoadores
-
-    const spanQtdDoadores2 = document.getElementById("qtdDoadores2")
-    spanQtdDoadores2.innerHTML = qtdDoadores
-
-    //
-    const campanha = await fetch(`${url}/campanhas/listar`)
-    const respostaDadosCampanha = await campanha.json()
-    console.log("Campanhas", respostaDadosCampanha)
-
-    const campanhas2023 = new Array(12).fill(0);
-    const campanhas2024 = new Array(12).fill(0);
-
-    console.log("Resposta da API de campanhas:", respostaDadosCampanha);
+    async function buscar() {
+        document.addEventListener("DOMContentLoaded", () => {
+    // Associe o evento onchange ao filtro
+    const categoryFilter = document.getElementById("categoryFilter");
+    categoryFilter.addEventListener("change", aplicarFiltroAno);
 
 
-    respostaDadosCampanha.forEach(item => {
-    const data = new Date(item.dtInicio);
-    const ano = data.getFullYear();
-    const mes = data.getMonth(); 
-
-    if (ano === 2023) {
-        campanhas2023[mes]++;
-    } else if (ano === 2024) {
-        campanhas2024[mes]++;
-    }
-
-    //     console.log("Campanhas", respostaDadosCampanha);
-    //     console.log("Total de campanhas:", respostaDadosCampanha.length);
 });
+        // document.getElementById("applyFilterButton").addEventListener("click", applyDateFilter);
 
-console.log("Campanhas em 2023:", campanhas2023);
-console.log("Campanhas em 2024:", campanhas2024);
+        const url = 'http://localhost:8080';
+        //const id = sessionStorage.getItem('userId');
 
-    const spanTotalCampanhas = document.getElementById("qtdCampanhas")
-    const qtdCampanhas = respostaDadosCampanha.length
-    spanTotalCampanhas.innerHTML = qtdCampanhas
+        let anosDisponiveis = []; // Para armazenar os anos encontrados no banco
+        let dadosPorAno = {};     // Para associar dados específicos a cada ano
 
-    const agendamento = await fetch(`${url}/agendamentos`)
-    const respostaDadosAgendamentos = await agendamento.json()
-    console.log("Agendamentos", respostaDadosAgendamentos)
+        // Fazendo o fetch para obter os dados dos doadores ou campanhas
+        const response = await fetch(`${url}/campanhas/listar`);
+        const doadores = await response.json();
 
-    const spanTotalAgendamentos = document.getElementById("qtdAgendamentos")
-    const qtdAgendamentos = respostaDadosAgendamentos.length
-    spanTotalAgendamentos.innerHTML = qtdAgendamentos
+        // Processar os anos únicos encontrados nos dados
+        anosDisponiveis = [...new Set(doadores.map(doador => new Date(doador.dtInicio).getFullYear()))];
 
-    // const taxaRetencao = await fetch(`${url}/taxa-retencao`)
-    // const respostaTaxaRetencao = await taxaRetencao.json()
-    // console.log("Taxa Retencao", respostaTaxaRetencao)
+        // Organizar dados por ano
+        anosDisponiveis.forEach(ano => {
+            dadosPorAno[ano] = doadores.filter(doador => 
+                new Date(doador.dtInicio).getFullYear() === ano
+            );
+        });
 
-    // const spanTaxaRetencao = document.getElementById("taxaRetencao")
-    // spanTaxaRetencao.innerHTML = respostaTaxaRetencao
+        // Atualizar o seletor de anos dinamicamente
+        const selectFiltro = document.getElementById("categoryFilter");
+    selectFiltro.innerHTML = ""; // Limpar qualquer opção existente
 
-    // const taxaCancelamento = await fetch(`${url}/taxa-cancelamento`)
-    // const respostaTaxaCancelamento = await taxaCancelamento.json()
-    // console.log("Taxa Cancelamento", respostaTaxaCancelamento)
-
-    // const spanTaxaCancelamento = document.getElementById("taxaCancelamento")
-    // spanTaxaCancelamento.innerHTML = respostaTaxaCancelamento
-
-    //const nomeUsuario = await document.getElementById('nomeUsuario')
-    //nomeUsuario.innerHTML = await respostaDadosDoador.nome
-
-    const resposta = await fetch(`${url}/agendamentos`);
-    const dados = await resposta.json();
-    console.log("Resposta:", dados);
-
-    const agendamentos2023 = new Array(12).fill(0);
-    const agendamentos2024 = new Array(12).fill(0);
-
-    dados.forEach(item => {
-    const data = new Date(item.data);
-    const ano = data.getFullYear();
-    const mes = data.getMonth(); 
-
-    if (ano === 2023) {
-        agendamentos2023[mes]++;
-    } else if (ano === 2024) {
-        agendamentos2024[mes]++;
-    }
-        console.log("Data do item:", item.dtInicio);
-        console.log("Ano:", ano, "Mês:", mes);
-});
-
-console.log("Agendamentos em 2023:", agendamentos2023);
-console.log("Agendamentos em 2024:", agendamentos2024);
-
-
-const meses = [
-    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-];
-
-
-    const ctx1 = document.getElementById('doadoresOpcao').getContext('2d');
-    const doadoresOpcao = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: meses,
-            datasets: [
-                {
-                    label: 'Sales 2023',
-                    data: agendamentos2023,
-                    backgroundColor: '#3498db',  // Azul sólido
-                    borderColor: '#2980b9',
-                    hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
-                    hoverBorderColor: '#1f618d'
-                }
-
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Monthly Sales Comparison',
-                    color: '#34495e',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        display: false  // Remover a grade do eixo x
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: '#ecf0f1'  // Cor da grade do eixo y
-                    }
-                }
-
-            }
-        }
+    // Criar as opções de ano dinamicamente
+    anosDisponiveis.forEach(ano => {
+        const option = document.createElement("option");
+        option.value = ano;
+        option.textContent = ano;
+        selectFiltro.appendChild(option);
     });
 
-    const ctx2 = document.getElementById('sexoIdade').getContext('2d');
-    const sexoIdade = new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: meses,
-            datasets: [
-                {
-                    label: 'Sales 2023',
-                    data: agendamentos2023,
-                    backgroundColor: '#3498db',  // Azul sólido
-                    borderColor: '#2980b9',
-                },
-                {
-                    label: 'Sales 2024',
-                    data: agendamentos2024,
-                    backgroundColor: '#e74c3c',  // Vermelho sólido
-                    borderColor: '#c0392b',
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Monthly Sales Comparison',
-                    color: '#34495e',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        display: false  // Remover a grade do eixo x
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: '#ecf0f1'  // Cor da grade do eixo y
-                    }
-                }
+        const usuario = await fetch(`${url}/doadores`);
+        const respostaDadosDoador = await usuario.json();
+        console.log("Doadores:", respostaDadosDoador);
 
+        const qtdDoadores = respostaDadosDoador.length
+        const spanQtdDoadores = document.getElementById("qtdDoadores")
+        spanQtdDoadores.innerHTML = qtdDoadores
+
+        const doadoresMasculinos = respostaDadosDoador.filter(doador => doador.sexo === 'M');
+        const doadoresFemininos = respostaDadosDoador.filter(doador => doador.sexo === 'F');
+
+        // console.log("Doadores Masculinos:", doadoresMasculinos);
+        // console.log("Doadores Femininos:", doadoresFemininos);
+
+        const corinthians = [];
+        const instagram = [];
+        const facebook = [];
+        const indicacao = [];
+        const outros = [];
+
+        respostaDadosDoador.forEach(doador => {
+            switch (doador.idOrigemTrafego) {
+                case 3:
+                    corinthians.push(doador);
+                    break;
+                case 1:
+                    instagram.push(doador);
+                    break;
+                case 2:
+                    facebook.push(doador);
+                    break;
+                case 4:
+                    indicacao.push(doador);
+                    break;
+                default:
+                    outros.push(doador);
             }
-        }
-    });
+        });
 
-    const ctx3 = document.getElementById('doadoresCampanha').getContext('2d');
-    const doadoresCampanha = new Chart(ctx3, {
-        type: 'line',
-        data: {
-            labels: meses,
-            datasets: [
-                {
-                    label: 'Sales 2023',
-                    data: campanhas2023,
-                    backgroundColor: '#3498db',  // Azul sólido
-                    borderColor: '#2980b9',
-                },
-                {
-                    label: 'Sales 2024',
-                    data: campanhas2024,
-                    backgroundColor: '#e74c3c',  // Vermelho sólido
-                    borderColor: '#c0392b',
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Monthly Sales Comparison',
-                    color: '#34495e',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        display: false  // Remover a grade do eixo x
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: '#ecf0f1'  // Cor da grade do eixo y
-                    }
-                }
+        // console.log("Doadores - Corinthians:", corinthians);
+        // console.log("Doadores - Instagram:", instagram);
+        // console.log("Doadores - Facebook:", facebook);
+        // console.log("Doadores - indicacao:", indicacao);
+        // console.log("Doadores - Outros:", outros);
 
+        const DadosPorOndeVeio = [instagram.length, facebook.length, corinthians.length, indicacao.length, outros.length];
+
+
+
+
+
+
+        const campanha = await fetch(`${url}/campanhas/listar`)
+        const respostaDadosCampanha = await campanha.json()
+        console.log("Campanhas", respostaDadosCampanha)
+
+        const campanhas2023 = new Array(12).fill(0);
+        const campanhas2024 = new Array(12).fill(0);
+        const campanhas2022 = new Array(12).fill(0);
+        const campanhas2021 = new Array(12).fill(0);
+
+        respostaDadosCampanha.forEach(item => {
+            const data = new Date(item.dtInicio);
+            const ano = data.getFullYear();
+            const mes = data.getMonth();
+
+            if (ano === 2023) {
+                campanhas2023[mes]++;
+            } else if (ano === 2024) {
+                campanhas2024[mes]++;
+            } else if (ano == 2022){
+                campanhas2022[mes]++
+            } else if (ano == 2021){
+                campanhas2021[mes]++
             }
-        }
-    });
+        });
 
-    const ctx4 = document.getElementById('agendamentoDoacao').getContext('2d');
-    const agendamentoDoacao = new Chart(ctx4, {
-        type: 'bar',
-        data: {
-            labels: meses,
-            datasets: [
-                {
-                    label: 'Sales 2023',
-                    data: campanhas2023,
-                    backgroundColor: '#3498db',  // Azul sólido
-                    borderColor: '#2980b9',
-                    hoverBackgroundColor: '#2980b9',  // Cor ao passar o mouse
-                    hoverBorderColor: '#1f618d'
-                },
-                {
-                    label: 'Sales 2024',
-                    data: campanhas2024,
-                    backgroundColor: '#e74c3c',  // Vermelho sólido
-                    borderColor: '#c0392b',
-                    hoverBackgroundColor: '#c0392b',
-                    hoverBorderColor: '#922b21'
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Monthly Sales Comparison',
-                    color: '#34495e',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        display: false  // Remover a grade do eixo x
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#2c3e50',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: '#ecf0f1'  // Cor da grade do eixo y
-                    }
-                }
+        const spanTotalCampanhas = document.getElementById("qtdCampanhas")
+        const qtdCampanhas = respostaDadosCampanha.length
+        spanTotalCampanhas.innerHTML = qtdCampanhas
+        console.log("Quantidade campanha" + respostaDadosCampanha.length)
 
+        const agendamento = await fetch(`${url}/agendamentos`)
+        const respostaDadosAgendamentos = await agendamento.json()
+        console.log("Agendamentos", respostaDadosAgendamentos)
+
+        const spanTotalAgendamentos = document.getElementById("qtdAgendamentos")
+        const qtdAgendamentos = respostaDadosAgendamentos.length
+        spanTotalAgendamentos.innerHTML = qtdAgendamentos
+
+        // Variáveis para armazenar os dados recebidos
+let dadosCampanha = [];
+let dadosAgendamentos = [];
+
+    // Obtenha os dados de campanhas
+    const campanha2 = await fetch(`${url}/campanhas/listar`);
+    dadosCampanha = await campanha2.json();
+    console.log("Campanhas 2", dadosCampanha);
+
+    // Obtenha os dados de agendamentos
+    const agendamento2 = await fetch(`${url}/agendamentos`);
+    dadosAgendamentos = await agendamento2.json();
+    console.log("Agendamentos 2", dadosAgendamentos);
+
+    // Atualize os KPIs com os dados gerais inicialmente
+    atualizarKPIs(dadosCampanha, dadosAgendamentos);
+
+        const mesesPermitidos = [0, 3, 7, 11]; // Janeiro: 0, Abril: 3, Agosto: 7, Dezembro: 11
+        const agendamentos20233 = new Array(mesesPermitidos.length).fill(0);
+        const agendamentos20244 = new Array(mesesPermitidos.length).fill(0);
+        const agendamentos20222 = new Array(mesesPermitidos.length).fill(0);
+        const agendamentos20211 = new Array(mesesPermitidos.length).fill(0);
+
+        respostaDadosAgendamentos.forEach(agendamento => {
+            const data = new Date(agendamento.data);
+            const ano = data.getFullYear();
+            const mes = data.getMonth();
+
+            const indexMes = mesesPermitidos.indexOf(mes);
+            // console.log("TETSTETANDOD", mesesPermitidos.indexOf(mes))
+            if (ano === 2023 && indexMes !== -1) {
+                agendamentos20233[indexMes]++;
+            } else if (ano === 2024 && indexMes !== -1) {
+                agendamentos20244[indexMes]++;
+            } else if (ano === 2022 && indexMes !== -1) {
+                agendamentos20222[indexMes]++;
+            } else if (ano === 2021 && indexMes !== -1) {
+                agendamentos20211[indexMes]++;
             }
-        }
-    });
+            // console.log("Data do item:", agendamento.data);
+            // console.log("Ano:", ano, "Mês:", mes);
+        });
 
+        console.log("Agendamentos em 20233:", agendamentos20233);
+        console.log("Agendamentos em 20244:", agendamentos20244);
+        console.log("Agendamentos em 20222:", agendamentos20222);
+        console.log("Agendamentos em 20211:", agendamentos20211);
+
+        const meses = [
+            'Janeiro', 'Abril', 'Agosto', 'Dezembro'
+        ];
+        const ondeVeio = [
+            'Corinthians', 'Instagram', 'Facebook', 'Indicações', 'Outros'
+        ];
+
+        const campanhas20233 = new Array(mesesPermitidos.length).fill(0);
+        const campanhas20244 = new Array(mesesPermitidos.length).fill(0);
+        const campanhas20222 = new Array(mesesPermitidos.length).fill(0);
+        const campanhas20211 = new Array(mesesPermitidos.length).fill(0);
+
+        respostaDadosCampanha.forEach(campanha => { 
+            const data = new Date(campanha.dtInicio); 
+            const ano = data.getFullYear();
+            const mes = data.getMonth();
+
+            // Verificação se o mês está nos mesesPermitidos
+            const indexMes = mesesPermitidos.indexOf(mes);
+            if (ano === 2023 && indexMes !== -1) {
+                campanhas20233[indexMes]++;
+            } else if (ano === 2024 && indexMes !== -1) {
+                campanhas20244[indexMes]++;
+            } else if (ano == 2022 && indexMes !== -1){
+                campanhas20222[indexMes]++;
+            } else if (ano == 2021 && indexMes !== -1){
+                campanhas20211[indexMes]++;
+            }
+
+            // console.log("Data da campanha:", campanha.dtInicio);
+            // console.log("Ano:", ano, "Mês:", mes);
+        });
+
+        //Aq tem q ser a soma de td q ta dentro, assim ta pegando o tamanho padrão do vetor
+        console.log("Quantidade campanha 2024" + campanhas20244.length)
+        console.log("Quantidade campanha 2023" + campanhas20233.length)
+        console.log("Quantidade campanha 2022" + campanhas20222.length)
+        console.log("Quantidade campanha 2021" + campanhas20211.length)
+
+        console.log("Campanhas em 20233:", campanhas20233);
+        console.log("Campanhas em 20244:", campanhas20244);
+        console.log("Campanhas em 20222:", campanhas20222);
+        console.log("Campanhas em 20211:", campanhas20211);
+
+        const ctx1 = document.getElementById('doadoresOpcao').getContext('2d');
+        const doadoresOpcao = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ondeVeio,
+                datasets: [
+                    {
+                        label: 'Opção de Onde Vieram',
+                        data: DadosPorOndeVeio,
+                        backgroundColor: [
+                            '#000000',  // Preto
+                            '#C20000',  // Vermelho
+                            '#3498db',  // Azul Claro
+                            '#F1C40F',  // Dourado
+                            '#7f8c8d'   // Cinza
+                        ],
+                        hoverBackgroundColor: [
+                            '#000000',  // Preto
+                            '#C20000',  // Vermelho
+                            '#3498db',  // Azul Claro
+                            '#F1C40F',  // Dourado
+                            '#7f8c8d'   // Cinza
+                        ],
+                        hoverBorderColor: '#000000' // Cor da borda ao passar o mouse (opcional)
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Por onde vieram',
+                        color: '#000000',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                    }
+                },
+                // Removido as escalas, pois não são necessárias para gráficos de pizza
+            }
+        });
+
+        const ctx2 = document.getElementById('sexoIdade').getContext('2d');
+        const sexoIdade = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Masculino', 'Feminino'],  // Labels para o gráfico de pizza
+                datasets: [
+                    {
+                        label: 'Sexo dos doadores',
+                        data: [doadoresMasculinos.length, doadoresFemininos.length],  // Dados fictícios: 60% feminino, 40% masculino
+                        backgroundColor: ['#000000', '#C20000'],  // Cores para cada setor
+                        borderColor: ['#2980b9', '#c0392b'],
+                        hoverBackgroundColor: ['#2980b9', '#c0392b']
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Distribuição por Sexo dos Doadores',
+                        color: '#34495e',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                    }
+                }
+            }
+        });
+
+        const ctx3 = document.getElementById('doadoresCampanha').getContext('2d');
+        const doadoresCampanha = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: meses,
+                datasets: [
+                    {
+                        label: 'Meses',
+                        data: campanhas20244,
+                        backgroundColor: '#000000',  // Azul sólido
+                        borderColor: '#000000',
+                    },
+                    // {
+                    //     label: 'Sales 2024',
+                    //     data: campanhas2024,
+                    //     backgroundColor: '#e74c3c',  // Vermelho sólido
+                    //     borderColor: '#c0392b',
+                    // }
+                ]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Agendamentos por Campanha',
+                        color: '#000000',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#2c3e50',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            display: false  // Remover a grade do eixo x
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#2c3e50',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: '#ecf0f1'  // Cor da grade do eixo y
+                        }
+                    }
+
+                }
+            }
+        });
+
+        const ctx4 = document.getElementById('agendamentoDoacao').getContext('2d');
+        const agendamentoDoacao = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [
+                    {
+                        label: 'Ano 2023',
+                        data: agendamentos20233,
+                        backgroundColor: '#C20000',  // Azul para 2023
+                        borderColor: '#C20000',
+                        hoverBackgroundColor: '#C20000',
+                        hoverBorderColor: '#1f618d'
+                    },
+                    {
+                        label: 'Ano 2024',
+                        data: agendamentos20244,
+                        backgroundColor: '#000000',  // Vermelho para 2024
+                        borderColor: '#000000',
+                        hoverBackgroundColor: '#00000',
+                        hoverBorderColor: '#922b21'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Comparação de Agendamentos de Doação entre 2023 e 2024',
+                        color: '#34495e',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        },
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#2c3e50'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#2c3e50',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            display: false  // Remover a grade do eixo x
+                        },
+                        stacked: false,  // Deixar as barras lado a lado para melhor comparação
+                        categoryPercentage: 0.6,  // Ajusta o espaçamento entre os grupos de barras
+                        barPercentage: 0.9        // Ajusta o espaçamento entre as barras dentro do grupo
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#2c3e50',
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: '#ecf0f1'  // Cor da grade do eixo y
+                        }
+                    }
+                }
+            }
+        });
+
+// function applyDateFilter() {
+//     const anoFiltro = document.getElementById("categoryFilter").value;
+//     // console.log(anoFiltro);
+//     // console.log(dadosPorAno)
+
+//     //     // Atualizar os dados do gráfico com base no ano selecionado
+//     //     if (dadosPorAno[anoFiltro]) {
+//     //         console.log(dadosPorAno[anoFiltro])
+//     //     doadoresCampanha.data.datasets[0].data = dadosPorAno[anoFiltro].map(d => d.dtInicio); // Substitua "valor" pelo atributo certo
+//     //     doadoresCampanha.update();
+//     // } else {
+//     //     alert("Ano selecionado não possui dados disponíveis.");
+//     // }
+
+//     if (anoFiltro == 2024) {
+//         doadoresCampanha.data.datasets[0].data = campanhas20244;
+//     } else if (anoFiltro == 2023) {
+//         doadoresCampanha.data.datasets[0].data = campanhas20233;
+//     } else if (anoFiltro == 2022) {
+//         doadoresCampanha.data.datasets[0].data = campanhas20222;
+//     }
+
+//     doadoresCampanha.update();
+// }
+
+// Função para atualizar os KPIs com base nos dados filtrados
+function atualizarKPIs(campanhas, agendamentos) {
+    const spanTotalCampanhas = document.getElementById("qtdCampanhas");
+    const spanTotalAgendamentos = document.getElementById("qtdAgendamentos");
+
+    spanTotalCampanhas.innerHTML = campanhas.length;
+    spanTotalAgendamentos.innerHTML = agendamentos.length;
 }
-buscar()
 
+// Função para aplicar o filtro de ano
+function aplicarFiltroAno() {
+    const anoFiltro = document.getElementById("categoryFilter").value;
+    console.log("Ano selecionado:", anoFiltro);
+
+    // Filtrar campanhas pelo ano
+    const campanhasFiltradas = dadosCampanha.filter(campanha => {
+        const anoCampanha = new Date(campanha.dataInicio).getFullYear();
+        return anoCampanha == anoFiltro;
+    });
+
+    // Filtrar agendamentos pelo ano
+    const agendamentosFiltrados = dadosAgendamentos.filter(agendamento => {
+        const anoAgendamento = new Date(agendamento.data).getFullYear();
+        return anoAgendamento == anoFiltro;
+    });
+
+    // Atualizar os KPIs com os dados filtrados
+    atualizarKPIs(campanhasFiltradas, agendamentosFiltrados);
+
+    const anoFiltro2 = document.getElementById("categoryFilter").value;
+    // console.log(anoFiltro);
+    // console.log(dadosPorAno)
+
+    //     // Atualizar os dados do gráfico com base no ano selecionado
+    //     if (dadosPorAno[anoFiltro]) {
+    //         console.log(dadosPorAno[anoFiltro])
+    //     doadoresCampanha.data.datasets[0].data = dadosPorAno[anoFiltro].map(d => d.dtInicio); // Substitua "valor" pelo atributo certo
+    //     doadoresCampanha.update();
+    // } else {
+    //     alert("Ano selecionado não possui dados disponíveis.");
+    // }
+
+    if (anoFiltro2 == 2024) {
+        doadoresCampanha.data.datasets[0].data = campanhas20244;
+    } else if (anoFiltro2 == 2023) {
+        doadoresCampanha.data.datasets[0].data = campanhas20233;
+    } else if (anoFiltro2 == 2022) {
+        doadoresCampanha.data.datasets[0].data = campanhas20222;
+    }
+
+    doadoresCampanha.update();
+}
+
+function resetFilters() {
+        // document.getElementById("resetFilters").addEventListener("click", applyDateFilter);
+        const originalData = [...doadoresCampanha.data.datasets[0].data];  // Dados originais, para restaurar quando necessário
+                // Restaura os dados originais se "Todas" for selecionado
+        doadoresCampanha.data.datasets[0].data = originalData;
+    doadoresCampanha.update();  // Atualiza o gráfico com o filtro aplicado
+}
+
+try {
+            // Fazendo o fetch para obter os dados dos doadores
+            const response = await fetch(`${url}/doadores`);
+            const doadores = await response.json();
+
+            // Função para calcular a idade
+            function calcularIdade(dataNasc) {
+                const dataNascimento = new Date(dataNasc);
+                const hoje = new Date();
+                let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+                const mes = hoje.getMonth() - dataNascimento.getMonth();
+
+                // Ajustar a idade caso ainda não tenha feito aniversário este ano
+                if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
+                    idade--;
+                }
+
+                return idade;
+            }
+
+            // Cálculo da média de idade
+            const totalIdade = doadores.reduce((soma, doador) => {
+                return soma + calcularIdade(doador.dtNasc);
+            }, 0);
+
+            const mediaIdade = totalIdade / doadores.length;
+
+            const spanQtdDoadores2 = document.getElementById("qtdDoadores2")
+            spanQtdDoadores2.innerHTML = mediaIdade.toFixed(0)
+        } catch (error) {
+            console.error("Erro ao buscar os dados dos doadores:", error);
+        }
+    }
+    buscar()
 </script>
+<!-- Filtro de campanha -->
