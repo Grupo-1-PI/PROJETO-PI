@@ -223,6 +223,12 @@
             </div>
         </div>
 
+        <!-- Formulário para upload do arquivo -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="arquivo">Importar arquivo de agendamentos:</label>
+            <input type="file" id="arquivo" name="file" accept=".txt">
+            <button type="button" onclick="enviarArquivo()">Enviar Arquivo</button>
+        </form>
 
         <span class="tituloPreto" style="margin-bottom: 20px;text-align: start;width: 63%;">Total: $4 doadores</span>
 
@@ -400,6 +406,42 @@
     </script>
 
     <script>
+                // Função para enviar o arquivo ao servidor
+                function enviarArquivo() {
+            const arquivoInput = document.getElementById('arquivo');
+            const arquivo = arquivoInput.files[0];
+
+            if (!arquivo) {
+                alert('Por favor, selecione um arquivo.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', arquivo);
+
+            // Enviar o arquivo para o endpoint usando Fetch API
+            fetch('http://localhost:8080/agendamentos/upload', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro no upload');
+                }
+            })
+            .then(data => {
+                console.log('Arquivo enviado com sucesso:', data);
+                alert('Arquivo enviado com sucesso!');
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao enviar o arquivo.');
+            });
+        }
+
+
         document.getElementById("dropdownButton").addEventListener("click", function () {
             this.parentElement.classList.toggle("show");
         });
