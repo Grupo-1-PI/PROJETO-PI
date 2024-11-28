@@ -1,5 +1,6 @@
 package ProjetoPI.ProjetoDoadores.controller
 
+import ProjetoPI.ProjetoDoadores.AgendamentoService
 import ProjetoPI.ProjetoDoadores.domain.Campanha
 import ProjetoPI.ProjetoDoadores.domain.EnderecoInstituicao
 import ProjetoPI.ProjetoDoadores.domain.Instituicao
@@ -7,16 +8,23 @@ import ProjetoPI.ProjetoDoadores.repository.CampanhaRepository
 import ProjetoPI.ProjetoDoadores.repository.CampanhaService
 import ProjetoPI.ProjetoDoadores.repository.EnderecoInstituicaoService
 import `api-sistema`.school.sptech.api.dto.EnderecoInstituicaoDto
+import org.springframework.core.io.InputStreamResource
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.Stack
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileWriter
+import java.util.*
 
 @CrossOrigin(origins = ["http://127.0.0.1:5500"])
 @RestController
 @RequestMapping("/campanhas")
 class CampanhaController(
     var repository: CampanhaRepository,
-    val service: CampanhaService
+    val service: CampanhaService,
+    val agendamentoService: AgendamentoService
 ) {
     val pilhaCampanhas = Stack<Campanha>()
 
@@ -96,4 +104,39 @@ class CampanhaController(
             ResponseEntity.status(200).body(listaCampanhas)
         }
     }
+
+    @GetMapping("/csv")
+    fun gerarCsv(): ResponseEntity<InputStreamResource> {
+        val tempFile = File("Agendamento.csv")
+        val arquivo = FileWriter(tempFile)
+        val saida = Formatter(arquivo)
+
+        val campanhasResponse = listarCampanhas()
+        val campanhas = campanhasResponse.body
+
+        if (campanhas != null) {
+            for (campanha in campanhas) {
+                saida.format(
+                    "%s;%s;%s;%s;%s;%s\n",
+                    campanha.idCampanha, campanha.nome, campanha.dtInicio, campanha.dtFim, campanha.idInstituicao, campanha.idAdmin
+                )
+            }
+        }
+        saida.close()
+        arquivo.close()
+
+        val inputStream = FileInputStream(tempFile)
+        val resource = InputStreamResource(inputStream)
+
+        val headers = HttpHeaders()
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Eventos.csv")
+        headers.contentType = MediaType.parseMediaType("text/csv")
+
+        return ResponseEntity.ok()
+            .headers(headers)
+            .contentLength(tempFile.length())
+            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+            .body(resource)
+    }
+
 }

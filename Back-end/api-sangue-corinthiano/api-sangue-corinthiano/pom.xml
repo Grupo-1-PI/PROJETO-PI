@@ -18,6 +18,18 @@
 		<kotlin.version>1.9.23</kotlin.version>
 	</properties>
 	<dependencies>
+		<!-- Dependência para processamento de arquivos -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<!-- Testes (opcional, para validação durante o desenvolvimento) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!--Swagger-->
 		<dependency>
 			<groupId>org.springdoc</groupId>

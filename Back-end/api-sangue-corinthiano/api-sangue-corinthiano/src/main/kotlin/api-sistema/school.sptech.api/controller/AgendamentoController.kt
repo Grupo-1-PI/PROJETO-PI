@@ -1,16 +1,21 @@
 package ProjetoPI.ProjetoDoadores.controller
 
+import ProjetoPI.ProjetoDoadores.AgendamentoService
 import ProjetoPI.ProjetoDoadores.domain.Agendamento
 import ProjetoPI.ProjetoDoadores.repository.AgendamentoRepository
 import ProjetoPI.ProjetoDoadores.repository.HistoricoAgendamentoRepository
+//import ProjetoPI.ProjetoDoadores.service.AgendamentoService
 import `api-sistema`.school.sptech.api.dto.DoadorAgendamentoDTO
 
 
 import jakarta.validation.Valid
 import org.modelmapper.ModelMapper
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+import java.io.InputStreamReader
 import java.time.LocalTime
 
 @CrossOrigin(origins = ["http://127.0.0.1:5500"])
@@ -19,7 +24,8 @@ import java.time.LocalTime
 class AgendamentoController(
     var repository: AgendamentoRepository,
     var historicoAgendamentoRepository: HistoricoAgendamentoRepository,
-    var modelMapper: ModelMapper = ModelMapper()
+    var modelMapper: ModelMapper = ModelMapper(),
+    var agendamentoService: AgendamentoService
 ) {
     @GetMapping
     fun listarAgendamentos(): ResponseEntity<List<Agendamento>> {
@@ -89,6 +95,27 @@ class AgendamentoController(
             ResponseEntity.status(500).body("Erro ao cancelar o agendamento.")
         }
     }
+
+    @PostMapping("/upload", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    fun uploadArquivo(@RequestParam("file") arquivo: MultipartFile): ResponseEntity<List<Agendamento>> {
+        if (arquivo.isEmpty) {
+            return ResponseEntity.badRequest().body(null)
+        }
+
+        val reader = InputStreamReader(arquivo.inputStream)
+        val equipes = agendamentoService.processarTXT(reader)
+        equipes.forEach { criarAgendamento(it) }
+
+        println("Arquivo recebido: ${arquivo.originalFilename}")
+        println("Tamanho do arquivo: ${arquivo.size}")
+        println("Conteúdo do arquivo recebido:")
+        val conteudo = String(arquivo.bytes)
+        println(conteudo)
+
+
+        return ResponseEntity.ok(equipes)
+    }
+
 
 }
 
