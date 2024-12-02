@@ -42,3 +42,46 @@ async function cadastrarCampanhaSC(event) {
         alert(`Erro ao cadastrar a campanha: ${error.message}`);
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const exportButton = document.getElementById('exportCsvButton');
+    
+    if (exportButton) {
+        console.log('Botão encontrado e listener adicionado!');
+        exportButton.addEventListener('click', exportarCsv);
+    } else {
+        console.error('Botão não encontrado no DOM.');
+    }
+});
+
+function exportarCsv() {
+    console.log('Exportar CSV acionado!');
+    
+    fetch('http://localhost:8080/campanhas/csv', {
+        method: 'GET'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao exportar o CSV: ' + response.statusText);
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            console.log('Blob recebido com sucesso!');
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Agendamento.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            console.log('Arquivo CSV baixado com sucesso!');
+        })
+        .catch(error => {
+            console.error('Erro ao exportar o CSV:', error);
+        });
+}
+
+

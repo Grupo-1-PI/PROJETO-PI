@@ -491,47 +491,58 @@ let dadosAgendamentos = [];
         console.log("Campanhas em 20211:", campanhas20211);
 
         const ctx1 = document.getElementById('doadoresOpcao').getContext('2d');
-        const doadoresOpcao = new Chart(ctx1, {
-            type: 'bar',
-            data: {
-                labels: ondeVeio,
-                datasets: [
-                    {
-                        label: 'Opção de Onde Vieram',
-                        data: DadosPorOndeVeio,
-                        backgroundColor: [
-                            '#000000',  // Preto
-                            '#C20000',  // Vermelho
-                            '#3498db',  // Azul Claro
-                            '#F1C40F',  // Dourado
-                            '#7f8c8d'   // Cinza
-                        ],
-                        hoverBackgroundColor: [
-                            '#000000',  // Preto
-                            '#C20000',  // Vermelho
-                            '#3498db',  // Azul Claro
-                            '#F1C40F',  // Dourado
-                            '#7f8c8d'   // Cinza
-                        ],
-                        hoverBorderColor: '#000000' // Cor da borda ao passar o mouse (opcional)
-                    }
-                ]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Por onde vieram',
-                        color: '#000000',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
+const doadoresOpcao = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: ondeVeio,
+        datasets: [
+            {
+                label: 'Opção de Onde Vieram',
+                data: DadosPorOndeVeio,
+                backgroundColor: [
+                    '#000000',  // Preto
+                    '#C20000',  // Vermelho
+                    '#3498db',  // Azul Claro
+                    '#F1C40F',  // Dourado
+                    '#7f8c8d'   // Cinza
+                ],
+                hoverBackgroundColor: [
+                    '#000000',  // Preto
+                    '#C20000',  // Vermelho
+                    '#3498db',  // Azul Claro
+                    '#F1C40F',  // Dourado
+                    '#7f8c8d'   // Cinza
+                ],
+                hoverBorderColor: '#000000' // Cor da borda ao passar o mouse (opcional)
+            }
+        ]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Por onde vieram',
+                color: '#000000',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                },
+            }
+        },
+        scales: {
+            y: {
+                ticks: {
+                    stepSize: 1, // Define o intervalo entre os valores do eixo Y como 1
+                    callback: function(value) {
+                        return Number.isInteger(value) ? value : ''; // Exibe apenas valores inteiros
                     }
                 },
-                // Removido as escalas, pois não são necessárias para gráficos de pizza
+                beginAtZero: true // Garante que o eixo Y começa em zero
             }
-        });
+        }
+    }
+});
+
 
         const ctx2 = document.getElementById('sexoIdade').getContext('2d');
         const sexoIdade = new Chart(ctx2, {
@@ -564,67 +575,66 @@ let dadosAgendamentos = [];
         });
 
         const ctx3 = document.getElementById('doadoresCampanha').getContext('2d');
-        const doadoresCampanha = new Chart(ctx3, {
-            type: 'line',
-            data: {
-                labels: meses,
-                datasets: [
-                    {
-                        label: 'Meses',
-                        data: campanhas20244,
-                        backgroundColor: '#000000',  // Azul sólido
-                        borderColor: '#000000',
-                    },
-                    // {
-                    //     label: 'Sales 2024',
-                    //     data: campanhas2024,
-                    //     backgroundColor: '#e74c3c',  // Vermelho sólido
-                    //     borderColor: '#c0392b',
-                    // }
-                ]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Agendamentos por Campanha',
-                        color: '#000000',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
+const doadoresCampanha = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: meses,
+        datasets: [
+            {
+                label: 'Meses',
+                data: campanhas20244,
+                backgroundColor: '#000000',  // Azul sólido
+                borderColor: '#000000',
+                tension: 0.4 // Suaviza as linhas do gráfico
+            }
+        ]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Agendamentos por Campanha',
+                color: '#000000',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                },
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#2c3e50',
+                    font: {
+                        size: 12,
+                        weight: 'bold'
                     }
                 },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: '#2c3e50',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            display: false  // Remover a grade do eixo x
-                        }
+                grid: {
+                    display: false  // Remove a grade do eixo x
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1, // Define o intervalo como 1
+                    color: '#2c3e50',
+                    font: {
+                        size: 12,
+                        weight: 'bold'
                     },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: '#2c3e50',
-                            font: {
-                                size: 12,
-                                weight: 'bold'
-                            }
-                        },
-                        grid: {
-                            color: '#ecf0f1'  // Cor da grade do eixo y
-                        }
+                    callback: function(value) {
+                        return Number.isInteger(value) ? value : ''; // Exibe apenas valores inteiros
                     }
-
+                },
+                grid: {
+                    color: '#ecf0f1'  // Cor da grade do eixo y
                 }
             }
-        });
+        }
+    }
+});
+
 
         const ctx4 = document.getElementById('agendamentoDoacao').getContext('2d');
         const agendamentoDoacao = new Chart(ctx4, {
