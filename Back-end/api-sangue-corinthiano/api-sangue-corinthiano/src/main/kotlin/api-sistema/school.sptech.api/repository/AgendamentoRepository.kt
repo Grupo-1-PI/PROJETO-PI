@@ -1,11 +1,13 @@
 package ProjetoPI.ProjetoDoadores.repository
 
 import ProjetoPI.ProjetoDoadores.domain.Agendamento
+import `api-sistema`.school.sptech.api.dto.AgendamentoComNomeDTO
 import `api-sistema`.school.sptech.api.dto.DoadorAgendamentoDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import java.time.LocalDate
 
 interface
 AgendamentoRepository: JpaRepository<Agendamento, Int> {
@@ -69,5 +71,27 @@ AgendamentoRepository: JpaRepository<Agendamento, Int> {
         @Param("idDoador") idDoador: Int,
         @Param("idAgendamento") idAgendamento: Int
     ): Int
+
+    @Query("""
+        SELECT a FROM Agendamento a
+        WHERE (:idCampanha IS NULL OR a.idCampanha = :idCampanha)
+          AND (:data IS NULL OR a.data = :data)
+    """)
+    fun filtrarPorCampanhaEData(
+        @Param("idCampanha") idCampanha: Int?,
+        @Param("data") data: LocalDate?
+    ): List<Agendamento>
+    @Query(
+        value = """
+      SELECT DISTINCT c.id_campanha AS idCampanha, c.nome AS nomeCampanha, d.nome as nomeDoador 
+        FROM campanha c
+        JOIN agendamento a ON c.id_campanha = a.id_campanha
+        JOIN doador d ON a.id_doador = d.id_doador
+        ORDER BY c.nome;
+    """,
+        nativeQuery = true
+    )
+    fun findDistinctCampanhas(): List<Map<String, Any>>
+
 }
 

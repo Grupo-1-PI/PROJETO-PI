@@ -190,48 +190,41 @@
         </a>
     </div>
 
-
     <div class="containerPai">
-
         <span class="formatTitulo" style="font-size: 25px; margin-bottom: 20px;">Agendamentos</span>
-
-        <div class="dropdown">
-            <button class="dropdown-toggle" id="dropdownButton">Sangue Corinthiano - SP</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                <a href="#">Instituição Parceira 1</a>
-                <a href="#">Instituição Parceira 2</a>
-                <a href="#">Instituição Parceira 3</a>
-            </div>
+    
+        <!-- Filtro de Data e Campanha -->
+        <div>
+            <!-- Input para o filtro por data -->
+            <label for="select-data">Selecione a Data:</label>
+            <input type="date" id="select-data" />
+        
+            <!-- Dropdown para o filtro por campanha -->
+            <label for="select-campanha">Selecione a Campanha:</label>
+            <select id="select-campanha">
+                <option value="">Selecione uma Campanha</option>
+                <!-- As opções de campanhas serão carregadas dinamicamente -->
+            </select>
+        
+            <!-- Botão para realizar o filtro -->
+            <button onclick="filtrarAgendamentos()">Filtrar</button>
         </div>
-
-        <div class="boxDropdown">
-            <div class="dropdown">
-                <button class="dropdown-toggle" id="dropdownButton2">Campanha de Julho</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                    <a href="#">Campanha de Julho</a>
-                    <a href="#">Campanha de Julho</a>
-                    <a href="#">Campanha de Julho</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropdown-toggle" id="dropdownButton3">22/06/2024</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                    <a href="#">22/06/2024</a>
-                    <a href="#">22/06/2024</a>
-                    <a href="#">22/06/2024</a>
-                </div>
-            </div>
+        
+        <!-- Área para exibir os resultados -->
+        <div id="lista-agendamentos">
+            <p>Os resultados aparecerão aqui...</p>
         </div>
-
-        <!-- Formulário para upload do arquivo -->
+    
+        <!-- Formulário para upload de arquivo (mantido o mesmo sem modificar o script) -->
         <form id="uploadForm" enctype="multipart/form-data">
             <label for="arquivo">Importar arquivo de agendamentos:</label>
             <input type="file" id="arquivo" name="file" accept=".txt">
             <button type="button" onclick="enviarArquivo()">Enviar Arquivo</button>
         </form>
-
+    
         <span class="tituloPreto" style="margin-bottom: 20px;text-align: start;width: 63%;">Total: $4 doadores</span>
-
+    
+        <!-- Exibição dos agendamentos cadastrados -->
         <div class="containerFilho">
             <div class="inputCadastrado" style="margin-bottom: 20px;">
                 <span>$Nome Pessoa</span>
@@ -282,7 +275,8 @@
                 </div>
             </div>
         </div>
-
+        
+        
 
     </div>
     </div>
@@ -334,91 +328,70 @@
 
     <!-- Script Para alterar o modo escuro  -->
     <script>
-        function toggleDarkMode() {
-            var body = document.body;
-            body.classList.toggle("dark-mode");
-            var toggleIcon = document.getElementById("darkModeToggle");
-
-            if (body.classList.contains("dark-mode")) {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
-            } else {
-                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
+        // Função para carregar as campanhas disponíveis
+        async function carregarCampanhasDisponiveis() {
+            try {
+                // Chama a API para pegar as campanhas disponíveis
+                const response = await fetch('http://localhost:8080/agendamentos/campanhasDisponiveis');
+                
+                // Verifica se a resposta foi bem-sucedida
+                if (response.status === 204) {
+                    console.warn("Nenhuma campanha disponível encontrada.");
+                    return;
+                }
+    
+                // Converte a resposta para JSON
+                const campanhas = await response.json();
+                console.log("Campanhas recebidas:", campanhas);  // Verifique os dados aqui
+    
+                // Preenche o dropdown com as campanhas
+                const selectCampanha = document.getElementById("select-campanha");
+                campanhas.forEach((campanha) => {
+                    // Cria uma opção para cada campanha
+                    const option = document.createElement("option");
+                    option.value = campanha.idCampanha; // ID da campanha para o filtro
+                    option.textContent = campanha.nomeCampanha; // Nome da campanha para exibição
+                    selectCampanha.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Erro ao carregar as campanhas disponíveis:", error);
             }
         }
-    </script>
-
-    <!-- Script Para aumentar e diminuir fonte  -->
-    <script>
+    
+        // Função para carregar as informações do doador
         async function buscar() {
             const url = 'http://localhost:8080';
             const id = sessionStorage.getItem('userId');
-
+    
             const resposta = await fetch(`${url}/doadores/${id}`);
             const respostaDadosDoador = await resposta.json();
             console.log("Resposta:", respostaDadosDoador);
-
-            const nomeUsuario = await document.getElementById('nomeUsuario')
-            nomeUsuario.innerHTML = await respostaDadosDoador.nome
-            var usuario = await respostaDadosDoador.nome
+    
+            const nomeUsuario = document.getElementById('nomeUsuario');
+            nomeUsuario.innerHTML = respostaDadosDoador.nome;
         }
-        buscar()
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let fontSizeChange = 0;
-            const maxFontSizeChange = 3;
-            const minFontSizeChange = -3;
-            const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a'); // Adicione outros seletores conforme necessário
-
-            document.getElementById('increase-font').addEventListener('click', function () {
-                if (fontSizeChange < maxFontSizeChange) {
-                    fontSizeChange++;
-                    changeFontSize(1.1); // Aumenta o tamanho da fonte em 10%
-                }
-            });
-
-            document.getElementById('decrease-font').addEventListener('click', function () {
-                if (fontSizeChange > minFontSizeChange) {
-                    fontSizeChange--;
-                    changeFontSize(0.9); // Diminui o tamanho da fonte em 10%
-                }
-            });
-
-            function changeFontSize(factor) {
-                contentElements.forEach(element => {
-                    const currentSize = parseFloat(getComputedStyle(element).fontSize);
-                    element.style.fontSize = (currentSize * factor) + 'px';
-                });
-            }
+    
+        // Chamando a função para buscar os dados do doador
+        buscar();
+    
+        // Chamando a função para carregar as campanhas disponíveis quando o DOM estiver carregado
+        document.addEventListener("DOMContentLoaded", function () {
+            carregarCampanhasDisponiveis();
         });
-    </script>
-
-    <!-- Script Para uso da API VLIBRAS  -->
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-
-    <script>
-                // Função para enviar o arquivo ao servidor
-                function enviarArquivo() {
+    
+        // Função para enviar o arquivo ao servidor
+        function enviarArquivo() {
             const arquivoInput = document.getElementById('arquivo');
             const arquivo = arquivoInput.files[0];
-
+    
             if (!arquivo) {
                 alert('Por favor, selecione um arquivo.');
                 return;
             }
-
+    
             const formData = new FormData();
             formData.append('file', arquivo);
-
+    
             // Enviar o arquivo para o endpoint usando Fetch API
             fetch('http://localhost:8080/agendamentos/upload', {
                 method: 'POST',
@@ -440,60 +413,77 @@
                 alert('Erro ao enviar o arquivo.');
             });
         }
+    
+  // Função para filtrar os agendamentos
+async function filtrarAgendamentos() {
+    const data = document.getElementById("select-data").value;  // Captura a data selecionada
+    const idCampanha = parseInt(document.getElementById("select-campanha").value);  // Captura a campanha selecionada
 
+    try {
+        let url = 'http://localhost:8080/agendamentos/filtrar';
+        const params = [];
+        if (data) params.push(`data=${data}`);
+        if (idCampanha) params.push(`idCampanha=${idCampanha}`);
+        if (params.length > 0) url += '?' + params.join('&');  // Adiciona os parâmetros na URL
 
-        document.getElementById("dropdownButton").addEventListener("click", function () {
-            this.parentElement.classList.toggle("show");
-        });
+        const response = await fetch(url);  // Faz a requisição para o servidor
 
-        // Fecha o dropdown se o usuário clicar fora dele
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown-toggle')) {
-                var dropdowns = document.getElementsByClassName("dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
+        if (response.status === 204) {
+            document.querySelector(".containerFilho").innerHTML = "<p>Nenhum agendamento encontrado para os filtros selecionados.</p>";
+            return;
         }
 
-        document.getElementById("dropdownButton2").addEventListener("click", function () {
-            this.parentElement.classList.toggle("show");
-        });
+        const agendamentos = await response.json();  // Recebe os dados dos agendamentos
+        renderizarAgendamentos(agendamentos);  // Renderiza os agendamentos na tela
+    } catch (error) {
+        console.error("Erro ao filtrar agendamentos:", error);
+    }
+}
 
-        // Fecha o dropdown se o usuário clicar fora dele
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown-toggle')) {
-                var dropdowns = document.getElementsByClassName("dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+     // Função para renderizar os agendamentos dentro de containerFilho
+function renderizarAgendamentos(agendamentos) {
+    const container = document.querySelector(".containerFilho");  // Seleciona o container onde os agendamentos serão inseridos
+    container.innerHTML = "";  // Limpa o conteúdo existente
+    
+    agendamentos.forEach((agendamento) => {
+        const agendamentoEl = document.createElement("div");
+        agendamentoEl.classList.add("inputCadastrado"); // Adiciona a classe para o estilo
 
-        document.getElementById("dropdownButton3").addEventListener("click", function () {
-            this.parentElement.classList.toggle("show");
-        });
+        console.log(agendamento)
 
-        // Fecha o dropdown se o usuário clicar fora dele
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown-toggle')) {
-                var dropdowns = document.getElementsByClassName("dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        // Preenche o conteúdo do agendamento
+        agendamentoEl.innerHTML = `
+            <span>${agendamento.nomeDoador}</span>   <!-- Nome da pessoa -->
+            <span>${agendamento.hora}</span>   <!-- Horário do agendamento -->
+            <div class="botaoVizuEdi">
+                <div class="botaoVizu">
+                    <span>Compareceu</span>  <!-- Botão de comparecimento -->
+                </div>
+                <div class="botaoEdit">
+                    <span>Não Compareceu</span>  <!-- Botão de não comparecimento -->
+                </div>
+            </div>
+        `;
+
+        container.appendChild(agendamentoEl);  // Adiciona o agendamento ao container
+    });
+}
+
+        // Função para alternar o modo escuro
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            var toggleIcon = document.getElementById("darkModeToggle");
+    
+            if (body.classList.contains("dark-mode")) {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo claro
+            } else {
+                toggleIcon.src = "../../IMG/alternancia branco.png"; // Trocar para o ícone do modo escuro
             }
         }
     </script>
+    
 
 </body>
 
-</html>
+</html> 
